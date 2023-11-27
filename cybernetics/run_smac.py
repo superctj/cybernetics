@@ -1,6 +1,6 @@
 import argparse
 
-from utils.util import fix_global_random_state, parse_config
+from cybernetics.utils.util import fix_global_random_state, parse_config
 
 
 if __name__ == "__main__":
