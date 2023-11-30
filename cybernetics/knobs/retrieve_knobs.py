@@ -4,7 +4,22 @@ import json
 from cybernetics.db_interface.postgres import PostgresClient
 
 
-SELECTED_KNOB_LOGICAL_GROUPS = []
+SELECTED_KNOB_LOGICAL_GROUPS = [
+    "Query Tuning / Planner Method Configuration",
+    "Write-Ahead Log / Settings",
+    "Query Tuning / Planner Cost Constants",
+    "Autovacuum",
+    "Resource Usage / Memory",
+    "Resource Usage / Asynchronous Behavior",
+    "Query Tuning / Other Planner Options",
+    "Query Tuning / Genetic Query Optimizer",
+    "Write-Ahead Log / Checkpoints",
+    "Lock Management",
+    "Resource Usage / Cost-Based Vacuum Delay",
+    "Resource Usage / Background Writer",
+    "Resource Usage / Kernel Resources",
+    "Resource Usage / Disk",
+]
 
 
 if __name__ == "__main__":
@@ -38,6 +53,14 @@ if __name__ == "__main__":
     with open(all_knobs_filepath, "w") as ak_f:
         json.dump(all_knobs_info, ak_f, indent=4)
 
+    selected_knobs_info = []
+    for knob_spec in all_knobs_info:
+        if knob_spec["category"] in SELECTED_KNOB_LOGICAL_GROUPS:
+            selected_knobs_info.append(knob_spec)
+    
+    with open(selected_knobs_filepath, "w") as sk_f:
+        json.dump(selected_knobs_info, sk_f, indent=4)
+
     logical_groups = {}
     for knob_spec in all_knobs_info:
         if knob_spec["category"] not in logical_groups:
@@ -49,7 +72,9 @@ if __name__ == "__main__":
 
     stats = {
         "Number of knobs": len(all_knobs_info),
-        "Number of logical groups": len(logical_groups)
+        "Number of logical groups": len(logical_groups),
+        "Number of selected knobs": len(selected_knobs_info),
+        "Number of selected logical groups": len(SELECTED_KNOB_LOGICAL_GROUPS)
     }
 
     with open(stats_filepath, "w") as stats_f:

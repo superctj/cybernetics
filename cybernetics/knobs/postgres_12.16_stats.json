@@ -1,7 +1,9 @@
 [
     {
         "Number of knobs": 315,
-        "Number of logical groups": 41
+        "Number of logical groups": 41,
+        "Number of selected knobs": 111,
+        "Number of selected logical groups": 14
     },
     {
         "Client Connection Defaults / Statement Behavior": 26,
