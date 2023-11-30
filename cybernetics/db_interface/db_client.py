@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class DBConnector(ABC):
+class DBClient(ABC):
     def __init__(self):
         pass
 
