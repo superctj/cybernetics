@@ -1,5 +1,6 @@
 import argparse
 
+from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 from cybernetics.utils.util import fix_global_random_state, parse_config
 
 
@@ -22,12 +23,14 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     
-    # Set global random state
-    fix_global_random_state(args.random_seed)
+    # # Set global random state
+    # fix_global_random_state(args.random_seed)
 
-    # Parse configuration
-    config_parser = parse_config(args.config_path)
+    # # Parse configuration
+    # config_parser = parse_config(args.config_path)
 
-    if config_parser["dbms_info"]["name"] == "postgres":
-        from utils.postgres_wrapper import PostgresWrapper
+    # Create logger for the main module
+    main_logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(module_name=__name__)
     
+    # if config_parser["dbms_info"]["name"] == "postgres":
+    #     from cybernetics.db_interface.postgres import PostgresWrapper
