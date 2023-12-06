@@ -16,13 +16,17 @@ def create_dir(dir_path: str, force: bool) -> None:
             raise ValueError(f"Directory {dir_path} already exists.")
 
 
+def get_proj_dir(filepath: str) -> str:
+    abs_path = os.path.abspath(filepath)
+    proj_dir = "/".join(abs_path.split("/")[:-3])
+    return proj_dir
+
+
 class CustomLoggingInstance:
     def __init__(self, force: bool) -> None:
-        abs_path = os.path.abspath(__file__)
-        proj_dir = "/".join(abs_path.split("/")[:-3])
-        now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
-
-        self.log_dir = os.path.join(proj_dir, f"logs/{now}")
+        proj_dir = get_proj_dir(__file__)
+        self.id = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        self.log_dir = os.path.join(proj_dir, f"logs/{self.id}")
         create_dir(self.log_dir, force)
 
     def get_module_logger(self, module_name: str, logging_level: int = logging.INFO):
