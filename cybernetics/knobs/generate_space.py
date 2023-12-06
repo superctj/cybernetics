@@ -45,7 +45,7 @@ class KnobSpaceGenerator:
 
         input_knobs = []
         for knob_spec in self.all_knobs:
-            knob_name, knob_type = knob_spec["name"], knob_spec["type"]
+            knob_name, knob_type = knob_spec["name"], knob_spec["vartype"]
             
             if knob_name in ignored_knobs:
                 continue
@@ -54,7 +54,7 @@ class KnobSpaceGenerator:
             if knob_type == "enum":
                 knob = CSH.CategoricalHyperparameter(
                     name=knob_name,
-                    choices=knob_spec["choices"],
+                    choices=knob_spec["enumvals"],
                     default_value=knob_spec["default"])
             # Numerical
             elif knob_type == "integer":
