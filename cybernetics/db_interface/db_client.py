@@ -10,11 +10,11 @@ class DBClient(ABC):
         pass
 
     @abstractmethod
-    def close_db(self):
+    def close_connection(self):
         pass
 
     @abstractmethod
-    def fetch_results(self, sql, json=True):
+    def execute_and_fetch_results(self, sql, json=True):
         pass
 
     @abstractmethod

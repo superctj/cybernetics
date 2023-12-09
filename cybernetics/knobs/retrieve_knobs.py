@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     # Retrieve database version
     version_sql = "SELECT version();"
-    db_version = pg_client.fetch_results(version_sql, json=False)[0][0].split(" ")[1]
+    db_version = pg_client.execute_and_fetch_results(version_sql, json=False)[0][0].split(" ")[1]
 
     # Specify output file paths
     stats_filepath = f"./postgres_{db_version}_stats.json"
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     # https://www.postgresql.org/docs/current/view-pg-settings.html
     knob_sql = "SELECT name, setting, unit, category, short_desc, extra_desc, context, vartype, source, min_val, max_val, enumvals, boot_val, reset_val FROM pg_settings;"
 
-    all_knobs_info = pg_client.fetch_results(knob_sql)
+    all_knobs_info = pg_client.execute_and_fetch_results(knob_sql)
 
     with open(all_knobs_filepath, "w") as ak_f:
         json.dump(all_knobs_info, ak_f, indent=4)

@@ -4,6 +4,7 @@ https://github.com/PKU-DAIR/DBTune/blob/main/autotune/dbconnector.py
 https://github.com/PKU-DAIR/DBTune/blob/main/autotune/database/postgresqldb.py
 """
 
+import json
 import glob
 import os
 import subprocess
@@ -21,74 +22,70 @@ TIMEOUT_CLOSE = 60 # 60 seconds
 
 
 class PostgresClient(DBClient):
-    def __init__(self, host, port, user, password, db_name, socket=None):
+    def __init__(self, host, port, user, password, db_name):
         super().__init__()
         self.host = host
         self.port = port
         self.user = user
         self.password = password
         self.db_name = db_name
-        self.socket = socket
-        self.conn = self.connect_db()
-        if self.conn:
-            self.cursor = self.conn.cursor()
-        
         self.logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(__name__)
+        
+        self.conn, self.cursor = self.connect_db()
 
     def connect_db(self):
-        if self.socket:
-            conn = psycopg2.connect(host=self.host,
-                                    port=self.port,
-                                    user=self.user,
-                                    password=self.password,
-                                    database=self.db_name,
-                                    unix_socket=self.socket)
-        else:
+        try:
             conn = psycopg2.connect(host=self.host,
                                     port=self.port,
                                     user=self.user,
                                     password=self.password,
                                     database=self.db_name)
-        return conn
+            
+            cursor = conn.cursor()
+            self.logger.info("Connected to Postgres.")
+            return conn, cursor
+        except:
+            self.logger.info("Unable to connect to Postgres.")
 
-    def close_db(self):
+    def close_connection(self):
         if self.cursor:
             self.cursor.close()
         if self.conn:
             self.conn.close()
+        self.logger.info("Closed connection to Postgres.")
 
-    def fetch_results(self, sql, json=True):    
-        if self.conn:
+    def execute_and_fetch_results(self, sql, json=True) -> list:
+        try:
             self.cursor.execute(sql)
             results = self.cursor.fetchall()
             if json:
                 columns = [col[0] for col in self.cursor.description]
                 return [dict(zip(columns, row)) for row in results]
         
-        return results
+            return results
+        except:
+            self.close_connection()
+            return []
 
-    def execute(self, sql):
-        results = None
-        if self.conn:
+    def execute(self, sql) -> bool:
+        try:
             self.cursor.execute(sql)
+            return True
+        except:
+            self.close_connection()
+            return False
 
 
 class PostgresWrapper:
-    def __init__(self, db_config, workload_wrapper, results_dir) -> None:
-        self.host = db_config["host"]
-        self.port = db_config["port"]
-        self.user = db_config["user"]
-        self.password = db_config["password"]
-        self.db_name = db_config["db_name"]
-        # self.socket = db_config["socket"]
-        # self.pid = int(db_config["pid"])
-        # self.pg_cnf = db_config["pg_cnf"]
-        # self.pg_ctl = db_config["pg_ctl"]
-        # self.pg_data = db_config["pg_data"]
-        # self.postgres = os.path.join(os.path.split(os.path.abspath(self.pg_ctl))[0], "postgres")
+    def __init__(self, db_info, workload_wrapper, results_dir) -> None:
+        self.host = db_info["host"]
+        self.port = db_info["port"]
+        self.user = db_info["user"]
+        self.password = db_info["password"]
+        self.db_name = db_info["db_name"]
         self.workload_wrapper = workload_wrapper
         self.results_dir = results_dir
-
+        self.logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(__name__)
         # TODO: Add support for remote mode
 
         self.num_metrics = 60
@@ -135,10 +132,9 @@ class PostgresWrapper:
                                            user=self.user,
                                            password=self.password,
                                            db_name=self.db_name)
-                pg_conn = pg_client.conn
-                if pg_conn.closed == 0:
+                if pg_client.conn.closed == 0:
                     self.logger.info("Connected to Postgres.")
-                    pg_conn.close()
+                    pg_client.close_connection()
                     break
             except:
                 pass
@@ -174,73 +170,57 @@ class PostgresWrapper:
             os.system(force_kill_cmd2)
             self.logger.info("Postgres is shut down")
     
-    def _check_apply(self, db_conn, k, v0):
+    def _check_applied(self, db_conn, k, default_val):
         sql = f"SHOW {k};"
-        r = db_conn.fetch_results(sql)
+        cur_val = db_conn.execute_and_fetch_results(sql)[0][0]
 
-        if r[0]["Value"] == "ON":
-            vv = 1
-        elif r[0]["Value"] == "OFF":
-            vv = 0
-        else:
-            vv = r[0]["Value"].strip()
-
-        if vv == v0: # Knob value v has not taken effect yet
+        if cur_val == default_val:
             return False
         else:
             return True
     
     def set_knob_value(self, db_conn, k, v) -> bool:
         sql = f"SHOW {k};"
-        r = db_conn.fetch_results(sql)
+        cur_val = db_conn.execute_and_fetch_results(sql, json=False)[0][0]
+        self.logger.info(f"Current value of knob {k}: {cur_val}")
 
-        # Compare the value in the database with the value to be set
-        if r[0]["Value"] == "ON":
-            v0 = 1
-        elif r[0]["Value"] == "OFF":
-            v0 = 0
-        else:
-            try:
-                v0 = eval(r[0]["Value"])
-            except:
-                v0 = r[0]["Value"].strip()
-        
-        if v == "ON" or v == "on":
-            v = 1
-        elif v == "OFF" or v == "off":
-            v = 0
-        
-        if v0 == v:
+        if cur_val == v:
+            self.logger.info(f"Knob {k} has already been set to {v}.")
             return True
-
-        if str(v).isdigit():
-            sql = f"SET {k}={v};"
         else:
-            sql = f"SET {k}='{v}';"
-        
-        try:
-            db_conn.execute(sql)
-        except:
-            self.logger.info(f"Failed to execute {sql}")
-
-        # Check if knob value v has taken effect
-        while not self._check_apply(db_conn, k, v0):
-            time.sleep(1)
-        
-        return True
+            if type(v) == str:
+                set_sql = f"SET {k}='{v}';"
+            else:
+                assert type(v) == int
+                set_sql = f"SET {k}={v};"
+            
+            try:
+                _ = db_conn.execute(set_sql)
+                # Check if knob value v has taken effect
+                # while not self._check_applied(db_conn, k, cur_val):
+                #     time.sleep(1)
+                return True
+            except:
+                self.logger.info(f"Failed to set knob {k} to {v}.")
+                return False
     
-    def apply_knobs_online(self, knobs):
-        pg_client = PostgresClient(host=self.host,
-                                   port=self.port,
-                                   user=self.user,
-                                   password=self.password,
-                                   db_name=self.db_name)
+    def apply_knobs_online(self, knobs: dict) -> bool:
+        try:
+            pg_client = PostgresClient(host=self.host,
+                                       port=self.port,
+                                       user=self.user,
+                                       password=self.password,
+                                       db_name=self.db_name)
 
-        for key in knobs.keys():
-            self.set_knob_value(pg_client, key, knobs[key])
+            for key in knobs.keys():
+                self.set_knob_value(pg_client, key, knobs[key])
 
-        pg_client.close_db()
-        self.logger.info(f"[{time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}] Knobs applied online!")
+            pg_client.close_connection()
+            self.logger.info(f"[{time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}] Knobs applied online.")
+
+            return True
+        except:
+            return False
 
     def apply_knobs_offline(self, knobs: dict) -> bool:
         self._kill_postgres()
@@ -274,12 +254,16 @@ class PostgresWrapper:
 
         return success
 
-    def _get_benchbase_metrics(self):
+    def get_benchbase_metrics(self):
         metrics_files = glob.glob(f"{self.results_dir}/*.summary.json")
         latest_metrics_file = max(metrics_files, key=os.path.getctime)
-        pass
 
-    def evaluate_db_config(self, knobs: dict) -> dict:
+        with open(latest_metrics_file, "r") as f:
+            metrics = json.load(f)
+        
+        return metrics
+
+    def evaluate_db_info(self, knobs: dict) -> dict:
         success = self.apply_knobs_offline(knobs)
         if not success:
             self.logger.info("Failed to apply the given DBMS configuration.")
