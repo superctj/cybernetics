@@ -2,24 +2,8 @@ import logging
 import os
 
 from datetime import datetime
-from shutil import rmtree
 
-
-def create_dir(dir_path: str, force: bool) -> None:
-    if not os.path.exists(dir_path):
-        os.makedirs(dir_path)
-    else:
-        if force:
-            rmtree(dir_path)
-            os.makedirs(dir_path)
-        else:
-            raise ValueError(f"Directory {dir_path} already exists.")
-
-
-def get_proj_dir(filepath: str) -> str:
-    abs_path = os.path.abspath(filepath)
-    proj_dir = "/".join(abs_path.split("/")[:-3])
-    return proj_dir
+from cybernetics.utils.util import create_dir, get_proj_dir
 
 
 class CustomLoggingInstance:
