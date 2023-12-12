@@ -9,12 +9,12 @@ from ConfigSpace import ConfigurationSpace
 
 
 class KnobSpaceGenerator:
-    def __init__(self, knob_config: str, random_seed: int):
+    def __init__(self, knob_spec: str, random_seed: int):
         """Initialize the knob space generator.
         """
         
         # self.knob_types = ["enum", "integer", "real"]
-        self.all_knobs = self.read_db_knobs(knob_config)
+        self.all_knobs = self.read_db_knobs(knob_spec)
         self.random_seed = random_seed
 
     def read_db_knobs(self, knob_config) -> dict:
@@ -55,20 +55,25 @@ class KnobSpaceGenerator:
                 knob = CSH.CategoricalHyperparameter(
                     name=knob_name,
                     choices=knob_spec["enumvals"],
-                    default_value=knob_spec["default"])
+                    default_value=knob_spec["reset_val"])
             # Numerical
             elif knob_type == "integer":
                 knob = CSH.UniformIntegerHyperparameter(
                     name=knob_name,
-                    lower=knob_spec["min"],
-                    upper=knob_spec["max"],
-                    default_value=knob_spec["default"])
+                    lower=int(knob_spec["min_val"]),
+                    upper=int(knob_spec["max_val"]),
+                    default_value=int(knob_spec["reset_val"]))
             elif knob_type == "real":
                 knob = CSH.UniformFloatHyperparameter(
                     name=knob_name,
-                    lower=knob_spec["min"],
-                    upper=knob_spec["max"],
-                    default_value=knob_spec["default"])
+                    lower=float(knob_spec["min_val"]),
+                    upper=float(knob_spec["max_val"]),
+                    default_value=float(knob_spec["reset_val"]))
+            elif knob_type == "bool":
+                knob = CSH.CategoricalHyperparameter(
+                    name=knob_name,
+                    choices=["on", "off"],
+                    default_value=knob_spec["reset_val"])
             else:
                 raise ValueError(f"Unknown knob type: {knob_type}")
 
