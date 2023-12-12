@@ -7,7 +7,7 @@ from cybernetics.knobs.generate_space import KnobSpaceGenerator
 
 def test_knob_space_generator():
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    knob_config = os.path.join(root_dir, "cybernetics/knobs/postgres_9.6.json")
+    knob_config = os.path.join(root_dir, "cybernetics/knobs/postgres_12.16_selected_knobs.json")
     random_seed = 12345
     ignored_knobs = []
 

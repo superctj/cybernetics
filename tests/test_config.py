@@ -9,4 +9,4 @@ def test_config():
     
     parser = parse_config(config_path)
     assert "dbms_info" in parser.sections()
-    assert parser["dbms_info"]["name"] in ["postgres", "mysql"]
+    assert parser["dbms_info"]["dbms_name"] in ["postgres", "mysql"]
