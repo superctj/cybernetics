@@ -21,7 +21,7 @@ RESTART_TIMEOUT = 60 # 60 seconds
 
 
 class PostgresClient(DBClient):
-    def __init__(self, host, port, user, password, db_name, logger):
+    def __init__(self, host, port, user, password, db_name, logger=None):
         super().__init__()
         self.host = host
         self.port = port
@@ -41,17 +41,22 @@ class PostgresClient(DBClient):
                                     database=self.db_name)
             conn.autocommit = True
             cursor = conn.cursor()
-            self.logger.info("Connected to Postgres.")
+
+            if self.logger:
+                self.logger.info("Connected to Postgres.")
             return conn, cursor
         except:
-            self.logger.info("Unable to connect to Postgres.")
+            if self.logger:
+                self.logger.info("Unable to connect to Postgres.")
 
     def close_connection(self):
         if self.cursor:
             self.cursor.close()
         if self.conn:
             self.conn.close()
-        self.logger.info("Closed connection to Postgres.")
+        
+        if self.logger:
+            self.logger.info("Closed connection to Postgres.")
 
     def execute_and_fetch_results(self, sql, json=True) -> list:
         try:
@@ -296,7 +301,6 @@ class PostgresWrapper:
                                        db_name=self.db_name,
                                        logger=self.logger)
             
-            # TODO: Set all knob values before restarting Postgres
             for key in knobs.keys():
                 self.set_knob_value(pg_client, key, knobs[key])
             
