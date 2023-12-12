@@ -3,7 +3,7 @@ import subprocess
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
 
-TIMEOUT = 3600 # 1 hour
+TIMEOUT = 36000 # 1 hour
 
 
 class BenchBaseWrapper:
