@@ -1,6 +1,15 @@
 # Cybernetics: Open Source DBMS Configuration Tuning
+Codebase of a working open source DBMS configuration tuning framework.
 
-Codebase of a working open source DBMS configuration tuning framework for Postgres.
+
+## Prerequisites
+
+**DBMS**
+- [PostgreSQL](https://www.postgresql.org) (We currently support Postgres and provide a step-by-step [reference](https://docs.google.com/document/d/1iv6B1bXawyx3K6kLBbUva91FEXKE1wns_kPd-UoUumM/edit?usp=sharing) for installing Postgres 12.17 on Ubuntu 20.04.)
+
+**Workload Generator**
+- [Benchbase](https://github.com/cmu-db/benchbase) (We currently use Benchbase as the workload generator and provide a step-by-step [reference](https://docs.google.com/document/d/1EbcwEMBdeWTmHDuWXW3lC8Pggbj3A8e-EJBlwN2VEzY/edit?usp=sharing) for running Benchbase.)
+
 
 ## Environment Setup
 Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) for Python package management on Linux machines.
@@ -21,11 +30,19 @@ Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) fo
 
     ```conda develop <path to Cybernetics>```
 
-    e.g.,
-    
-    ```conda develop /home/tianji/cybernetics```
+    e.g., ```conda develop /home/tianji/cybernetics```
+
 
 ## Quick Start
-Run the default configuration and the PGTune configuration on the TPC-C benchmark (you need to change the paths in the program to your own paths):
+Follow the steps below to run the default configuration and the PGTune configuration on the TPC-C benchmark.
 
-    pytest -s ./tests/test_evaluating_pgtune_tpcc.py
+1. Change DBMS connection configuration in ```./tests/test_evaluating_pgtune_tpcc.py``` to your own .
+
+2. Change Benchbase-related paths in ```./scripts/benchbase_tpcc_postgres_test_pgtune.sh``` to your own.
+
+3. Evaluate the default configuration and the PGTune configuration:
+
+   pytest -s ./tests/test_evaluating_pgtune_tpcc.py
+
+## Status
+Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
