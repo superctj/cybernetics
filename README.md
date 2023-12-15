@@ -28,4 +28,4 @@ Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) fo
 ## Quick Start
 Run the default configuration and the PGTune configuration on the TPC-C benchmark (you need to change the paths in the program to your own paths):
 
-    ```pytest -s ./tests/test_evaluating_pgtune_tpcc.py```
+    pytest -s ./tests/test_evaluating_pgtune_tpcc.py
