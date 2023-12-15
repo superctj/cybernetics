@@ -3694,7 +3694,7 @@
     },
     {
         "name": "server_version",
-        "setting": "12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)",
+        "setting": "12.17 (Ubuntu 12.17-0ubuntu0.20.04.1)",
         "unit": null,
         "category": "Preset Options",
         "short_desc": "Shows the server version.",
@@ -3705,12 +3705,12 @@
         "min_val": null,
         "max_val": null,
         "enumvals": null,
-        "boot_val": "12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)",
-        "reset_val": "12.16 (Ubuntu 12.16-0ubuntu0.20.04.1)"
+        "boot_val": "12.17 (Ubuntu 12.17-0ubuntu0.20.04.1)",
+        "reset_val": "12.17 (Ubuntu 12.17-0ubuntu0.20.04.1)"
     },
     {
         "name": "server_version_num",
-        "setting": "120016",
+        "setting": "120017",
         "unit": null,
         "category": "Preset Options",
         "short_desc": "Shows the server version as an integer.",
@@ -3718,11 +3718,11 @@
         "context": "internal",
         "vartype": "integer",
         "source": "default",
-        "min_val": "120016",
-        "max_val": "120016",
+        "min_val": "120017",
+        "max_val": "120017",
         "enumvals": null,
-        "boot_val": "120016",
-        "reset_val": "120016"
+        "boot_val": "120017",
+        "reset_val": "120017"
     },
     {
         "name": "session_preload_libraries",
