@@ -16,12 +16,12 @@ def test_evaluating_db_configuration():
         "password": "12345",
         "db_cluster": "/data/pgsql/data",
         "db_log_filepath": "/data/pgsql/log",
-        "db_name": "benchbase_tpcc" # This database should be created beforehand
+        "db_name": "benchbase_tpch" # This database should be created beforehand
     }
 
     proj_dir = get_proj_dir(__file__, file_level=2)
     print("\n    Project directory:", proj_dir)
-    workload = "tpcc"
+    workload = "tpch"
     script = os.path.join(proj_dir,
                           f"scripts/benchbase_{workload}_postgres_test_pgtune.sh")
     results_dir = os.path.join(proj_dir,
@@ -35,31 +35,31 @@ def test_evaluating_db_configuration():
     print("    Created Postgres wrapper.")
 
     # Get default performance
-    postgres_wrapper.reset_knobs_by_restarting_db()
-    print("    Reset the runtime configuration.")
+    # postgres_wrapper.reset_knobs_by_restarting_db()
+    # print("    Reset the runtime configuration.")
     
-    workload_wrapper.run()
-    default_performance = postgres_wrapper.get_benchbase_metrics()
-    default_throughput = default_performance["Throughput (requests/second)"]
-    print("    Default throughput: ", default_throughput)
+    # workload_wrapper.run()
+    # default_performance = postgres_wrapper.get_benchbase_metrics()
+    # default_latency = default_performance["Latency Distribution"]
+    # print("    Default latency distribution: ", default_latency)
 
     # Apply PGTune configuration
     db_config = {
-        "max_connections": 300,
+        "max_connections": 40,
         "shared_buffers": "32GB",
         "effective_cache_size": "96GB",
         "maintenance_work_mem": "2GB",
         # "checkpoint_completion_target": 0.9,
         "wal_buffers": "16MB",
-        "default_statistics_target": 100,
+        "default_statistics_target": 500,
         # "random_page_cost": 1.1,
         "effective_io_concurrency": 200,
-        "work_mem": "27962kB",
+        "work_mem": "26214kB",
         "huge_pages": "try",
-        "min_wal_size": "2GB",
-        "max_wal_size": "8GB",
+        "min_wal_size": "4GB",
+        "max_wal_size": "16GB",
         "max_worker_processes": 32,
-        "max_parallel_workers_per_gather": 4,
+        "max_parallel_workers_per_gather": 16,
         "max_parallel_workers": 32,
         "max_parallel_maintenance_workers": 4
     }
@@ -68,10 +68,8 @@ def test_evaluating_db_configuration():
 
     workload_wrapper.run()
     performance = postgres_wrapper.get_benchbase_metrics()
-    throughput = performance["Throughput (requests/second)"]
-    print("    Tuned throughput: ", throughput)
+    latency = performance["Latency Distribution"]
+    print("    Tuned latency distribution: ", latency)
 
     postgres_wrapper.reset_knobs_by_restarting_db()
     print("    Reset the runtime configuration.")
-    
-    # assert throughput > default_throughput
