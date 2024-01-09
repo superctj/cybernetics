@@ -26,7 +26,9 @@ def test_evaluating_db_configuration():
                           f"scripts/benchbase_{workload}_postgres_test_pgtune.sh")
     results_dir = os.path.join(proj_dir,
                                f"exps/benchbase_{workload}/postgres/pgtune_tests")
-    create_dir(results_dir, force=False)
+
+    if not os.path.exists(results_dir):
+        create_dir(results_dir, force=False)
 
     workload_wrapper = BenchBaseWrapper(workload, script)
     print("    Created workload wrapper.")
