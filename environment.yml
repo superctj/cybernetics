@@ -16,8 +16,8 @@ dependencies:
   - brotli-python=1.0.9=py39h6a678d5_7
   - bzip2=1.0.8=h7b6447c_0
   - c-ares=1.19.1=h5eee18b_0
-  - ca-certificates=2023.11.17=hbcca054_0
-  - certifi=2023.11.17=pyhd8ed1ab_0
+  - ca-certificates=2023.12.12=h06a4308_0
+  - certifi=2023.11.17=py39h06a4308_0
   - cffi=1.16.0=py39h5eee18b_0
   - chardet=4.0.0=py39h06a4308_1003
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
@@ -118,7 +118,7 @@ dependencies:
   - ncurses=6.4=h6a678d5_0
   - numpy=1.26.0=py39h5f9d8c6_0
   - numpy-base=1.26.0=py39hb5e798b_0
-  - openssl=3.2.0=hd590300_1
+  - openssl=3.1.4=hd590300_0
   - packaging=23.1=py39h06a4308_0
   - paramiko=3.3.1=pyhd8ed1ab_0
   - partd=1.4.1=pyhd8ed1ab_0
