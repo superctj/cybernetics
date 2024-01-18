@@ -44,5 +44,22 @@ Follow the steps below to run the default configuration and the PGTune configura
 
    pytest -s ./tests/test_evaluating_pgtune_tpcc.py
 
-## Status
+## Wish List
 Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
+
+### Configuration optimizers
+- [ ] BO - Gaussian Process
+- [ ] BO - SMAC
+- [ ] RL - DDPG
+
+### Parameter Space Reduction
+- [ ] Knob Selection - Lasso
+- [ ] Knob Selection - Gini Index
+- [ ] Knob Selection - fANOVA
+- [ ] Knob Selection - SHAP Value
+- [ ] Subspace - Randomized Low-Dimensional Projection
+- [ ] Subspace - Biased Sampling for Hybrid Knobs
+- [ ] Subspace - Knob Value Bucketization
+
+### Knowledge Transfer
+- [ ] Workload Mapping
