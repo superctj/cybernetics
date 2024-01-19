@@ -1,19 +1,50 @@
 """DBMS configuration optimizers.
 
-This module is adapted from Llamatune's optimizer.py.
-
 https://github.com/uw-mad-dash/llamatune/blob/main/optimizer.py
 """
 
 from functools import partial
 
 from ConfigSpace import ConfigurationSpace
-from smac.facade.smac_hpo_facade import SMAC4HPO
-from smac.facade.smac_bb_facade import SMAC4BB
-from smac.scenario.scenario import Scenario
+from smac import BlackBoxFacade as BBFacade
+from smac import HyperparameterOptimizationFacade as HPOFacade
+from smac import Scenario
 
 from cybernetics.knobs.bias_sampling import LHDesignWithBiasedSampling
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
+
+
+logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(__name__)
+
+
+def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace, target_function):
+    logger.info("Constructing BO-based optimizer...")
+    # logger.info(f"Run History: {run_history}")
+    # logger.info(f"Ignored knobs: {ignored_knobs}")
+
+    scenario = Scenario(
+        config_space=dbms_config_space,
+        output_dir=config["results"]["save_path"],
+        deterministic=True,
+        objectives="cost", # minimize the objective
+        n_trials=100,
+        seed=config["config_optimizer"]["random_seed"]
+    ) 
+
+    if config["config_optimizer"]["optimizer"] == "bo-gp":
+        optimizer = BBFacade(
+            scenario=scenario,
+            target_function=target_function
+        )
+    elif optimizer == "bo-rf":
+        optimizer = HPOFacade(
+            scenario=scenario,
+            target_function=target_function
+        )
+    else:
+        raise ValueError(f"Optimizer {optimizer} not supported.")
+    
+    return optimizer
 
 
 def get_smac_optimizer(config, knob_space: ConfigurationSpace, tae_runner, state, ignored_knobs=None, run_history=None):
