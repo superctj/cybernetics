@@ -48,8 +48,8 @@ Follow the steps below to run the default configuration and the PGTune configura
 Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
 
 ### Configuration optimizers
-- [ ] BO - Gaussian Process
-- [ ] BO - SMAC
+- [ ] BO - Gaussian Process (Vanilla BO)
+- [ ] BO - Random Forest (SMAC)
 - [ ] RL - DDPG
 
 ### Parameter Space Reduction
@@ -57,9 +57,9 @@ Cybernetics is under active development by [Tianji Cong](https://superctj.github
 - [ ] Knob Selection - Gini Index
 - [ ] Knob Selection - fANOVA
 - [ ] Knob Selection - SHAP Value
-- [ ] Subspace - Randomized Low-Dimensional Projection
-- [ ] Subspace - Biased Sampling for Hybrid Knobs
-- [ ] Subspace - Knob Value Bucketization
+- [ ] Space Transformation - Random Linear Projection
+- [ ] Space Transformation - Biased Sampling for Hybrid Knobs
+- [ ] Space Transformation - Knob Value Bucketization
 
 ### Knowledge Transfer
 - [ ] Workload Mapping
