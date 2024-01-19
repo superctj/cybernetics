@@ -10,10 +10,9 @@ import os
 import subprocess
 import time
 
-# import paramiko
 import psycopg2
 
-from cybernetics.db_interface.db_client import DBClient
+from cybernetics.dbms_interface.dbms_client import DBClient
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
 
