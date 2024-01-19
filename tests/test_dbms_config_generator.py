@@ -15,7 +15,7 @@ def test_dbms_config_generator():
     dbms_config_space = dbms_config_space_generator.generate_input_space(ignored_knobs=[])
 
     if "work_mem" in dbms_config_space:
-        work_mem = dbms_config_space.get_hyperparameter("work_mem")
+        work_mem = dbms_config_space["work_mem"]
         min_val, max_val = work_mem.lower, work_mem.upper
 
         dbms_config_sample = dbms_config_space.sample_configuration()
