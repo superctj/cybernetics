@@ -306,9 +306,10 @@ class PostgresWrapper:
             
             pg_client.close_connection()
             self._restart_postgres()
-            self.logger.info(f"Knobs applied.")
+            self.logger.info("Knobs applied.")
             return True
         except:
+            self.logger.info("Failed to apply knobs.")
             return False
     
     def reset_runtime_knobs(self) -> bool:
