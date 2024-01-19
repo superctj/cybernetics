@@ -1,28 +1,36 @@
+"""Logic for keeping track of experiment states.
+
+This module is adapted from Llamatune's run-smac.py
+"""
+
 import os
 
-from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE, create_dir, get_proj_dir
+from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
+from cybernetics.utils.util import create_dir
 
 
 class ExperimentState:
-    def __init__(self, benchmark_info, dbms_info, target_metric: str):
+    def __init__(self, dbms_info: dict, workload_info: dict, target_metric: str, results_path: str):
         self.iter = 0
         self.best_conf = None
         self.best_perf = None
         self.worse_perf = None
         self.default_perf_stats = None
 
-        assert target_metric in ["throughput", "latency"], \
-            f"Unsupported target metric: {target_metric}"
-        self.minimize = target_metric != "throughput"
+        assert(target_metric in ["throughput", "latency"],
+               f"Unsupported target metric: {target_metric}")
+        self.minimize = (target_metric == "latency")
         self._target_metric = target_metric
 
-        self._benchmark_info = benchmark_info
         self._dbms_info = dbms_info
+        self._workload_info = workload_info
 
-        proj_dir = get_proj_dir(__file__)
-        self._results_path = os.path.join(
-            proj_dir, f"results/{CUSTOM_LOGGING_INSTANCE.id}")
-        create_dir(self._results_path, force=False)
+        if not os.path.exists(results_path):
+            create_dir(results_path, force=False)
+        else:
+            self.results_path = os.path.join(results_path, CUSTOM_LOGGING_INSTANCE.id)
+
+            create_dir(self.results_path, force=True)
 
     @property
     def benchmark_info(self):
@@ -40,8 +48,8 @@ class ExperimentState:
     def target_metric(self) -> str:
         return self._target_metric
 
-    def is_better_perf(self, perf, other):
-        return (perf > other) if not self.minimize else (perf < other)
+    # def is_better_perf(self, perf, other):
+    #     return (perf > other) if not self.minimize else (perf < other)
 
     def __str__(self):
         fields = ["iter", "best_conf", "best_perf", "worse_perf",
