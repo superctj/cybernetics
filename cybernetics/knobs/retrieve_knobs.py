@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from cybernetics.db_interface.postgres import PostgresClient
+from cybernetics.dbms_interface.postgres import PostgresClient
 
 
 SELECTED_KNOB_LOGICAL_GROUPS = [
