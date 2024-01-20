@@ -17,9 +17,11 @@ def test_dbms_config_generator():
     if "work_mem" in dbms_config_space:
         work_mem = dbms_config_space["work_mem"]
         min_val, max_val = work_mem.lower, work_mem.upper
+        print(f"\nType of dbms_config_space: {type(dbms_config_space)}")
 
         dbms_config_sample = dbms_config_space.sample_configuration()
         assert dbms_config_sample["work_mem"] >= min_val and dbms_config_sample["work_mem"] <= max_val
+        print(f"Type of dbms_config_sample: {type(dbms_config_sample)}")
 
         print(f"\nwork_mem value range: {min_val} - {max_val}")
         print(f"Sampled work_mem value: {dbms_config_sample['work_mem']}")
