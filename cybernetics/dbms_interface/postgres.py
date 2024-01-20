@@ -8,10 +8,11 @@ import json
 import glob
 import os
 import subprocess
-import time
+from typing import Union
 
 import psycopg2
 
+from ConfigSpace import Configuration
 from cybernetics.dbms_interface.dbms_client import DBClient
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
@@ -80,14 +81,14 @@ class PostgresClient(DBClient):
 
 
 class PostgresWrapper:
-    def __init__(self, db_info, workload_wrapper=None, results_dir=None) -> None:
-        self.host = db_info["host"]
-        self.port = db_info["port"]
-        self.user = db_info["user"]
-        self.password = db_info["password"]
-        self.db_cluster = db_info["db_cluster"]
-        self.db_log_filepath = db_info["db_log_filepath"]
-        self.db_name = db_info["db_name"]
+    def __init__(self, dbms_info, workload_wrapper=None, results_dir=None) -> None:
+        self.host = dbms_info["host"]
+        self.port = dbms_info["port"]
+        self.user = dbms_info["user"]
+        self.password = dbms_info["password"]
+        self.db_cluster = dbms_info["db_cluster"]
+        self.db_log_filepath = dbms_info["db_log_filepath"]
+        self.db_name = dbms_info["db_name"]
         
         self.workload_wrapper = workload_wrapper
         self.results_dir = results_dir
@@ -253,26 +254,26 @@ class PostgresWrapper:
                 self.logger.info(f"Failed to set knob {k} to {v}.")
                 return False
     
-    def reset_knob_value(self, k) -> bool:
-        """Restore the value of a run-time knob to the default value
-        """
-        try:
-            pg_client = PostgresClient(host=self.host,
-                                       port=self.port,
-                                       user=self.user,
-                                       password=self.password,
-                                       db_name=self.db_name,
-                                       logger=self.logger)
-            reset_sql = f"ALTER SYSTEM RESET {k};"
-            reload_sql = "SELECT pg_reload_conf();"
-            _ = pg_client.execute(reset_sql)
-            _ = pg_client.execute(reload_sql)
+    # def reset_knob_value(self, k) -> bool:
+    #     """Restore the value of a run-time knob to the default value
+    #     """
+    #     try:
+    #         pg_client = PostgresClient(host=self.host,
+    #                                    port=self.port,
+    #                                    user=self.user,
+    #                                    password=self.password,
+    #                                    db_name=self.db_name,
+    #                                    logger=self.logger)
+    #         reset_sql = f"ALTER SYSTEM RESET {k};"
+    #         reload_sql = "SELECT pg_reload_conf();"
+    #         _ = pg_client.execute(reset_sql)
+    #         _ = pg_client.execute(reload_sql)
             
-            pg_client.close_connection()
-            return True
-        except:
-            self.logger.info(f"Failed to reset knob {k} to the default value.")
-            return False
+    #         pg_client.close_connection()
+    #         return True
+    #     except:
+    #         self.logger.info(f"Failed to reset knob {k} to the default value.")
+    #         return False
 
     # def reset_knobs_online(self, knobs: list) -> bool:
     #     try:
@@ -291,7 +292,7 @@ class PostgresWrapper:
     #     except:
     #         return False
     
-    def apply_knobs(self, knobs: dict) -> bool:
+    def apply_knobs(self, knobs: Union[dict, Configuration]) -> bool:
         try:
             pg_client = PostgresClient(host=self.host,
                                        port=self.port,
@@ -300,6 +301,9 @@ class PostgresWrapper:
                                        db_name=self.db_name,
                                        logger=self.logger)
             
+            if isinstance(knobs, Configuration):
+                knobs = dict(knobs)
+
             for key in knobs.keys():
                 self.set_knob_value(pg_client, key, knobs[key])
             
@@ -311,46 +315,46 @@ class PostgresWrapper:
             self.logger.info("Failed to apply knobs.")
             return False
     
-    def reset_runtime_knobs(self) -> bool:
-        try:
-            pg_client = PostgresClient(host=self.host,
-                                       port=self.port,
-                                       user=self.user,
-                                       password=self.password,
-                                       db_name=self.db_name,
-                                       logger=self.logger)
+    # def reset_runtime_knobs(self) -> bool:
+    #     try:
+    #         pg_client = PostgresClient(host=self.host,
+    #                                    port=self.port,
+    #                                    user=self.user,
+    #                                    password=self.password,
+    #                                    db_name=self.db_name,
+    #                                    logger=self.logger)
             
-            reset_sql = "RESET ALL;"
-            _ = pg_client.execute(reset_sql)
-            pg_client.close_connection()
+    #         reset_sql = "RESET ALL;"
+    #         _ = pg_client.execute(reset_sql)
+    #         pg_client.close_connection()
 
-            self.logger.info(f"Reset runtime knobs.")
-            return True
-        except:
-            self.logger.info("Failed to reset runtime knobs.")
-            return False
+    #         self.logger.info(f"Reset runtime knobs.")
+    #         return True
+    #     except:
+    #         self.logger.info("Failed to reset runtime knobs.")
+    #         return False
     
-    def reset_knobs_by_reloading_config(self) -> bool:
-        try:
-            pg_client = PostgresClient(host=self.host,
-                                       port=self.port,
-                                       user=self.user,
-                                       password=self.password,
-                                       db_name=self.db_name,
-                                       logger=self.logger)
+    # def reset_knobs_by_reloading_config(self) -> bool:
+    #     try:
+    #         pg_client = PostgresClient(host=self.host,
+    #                                    port=self.port,
+    #                                    user=self.user,
+    #                                    password=self.password,
+    #                                    db_name=self.db_name,
+    #                                    logger=self.logger)
             
-            reset_sql = "ALTER SYSTEM RESET ALL;"
-            reload_sql = "SELECT pg_reload_conf();"
+    #         reset_sql = "ALTER SYSTEM RESET ALL;"
+    #         reload_sql = "SELECT pg_reload_conf();"
 
-            _ = pg_client.execute(reset_sql)
-            _ = pg_client.execute(reload_sql)
-            pg_client.close_connection()
+    #         _ = pg_client.execute(reset_sql)
+    #         _ = pg_client.execute(reload_sql)
+    #         pg_client.close_connection()
 
-            self.logger.info(f"Reset runtime knobs.")
-            return True
-        except:
-            self.logger.info("Failed to reset runtime knobs.")
-            return False
+    #         self.logger.info(f"Reset runtime knobs.")
+    #         return True
+    #     except:
+    #         self.logger.info("Failed to reset runtime knobs.")
+    #         return False
     
     def reset_knobs_by_restarting_db(self) -> bool:
         try:
@@ -372,37 +376,37 @@ class PostgresWrapper:
             self.logger.info("Failed to reset knobs with Postgres restarted.")
             return False
 
-    def apply_knobs_offline(self, knobs: dict) -> bool:
-        self._kill_postgres()
+    # def apply_knobs_offline(self, knobs: dict) -> bool:
+    #     self._kill_postgres()
 
-        if "min_wal_size" in knobs.keys():
-            if "wal_segment_size" in knobs.keys():
-                wal_segment_size = knobs["wal_segment_size"]
-            else:
-                wal_segment_size = 16
+    #     if "min_wal_size" in knobs.keys():
+    #         if "wal_segment_size" in knobs.keys():
+    #             wal_segment_size = knobs["wal_segment_size"]
+    #         else:
+    #             wal_segment_size = 16
             
-            if knobs["min_wal_size"] < 2 * wal_segment_size:
-                knobs["min_wal_size"] = 2 * wal_segment_size
-                self.logger.info("min_wal_size must be at least twice wal_segment_size")
+    #         if knobs["min_wal_size"] < 2 * wal_segment_size:
+    #             knobs["min_wal_size"] = 2 * wal_segment_size
+    #             self.logger.info("min_wal_size must be at least twice wal_segment_size")
 
-        # knobs_not_in_cnf = self._gen_config_file(knobs)
+    #     # knobs_not_in_cnf = self._gen_config_file(knobs)
         
-        success = self._start_postgres()
-        try:
-            self.logger.info(f"Sleep for {RESTART_TIMEOUT} seconds after restarting Postgres...")
-            time.sleep(RESTART_TIMEOUT)
+    #     success = self._start_postgres()
+    #     try:
+    #         self.logger.info(f"Sleep for {RESTART_TIMEOUT} seconds after restarting Postgres...")
+    #         time.sleep(RESTART_TIMEOUT)
 
-            self.apply_knobs_online(knobs)
+    #         self.apply_knobs_online(knobs)
 
-            # if len(knobs_not_in_cnf) > 0:
-            #     tmp_rds = {}
-            #     for knob_rds in knobs_not_in_cnf:
-            #         tmp_rds[knob_rds] = knobs[knob_rds]
-            #     self.apply_knobs_online(tmp_rds)
-        except:
-            success = False
+    #         # if len(knobs_not_in_cnf) > 0:
+    #         #     tmp_rds = {}
+    #         #     for knob_rds in knobs_not_in_cnf:
+    #         #         tmp_rds[knob_rds] = knobs[knob_rds]
+    #         #     self.apply_knobs_online(tmp_rds)
+    #     except:
+    #         success = False
 
-        return success
+    #     return success
 
     def get_benchbase_metrics(self):
         metrics_files = glob.glob(f"{self.results_dir}/*.summary.json")
@@ -413,16 +417,16 @@ class PostgresWrapper:
         
         return metrics
 
-    def evaluate_db_info(self, knobs: dict) -> dict:
-        success = self.apply_knobs_offline(knobs)
-        if not success:
-            self.logger.info("Failed to apply the given DBMS configuration.")
-            return {}
+    # def evaluate_db_info(self, knobs: dict) -> dict:
+    #     success = self.apply_knobs_offline(knobs)
+    #     if not success:
+    #         self.logger.info("Failed to apply the given DBMS configuration.")
+    #         return {}
         
-        # Execute the workload
-        self.workload_wrapper.run()
+    #     # Execute the workload
+    #     self.workload_wrapper.run()
 
-        # Collect metrics
-        metrics = self._get_benchbase_metrics()
+    #     # Collect metrics
+    #     metrics = self._get_benchbase_metrics()
 
-        return metrics
+    #     return metrics
