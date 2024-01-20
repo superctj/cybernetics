@@ -630,19 +630,19 @@
     },
     {
         "name": "cluster_name",
-        "setting": "12/main",
+        "setting": "",
         "unit": null,
         "category": "Process Title",
         "short_desc": "Sets the name of the cluster, which is included in the process title.",
         "extra_desc": null,
         "context": "postmaster",
         "vartype": "string",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
         "boot_val": "",
-        "reset_val": "12/main"
+        "reset_val": ""
     },
     {
         "name": "commit_delay",
@@ -678,7 +678,7 @@
     },
     {
         "name": "config_file",
-        "setting": "/etc/postgresql/12/main/postgresql.conf",
+        "setting": "/data/pgsql/data/postgresql.conf",
         "unit": null,
         "category": "File Locations",
         "short_desc": "Sets the server's main configuration file.",
@@ -690,7 +690,7 @@
         "max_val": null,
         "enumvals": null,
         "boot_val": null,
-        "reset_val": "/etc/postgresql/12/main/postgresql.conf"
+        "reset_val": "/data/pgsql/data/postgresql.conf"
     },
     {
         "name": "constraint_exclusion",
@@ -794,7 +794,7 @@
     },
     {
         "name": "data_directory",
-        "setting": "/var/lib/postgresql/12/main",
+        "setting": "/data/pgsql/data",
         "unit": null,
         "category": "File Locations",
         "short_desc": "Sets the server's data directory.",
@@ -806,7 +806,7 @@
         "max_val": null,
         "enumvals": null,
         "boot_val": null,
-        "reset_val": "/var/lib/postgresql/12/main"
+        "reset_val": "/data/pgsql/data"
     },
     {
         "name": "data_directory_mode",
@@ -1475,19 +1475,19 @@
     },
     {
         "name": "external_pid_file",
-        "setting": "/var/run/postgresql/12-main.pid",
+        "setting": "",
         "unit": null,
         "category": "File Locations",
         "short_desc": "Writes the postmaster PID to the specified file.",
         "extra_desc": null,
         "context": "postmaster",
         "vartype": "string",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
         "boot_val": null,
-        "reset_val": "/var/run/postgresql/12-main.pid"
+        "reset_val": null
     },
     {
         "name": "extra_float_digits",
@@ -1719,7 +1719,7 @@
     },
     {
         "name": "hba_file",
-        "setting": "/etc/postgresql/12/main/pg_hba.conf",
+        "setting": "/data/pgsql/data/pg_hba.conf",
         "unit": null,
         "category": "File Locations",
         "short_desc": "Sets the server's \"hba\" configuration file.",
@@ -1731,7 +1731,7 @@
         "max_val": null,
         "enumvals": null,
         "boot_val": null,
-        "reset_val": "/etc/postgresql/12/main/pg_hba.conf"
+        "reset_val": "/data/pgsql/data/pg_hba.conf"
     },
     {
         "name": "hot_standby",
@@ -1787,7 +1787,7 @@
     },
     {
         "name": "ident_file",
-        "setting": "/etc/postgresql/12/main/pg_ident.conf",
+        "setting": "/data/pgsql/data/pg_ident.conf",
         "unit": null,
         "category": "File Locations",
         "short_desc": "Sets the server's \"ident\" configuration file.",
@@ -1799,7 +1799,7 @@
         "max_val": null,
         "enumvals": null,
         "boot_val": null,
-        "reset_val": "/etc/postgresql/12/main/pg_ident.conf"
+        "reset_val": "/data/pgsql/data/pg_ident.conf"
     },
     {
         "name": "idle_in_transaction_session_timeout",
@@ -2452,19 +2452,19 @@
     },
     {
         "name": "log_line_prefix",
-        "setting": "%m [%p] %q%u@%d ",
+        "setting": "%m [%p] ",
         "unit": null,
         "category": "Reporting and Logging / What to Log",
         "short_desc": "Controls information prefixed to each log line.",
         "extra_desc": "If blank, no prefix is used.",
         "context": "sighup",
         "vartype": "string",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
         "boot_val": "%m [%p] ",
-        "reset_val": "%m [%p] %q%u@%d "
+        "reset_val": "%m [%p] "
     },
     {
         "name": "log_lock_waits",
@@ -3297,7 +3297,7 @@
         "extra_desc": null,
         "context": "postmaster",
         "vartype": "integer",
-        "source": "configuration file",
+        "source": "default",
         "min_val": "1",
         "max_val": "65535",
         "enumvals": null,
@@ -3813,19 +3813,19 @@
     },
     {
         "name": "ssl",
-        "setting": "on",
+        "setting": "off",
         "unit": null,
         "category": "Connections and Authentication / SSL",
         "short_desc": "Enables SSL connections.",
         "extra_desc": null,
         "context": "sighup",
         "vartype": "bool",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
         "boot_val": "off",
-        "reset_val": "on"
+        "reset_val": "off"
     },
     {
         "name": "ssl_ca_file",
@@ -3845,19 +3845,19 @@
     },
     {
         "name": "ssl_cert_file",
-        "setting": "/etc/ssl/certs/ssl-cert-snakeoil.pem",
+        "setting": "server.crt",
         "unit": null,
         "category": "Connections and Authentication / SSL",
         "short_desc": "Location of the SSL server certificate file.",
         "extra_desc": null,
         "context": "sighup",
         "vartype": "string",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
         "boot_val": "server.crt",
-        "reset_val": "/etc/ssl/certs/ssl-cert-snakeoil.pem"
+        "reset_val": "server.crt"
     },
     {
         "name": "ssl_ciphers",
@@ -3925,19 +3925,19 @@
     },
     {
         "name": "ssl_key_file",
-        "setting": "/etc/ssl/private/ssl-cert-snakeoil.key",
+        "setting": "server.key",
         "unit": null,
         "category": "Connections and Authentication / SSL",
         "short_desc": "Location of the SSL server private key file.",
         "extra_desc": null,
         "context": "sighup",
         "vartype": "string",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
         "boot_val": "server.key",
-        "reset_val": "/etc/ssl/private/ssl-cert-snakeoil.key"
+        "reset_val": "server.key"
     },
     {
         "name": "ssl_library",
@@ -4080,19 +4080,19 @@
     },
     {
         "name": "stats_temp_directory",
-        "setting": "/var/run/postgresql/12-main.pg_stat_tmp",
+        "setting": "pg_stat_tmp",
         "unit": null,
         "category": "Statistics / Query and Index Statistics Collector",
         "short_desc": "Writes temporary statistics files to the specified directory.",
         "extra_desc": null,
         "context": "sighup",
         "vartype": "string",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
         "boot_val": "pg_stat_tmp",
-        "reset_val": "/var/run/postgresql/12-main.pg_stat_tmp"
+        "reset_val": "pg_stat_tmp"
     },
     {
         "name": "superuser_reserved_connections",
@@ -4617,7 +4617,7 @@
         "extra_desc": null,
         "context": "postmaster",
         "vartype": "string",
-        "source": "configuration file",
+        "source": "default",
         "min_val": null,
         "max_val": null,
         "enumvals": null,
