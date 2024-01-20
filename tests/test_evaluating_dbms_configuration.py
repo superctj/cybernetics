@@ -3,7 +3,7 @@
 
 import os
 
-from cybernetics.db_interface.postgres import PostgresWrapper
+from cybernetics.dbms_interface.postgres import PostgresWrapper
 from cybernetics.utils.util import create_dir, get_proj_dir
 from cybernetics.workload.benchbase import BenchBaseWrapper
 
