@@ -233,11 +233,8 @@ class PostgresWrapper:
             return True
         else:
             if type(v) == str:
-                # set_sql = f"SET {k} = '{v}';"
                 set_sql = f"ALTER SYSTEM SET {k}='{v}';"
             else:
-                assert type(v) == int
-                # set_sql = f"SET {k} = {v};"
                 set_sql = f"ALTER SYSTEM SET {k}={v};"
 
             try:
