@@ -42,7 +42,7 @@ Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian P
 
 3. Start DBMS config tuning:
 
-   python run_bo.py --config_path ./configs/benchbase/tpcc/postgres_bo_gp.ini
+   ```python run_bo.py --config_path ./configs/benchbase/tpcc/postgres_bo_gp.ini```
 
 ## Wish List
 Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
