@@ -7,13 +7,16 @@ from cybernetics.utils.util import create_dir, get_proj_dir
 
 
 class CustomLoggingInstance:
-    def __init__(self, force: bool) -> None:
+    def __init__(self) -> None:
         proj_dir = get_proj_dir(__file__)
         self.id = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        
         self.log_dir = os.path.join(proj_dir, f"logs/{self.id}")
-        create_dir(self.log_dir, force)
+        create_dir(self.log_dir, force=True)
 
-    def get_module_logger(self, module_name: str, logging_level: int = logging.INFO):
+        self.logger = self.setup_logger()
+
+    def setup_logger(self, module_name: str="cybernetics", logging_level: int=logging.INFO):
         logger = logging.getLogger(module_name)
         logger.setLevel(logging_level)
 
@@ -30,14 +33,9 @@ class CustomLoggingInstance:
 
         logger.info(f"Init the custom logger for module {module_name}...")
         return logger
+    
+    def get_logger(self):
+        return self.logger
 
 
-CUSTOM_LOGGING_INSTANCE = CustomLoggingInstance(force=False) # do not overwrite existing logs
-
-
-if __name__ == "__main__":
-    abs_path = os.path.abspath(__file__)
-    print(abs_path)
-    proj_dir = "/".join(abs_path.split("/")[:-3])
-    print(proj_dir)
-    logging_dir = os.path.join(proj_dir, "logs")
+CUSTOM_LOGGING_INSTANCE = CustomLoggingInstance()

@@ -29,7 +29,7 @@ class PostgresClient(DBClient):
         self.password = password
         self.db_name = db_name
         self.logger = logger
-        
+
         self.conn, self.cursor = self.connect_db()
 
     def connect_db(self):
@@ -89,10 +89,10 @@ class PostgresWrapper:
         self.db_cluster = dbms_info["db_cluster"]
         self.db_log_filepath = dbms_info["db_log_filepath"]
         self.db_name = dbms_info["db_name"]
+        self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
         
         self.workload_wrapper = workload_wrapper
         self.results_dir = results_dir
-        self.logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(__name__)
         # TODO: Add support for remote mode
 
         # self.num_metrics = 60

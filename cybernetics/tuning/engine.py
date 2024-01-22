@@ -11,15 +11,13 @@ from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 from cybernetics.utils.exp_tracker import ExperimentState
 
 
-logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(__name__)
-
-
 class TuningEngine:
     def __init__(self, config, dbms_wrapper, dbms_config_space, workload_wrapper) -> None:
         self.config = config
         self.dbms_wrapper = dbms_wrapper
         self.dbms_config_space = dbms_config_space
         self.workload_wrapper = workload_wrapper
+        self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
 
         self.exp_state = ExperimentState(
             config["dbms_info"],
@@ -29,7 +27,7 @@ class TuningEngine:
         )
         self.target_metric = self.config["config_optimizer"]["target_metric"]
         self.optimizer = self.init_optimizer()
-        
+        self.logger.info("DBMS config optimizer is ready.")
 
     def target_function(self, dbms_config, seed: int):
         """Target function for the DBMS configuration optimizer.
@@ -42,14 +40,14 @@ class TuningEngine:
 
         if self.target_metric == "throughput":
             throughput = performance["Throughput (requests/second)"]
-            logger.info(f"Throughput (requests/second): {throughput}")
+            self.logger.info(f"Throughput (requests/second): {throughput}")
             
             if self.exp_state.best_perf is None or throughput > self.exp_state.best_perf:
                 self.exp_state.best_perf = throughput
             return -throughput
         elif self.target_metric == "latency":
             latency = performance["Latency Distribution"]["95th Percentile Latency (microseconds)"]
-            logger.info(f"95th Percentile Latency (microseconds): {latency}")
+            self.logger.info(f"95th Percentile Latency (microseconds): {latency}")
 
             if self.exp_state.best_perf is None or latency < self.exp_state.best_perf:
                 self.exp_state.best_perf = latency
@@ -57,6 +55,7 @@ class TuningEngine:
     
     def init_optimizer(self):
         if self.config["config_optimizer"]["optimizer"].startswith("bo"):
+            self.logger.info("Initiating BO-based optimizer...")
             return get_bo_optimizer(self.config, self.dbms_config_space, self.target_function)
 
     def run(self):
@@ -68,9 +67,9 @@ class TuningEngine:
             self.optimizer.run()
         
         # Complete tuning
-        logger.info(f"\nBest DBMS Configuration:\n{best_dbms_config}")
+        self.logger.info(f"\nBest DBMS Configuration:\n{best_dbms_config}")
         
         if self.exp_state.target_metric == "throughput":
-            logger.info(f"Best Throughput: {self.exp_state.best_perf} ops/sec")
+            self.logger.info(f"Best Throughput: {self.exp_state.best_perf} ops/sec")
         else:
-            logger.info(f"Best 95-th Latency: {self.exp_state.best_perf} microseconds")
+            self.dbms_config_spacelogger.info(f"Best 95-th Latency: {self.exp_state.best_perf} microseconds")

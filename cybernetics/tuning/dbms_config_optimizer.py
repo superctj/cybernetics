@@ -14,14 +14,7 @@ from smac import Scenario
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
 
-logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(__name__)
-
-
 def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace, target_function):
-    logger.info("Constructing BO-based optimizer...")
-    # logger.info(f"Run History: {run_history}")
-    # logger.info(f"Ignored knobs: {ignored_knobs}")
-
     scenario = Scenario(
         configspace=dbms_config_space,
         output_directory=config["results"]["save_path"],
@@ -38,7 +31,7 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace, target_funct
             scenario=scenario,
             target_function=target_function
         )
-    elif optimizer == "bo-rf":
+    elif config["config_optimizer"]["optimizer"] == "bo-rf":
         optimizer = HPOFacade(
             scenario=scenario,
             target_function=target_function

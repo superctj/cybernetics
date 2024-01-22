@@ -52,6 +52,8 @@ Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian P
    python run_bo.py --config_path ./configs/benchbase/tpcc/postgres_bo_gp.ini
    ```
 
+4. Once tuning is complete, check ```./logs/<latest run>/cybernetics.log``` for logs and results (refer to ```./exps/benchbase_tpcc/postgres/bo_gp``` for Benchbase and optimizer outputs).
+
 ## Wish List
 Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
 

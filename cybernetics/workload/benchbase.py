@@ -10,7 +10,7 @@ class BenchBaseWrapper:
     def __init__(self, workload: str, script: str) -> None:
         self.workload = workload
         self.script = script
-        self.logger = CUSTOM_LOGGING_INSTANCE.get_module_logger(__name__)
+        self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
 
     def run(self) -> None:
         payload = ["bash", self.script]
