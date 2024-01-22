@@ -30,8 +30,9 @@ Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) fo
 
 3. Import Cybernetics as editable packages to the conda environment:
 
-    ```conda develop <path to Cybernetics>```
-
+    ```
+    conda develop <path to Cybernetics>
+    ```
     e.g.,
     ```
     conda develop /home/tianji/cybernetics
