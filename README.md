@@ -34,22 +34,22 @@ Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) fo
 
 
 ## Quick Start
-Follow the steps below to run the default configuration and the PGTune configuration on the TPC-C benchmark.
+Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian Process) over the TPC-C workload.
 
-1. Change DBMS connection configuration in ```./tests/test_evaluating_pgtune_tpcc.py``` to your own .
+1. Specify runtime config such as DBMS and workload info in ```cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini```.
 
-2. Change Benchbase-related paths in ```./scripts/benchbase_tpcc_postgres_test_pgtune.sh``` to your own.
+2. Change Benchbase-related paths in ```./scripts/benchbase_tpcc_postgres_bo_gp.sh``` to your own.
 
-3. Evaluate the default configuration and the PGTune configuration:
+3. Start DBMS config tuning:
 
-   pytest -s ./tests/test_evaluating_pgtune_tpcc.py
+   python run_bo.py --config_path ./configs/benchbase/tpcc/postgres_bo_gp.ini
 
 ## Wish List
 Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
 
 ### Configuration optimizers
-- [ ] BO - Gaussian Process (Vanilla BO)
-- [ ] BO - Random Forest (SMAC)
+- [x] BO - Gaussian Process (Vanilla BO)
+- [x] BO - Random Forest (SMAC)
 - [ ] RL - DDPG
 
 ### Parameter Space Reduction
