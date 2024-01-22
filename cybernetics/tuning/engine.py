@@ -24,17 +24,18 @@ class TuningEngine:
         self.exp_state = ExperimentState(
             config["dbms_info"],
             config["workload_info"],
-            config["config_optimizer"]["target_metric"]
+            config["config_optimizer"]["target_metric"],
+            config["results"]["save_path"]
         )
         self.target_metric = self.config["config_optimizer"]["target_metric"]
         self.optimizer = self.init_optimizer()
         
 
-    def target_function(self, dbms_config):
+    def target_function(self, dbms_config, seed: int):
         """Target function for the DBMS configuration optimizer.
         """
         rtn_predicate = self.dbms_wrapper.apply_knobs(dbms_config)
-        assert(rtn_predicate, "Failed to apply DBMS configuration.")
+        assert rtn_predicate, "Failed to apply DBMS configuration."
 
         self.workload_wrapper.run()
         performance = self.dbms_wrapper.get_benchbase_metrics()
@@ -55,7 +56,7 @@ class TuningEngine:
             return latency
     
     def init_optimizer(self):
-        if self.config["config_optimizer"]["optimizer"].starts_with("bo"):
+        if self.config["config_optimizer"]["optimizer"].startswith("bo"):
             return get_bo_optimizer(self.config, self.dbms_config_space, self.target_function)
 
     def run(self):
@@ -67,9 +68,9 @@ class TuningEngine:
             self.optimizer.run()
         
         # Complete tuning
-        self.logger.info(f"\nBest DBMS Configuration:\n{best_dbms_config}")
+        logger.info(f"\nBest DBMS Configuration:\n{best_dbms_config}")
         
         if self.exp_state.target_metric == "throughput":
-            self.logger.info(f"Throughput: {self.exp_state.best_perf} ops/sec")
+            logger.info(f"Best Throughput: {self.exp_state.best_perf} ops/sec")
         else:
-            self.logger.info(f"95-th Latency: {self.exp_state.best_perf} milliseconds")
+            logger.info(f"Best 95-th Latency: {self.exp_state.best_perf} microseconds")
