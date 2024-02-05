@@ -5,6 +5,9 @@ Adapted from https://github.com/uw-mad-dash/llamatune/blob/main/optimizer.py
 
 from functools import partial
 
+import numpy as np
+import smac.initial_design as smac_init_design
+
 from ConfigSpace import ConfigurationSpace
 from smac import BlackBoxFacade as BBFacade
 from smac import HyperparameterOptimizationFacade as HPOFacade
@@ -14,7 +17,8 @@ from smac import Scenario
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
 
-def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace, target_function):
+def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
+                     target_function):
     scenario = Scenario(
         configspace=dbms_config_space,
         output_directory=config["results"]["save_path"],
@@ -42,142 +46,123 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace, target_funct
     return optimizer
 
 
-def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace, target_function, state):
-    pass
-    # random number generator
-    # rng = np.random.RandomState(seed=config.seed)
+def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
+                       target_function, state):
+    scenario = Scenario(
+        configspace=dbms_config_space,
+        output_directory=config["results"]["save_path"],
+        deterministic=True,
+        objectives="cost", # minimize the objective
+        n_trials=100, # 100 is the default value
+        seed=int(config["knob_space"]["random_seed"])
+    )
 
-    # from smac.stats.stats import Stats
-    # from smac.utils.io.traj_logging import TrajLogger
-    # from smac.utils.io.output_directory import create_output_directory
-
-    # scenario = Scenario({
-    #     "run_obj": "quality",
-    #     "runcount-limit": config.iters,
-    #     "cs": dbms_config_space,
-    #     "deterministic": "true",
-    #     "always_race_default": "false",
-    #     # disables pynisher, which allows for shared state
-    #     "limit_resources": "false",
-    #     "output_dir": state.results_path,
-    # })
-
-    # output_dir = create_output_directory(scenario, 0)
-    # stats = Stats(scenario)
-    # traj_logger = TrajLogger(output_dir=output_dir, stats=stats)
-
-    # # Latin Hypercube design, with 10 iters
-    # init_rand_samples = int(config["optimizer"].get("init_rand_samples", 10))
-    # init_design_def_kwargs = {
-    #     "cs": input_space,
-    #     "rng": rng,
-    #     "traj_logger": traj_logger, # required
-    #     "ta_run_limit": 99999999999,
-    #     "max_config_fracs": 1,
-    #     "init_budget": init_rand_samples,
-    # }
-    # initial_design = LHDesignWithBiasedSampling(**init_design_def_kwargs)
+    if config["config_optimizer"]["initial_design"] == "random":
+        initial_design = smac_init_design.RandomInitialDesign(
+            scenario=scenario,
+            n_configs=config["config_optimizer"]["n_initial_configs"],
+            seed=config["knob_space"]["random_seed"]
+        )
 
     # Random conf chooser
     # from smac.optimizer.random_configuration_chooser import ChooserProb
-
     # rand_percentage = float(config["optimizer"]["rand_percentage"])
     # assert 0 <= rand_percentage <= 1, "Optimizer rand optimizer must be between 0 and 1"
     # rcc_rng = np.random.RandomState(seed=config.seed)
     # rand_conf_chooser = ChooserProb(rcc_rng, rand_percentage)
 
     # DDPG Model
-    # from cybernetics.tuning.ddpg.model import DDPG
-    # n_states = config.num_dbms_metrics
-    # n_actions = len(input_space)
+    from cybernetics.tuning.ddpg.model import DDPG
+    
+    n_states = config["dbms_info"]["n_internal_metrics"]
+    n_actions = len(dbms_config_space)
+    model = DDPG(n_states, n_actions, model_name="ddpg_model")
 
-    # model = DDPG(n_states, n_actions, model_name="ddpg_model")
+    target_function = partial(target_function,
+                              seed=int(config["knob_space"]["random_seed"]))
+    optimizer = DDPGOptimizer(state, model, target_function, initial_design,
+                              rand_conf_chooser,
+                              config["config_optimizer"]["n_total_configs"])
 
-    # tae_runner = partial(tae_runner, state=state)
-    # optimizer = DDPGOptimizer(state, model, tae_runner, initial_design, rand_conf_chooser, config.iters, logging_dir=state.results_path)
-
-    # return optimizer
+    return optimizer
 
 
 class DDPGOptimizer:
-    def __init__(self, state, model, func, initial_design, rand_conf_chooser,
-                    n_iters, logging_dir=None):
-        assert state.target_metric == "throughput"
+    def __init__(self, exp_state, model, target_function, initial_design, 
+                 rand_conf_chooser, n_iters: int, n_epochs: int=2):
+        assert exp_state._target_metric == "throughput"
 
-        self.state = state
+        self.exp_state = exp_state
         self.model = model
-        self.func = func
+        self.target_function = target_function
         self.initial_design = initial_design
         self.input_space = initial_design.cs
         self.rand_conf_chooser = rand_conf_chooser
         self.n_iters = n_iters
-        self.n_epochs = 2 # same value as CDBTune
-
-        self.logging_dir = logging_dir
+        self.n_epochs = n_epochs # CDBTune uses 2
+        self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
 
     def run(self):
         prev_perf = self.state.default_perf
-        assert prev_perf >= 0
-
-        results = [ ]
+        assert prev_perf >= 0 # TODO: Check why this is necessary
 
         # Bootstrap with random samples
         init_configurations = self.initial_design.select_configurations()
-        for i, knob_data in enumerate(init_configurations):
-            print(f"Iter {i} -- RANDOM")
-            ### reward, metric_data = env.simulate(knob_data)
-            # metrics & perf
-            perf, metric_data = self.func(knob_data)
+
+        for i, dbms_config in enumerate(init_configurations):
+            self.logger.info(f"Initial Design -- Iter {i}:")
+
+            perf, internal_metrics = self.target_function(dbms_config)
             perf = -perf # maximize
-            assert perf >= 0
+            assert perf >= 0 # TODO: Need to double check this assertion
             # compute reward
             reward = self.get_reward(perf, prev_perf)
-            # LOG
-            print(f"Iter {i} -- PERF = {perf}")
-            print(f"Iter {i} -- METRICS = {metric_data}")
-            print(f"Iter {i} -- REWARD = {reward}")
+
+            self.logger.info(f"Performance: {perf}")
+            self.logger.info(f"Internal Metrics: {internal_metrics}")
+            self.logger.info(f"Reward: {reward}")
 
             if i > 0:
-                self.model.add_sample(prev_metric_data, prev_knob_data, prev_reward, metric_data)
+                self.model.add_sample(prev_internal_metrics, prev_dbms_config,
+                                      prev_reward, internal_metrics)
 
-            prev_metric_data = metric_data
-            prev_knob_data = knob_data.get_array() # scale to [0, 1]
+            prev_internal_metrics = internal_metrics
+            prev_dbms_config = dbms_config.get_array() # scale to [0, 1]
             prev_reward = reward
             prev_perf = perf
 
-        # add last random sample
-        self.model.add_sample(prev_metric_data, prev_knob_data, prev_reward, metric_data)
+        # Add last random sample
+        self.model.add_sample(prev_internal_metrics, prev_dbms_config,
+                              prev_reward, internal_metrics)
 
         # Start guided search
         for i in range(len(init_configurations), self.n_iters):
-
             if self.rand_conf_chooser.check(i):
-                print(f"Iter {i} -- RANDOM SAMPLE")
+                self.logger.info(f"Guided Search -- Iter {i} -- RANDOM:")
                 # get random sample from config space
-                knob_data = self.input_space.sample_configuration()
-                knob_data_vector = knob_data.get_array()
+                dbms_config = self.input_space.sample_configuration()
             else:
-                print(f"Iter {i} -- GUIDED")
+                self.logger.info(f"Guided Search -- Iter {i} -- DDPG:")
                 # get next recommendation from DDPG
-                knob_data_vector = self.model.choose_action(prev_metric_data)
-                knob_data = self.convert_from_vector(knob_data_vector)
+                dbms_config = self.model.choose_action(prev_internal_metrics)
 
             # metrics & perf
-            perf, metric_data = self.func(knob_data)
+            perf, metric_data = self.target_function(dbms_config)
             perf = -perf # maximize
             assert perf >= 0
             # compute reward
             reward = self.get_reward(perf, prev_perf)
-            # LOG
-            print(f"Iter {i} -- PERF = {perf}")
-            print(f"Iter {i} -- METRICS = {metric_data}")
-            print(f"Iter {i} -- REWARD = {reward}")
+
+            self.logger.info(f"Performance: {perf}")
+            self.logger.info(f"Internal Metrics: {internal_metrics}")
+            self.logger.info(f"Reward: {reward}")
 
             # register point to the optimizer
-            self.model.add_sample(prev_metric_data, prev_knob_data, prev_reward, metric_data)
+            self.model.add_sample(prev_internal_metrics, prev_dbms_config,
+                                  prev_reward, internal_metrics)
 
-            prev_metric_data = metric_data
-            prev_knob_data = knob_data_vector
+            prev_internal_metrics = internal_metrics
+            prev_dbms_config = dbms_config
             prev_reward = reward
             prev_perf = perf
 
@@ -185,10 +170,10 @@ class DDPGOptimizer:
             if len(self.model.replay_memory) >= self.model.batch_size:
                 for _ in range(self.n_epochs):
                     self.model.update()
-            print("AFTER UPDATE")
 
     def get_reward(self, perf, prev_perf):
-        """ Reward calculation same as CDBTune paper -- Section 4.2 """
+        """Reward calculation same as CDBTune paper -- Section 4.2
+        """
         def calculate_reward(delta_default, delta_prev):
             if delta_default > 0:
                 reward =   ((1 + delta_default) ** 2 - 1) * np.abs(1 + delta_prev)
