@@ -48,7 +48,8 @@ if __name__ == "__main__":
         int(config["knob_space"]["random_seed"])
     )
     dbms_config_space = dbms_config_space_generator.generate_input_space(
-        ignored_knobs=[])
+        ignored_knobs=[]
+    )
     
     # Init tuning engine
     tuning_engine = TuningEngine(
