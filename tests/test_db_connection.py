@@ -1,6 +1,6 @@
 import psycopg2
 
-from cybernetics.db_interface.postgres import PostgresClient
+from cybernetics.dbms_interface.postgres import PostgresClient
 
 
 def test_postgres_connection():
