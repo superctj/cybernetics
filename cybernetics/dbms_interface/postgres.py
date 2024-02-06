@@ -95,6 +95,9 @@ class PostgresWrapper:
         self.results_dir = results_dir
         # TODO: Add support for remote mode
 
+        # DB-wide internal metrics
+        self.GLOBAL_STAT_VIEWS = ["pg_stat_bgwriter", "pg_stat_database"]
+
         # self.num_metrics = 60
         # self.PG_STAT_VIEWS = [
         #     "pg_stat_archiver", "pg_stat_bgwriter",  # global
@@ -277,3 +280,23 @@ class PostgresWrapper:
             metrics = json.load(f)
         
         return metrics
+    
+    def get_internal_metrics(self):
+        try:
+            pg_client = PostgresClient(host=self.host,
+                                       port=self.port,
+                                       user=self.user,
+                                       password=self.password,
+                                       db_name=self.db_name,
+                                       logger=self.logger)
+            
+            metrics = {}
+            for view in self.GLOBAL_STAT_VIEWS:
+                sql = f"SELECT * FROM {view};"
+                metrics[view] = pg_client.execute_and_fetch_results(sql)
+            
+            pg_client.close_connection()
+            return metrics
+        except:
+            self.logger.info("Failed to get internal metrics.")
+            return None
