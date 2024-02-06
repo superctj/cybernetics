@@ -281,6 +281,25 @@ class PostgresWrapper:
         
         return metrics
     
+    def reset_db_stats(self):
+        pg_client = PostgresClient(host=self.host,
+                                   port=self.port,
+                                   user=self.user,
+                                   password=self.password,
+                                   db_name=self.db_name,
+                                   logger=self.logger)
+    
+        sql = "SELECT pg_stat_reset();"
+        predicate = pg_client.execute(sql)
+    
+        if predicate:
+            self.logger.info("Reset statistics of the connected database.")
+            pg_client.close_connection()
+        else:
+            self.logger.info("Failed to reset statistics of the connected database.")
+
+        return predicate
+    
     def get_internal_metrics(self):
         try:
             pg_client = PostgresClient(host=self.host,
