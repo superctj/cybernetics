@@ -10,6 +10,7 @@ import os
 import subprocess
 from typing import Union
 
+import numpy as np
 import psycopg2
 
 from ConfigSpace import Configuration
@@ -96,7 +97,20 @@ class PostgresWrapper:
         # TODO: Add support for remote mode
 
         # DB-wide internal metrics
-        self.GLOBAL_STAT_VIEWS = ["pg_stat_bgwriter", "pg_stat_database"]
+        self.DB_STATS_VIEWS = ["pg_stat_database"]
+        self.CLUSTER_STATS_VIEWS = ["pg_stat_bgwriter"]
+        self.NUMERIC_STATS = [
+            # shared (db cluster)
+            "checkpoints_timed", "checkpoints_req", "checkpoint_write_time",
+            "checkpoint_sync_time", "buffers_checkpoint", "buffers_clean",
+            "maxwritten_clean", "buffers_backend", "buffers_backend_fsync",
+            "buffers_alloc",
+            # per-database
+            "xact_commit", "xact_rollback", "blks_read", "blks_hit",
+            "tup_returned", "tup_fetched", "tup_inserted", "tup_updated",
+            "tup_deleted", "conflicts", "temp_files", "temp_bytes", "deadlocks",
+            "blk_read_time", "blk_write_time"
+        ]
 
         # self.num_metrics = 60
         # self.PG_STAT_VIEWS = [
@@ -281,26 +295,50 @@ class PostgresWrapper:
         
         return metrics
     
-    def reset_db_stats(self):
+    def _reset_db_stats(self, pg_client: PostgresClient):
+        sql = "SELECT pg_stat_reset();"
+        predicate = pg_client.execute(sql)
+    
+        if predicate:
+            self.logger.info("Reset statistics of the connected database.")
+        else:
+            self.logger.info("Failed to reset statistics of the connected database.")
+
+        return predicate
+    
+    def _reset_cluster_stats(self, pg_client: PostgresClient, target: str):
+        sql = f"SELECT pg_stat_reset_shared({target});"
+        predicate = pg_client.execute(sql)
+
+        if predicate:
+            self.logger.info(f"Reset statistics of view {target}.")
+        else:
+            self.logger.info(f"Failed to reset statistics of view {target}.")
+        
+        return predicate
+
+    def reset_cumulative_stats(self):
         pg_client = PostgresClient(host=self.host,
                                    port=self.port,
                                    user=self.user,
                                    password=self.password,
                                    db_name=self.db_name,
                                    logger=self.logger)
-    
-        sql = "SELECT pg_stat_reset();"
-        predicate = pg_client.execute(sql)
-    
-        if predicate:
-            self.logger.info("Reset statistics of the connected database.")
-            pg_client.close_connection()
-        else:
-            self.logger.info("Failed to reset statistics of the connected database.")
+        predicate = True
 
+        # reset database statistics
+        db_stats_reset_predicate = self._reset_db_stats(pg_client)
+        predicate = predicate and db_stats_reset_predicate
+        
+        for view in self.CLUSTER_STATS_VIEWS:
+            target = view.split("_")[-1]
+            reset_predicate = self._reset_cluster_stats(pg_client, target)
+            predicate = predicate and reset_predicate
+
+        pg_client.close_connection()
         return predicate
     
-    def get_internal_metrics(self):
+    def get_dbms_stats(self):
         try:
             pg_client = PostgresClient(host=self.host,
                                        port=self.port,
@@ -309,13 +347,37 @@ class PostgresWrapper:
                                        db_name=self.db_name,
                                        logger=self.logger)
             
-            metrics = {}
-            for view in self.GLOBAL_STAT_VIEWS:
+            all_dbms_stats = {}
+            numeric_stats = []
+
+            for view in self.CLUSTER_STATS_VIEWS: # single row per view
                 sql = f"SELECT * FROM {view};"
-                metrics[view] = pg_client.execute_and_fetch_results(sql)
+                results = pg_client.execute_and_fetch_results(sql)
+                all_dbms_stats[view] = results[0]
+
+                for key in results[0]:
+                    if key in self.NUMERIC_STATS:
+                        numeric_stats.append(key)
+
+            for view in self.DB_STATS_VIEWS: # row per database per view
+                sql = f"SELECT * FROM {view};"
+                results = pg_client.execute_and_fetch_results(sql)
+
+                for res in results:
+                    if res["datname"] != self.db_name:
+                        continue
+                    else:
+                        all_dbms_stats[view] = res
+
+                        for key in res:
+                            if key in self.NUMERIC_STATS:
+                                numeric_stats.append(key)
+                        break
             
+            numeric_stats = np.array(numeric_stats)
             pg_client.close_connection()
-            return metrics
+            
+            return numeric_stats, all_dbms_stats
         except:
-            self.logger.info("Failed to get internal metrics.")
-            return None
+            self.logger.info("Failed to get DBMS cumulative statistics.")
+            assert False, "Failed to get DBMS cumulative statistics."
