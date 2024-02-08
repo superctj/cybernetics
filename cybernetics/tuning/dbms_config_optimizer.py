@@ -67,22 +67,23 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
     # DDPG Model
     from cybernetics.tuning.ddpg.model import DDPG
     
-    n_states = config["dbms_info"]["n_internal_metrics"]
+    n_states = config["dbms_info"]["n_numeric_stats"]
     n_actions = len(dbms_config_space)
     model = DDPG(n_states, n_actions, model_name="ddpg_model")
 
     target_function = partial(target_function,
                               seed=int(config["knob_space"]["random_seed"]))
-    optimizer = DDPGOptimizer(exp_state, model, target_function, initial_design,
-                              config["config_optimizer"]["n_total_configs"])
+    optimizer = DDPGOptimizer(model, target_function, initial_design,
+                              config["config_optimizer"]["n_total_configs"],
+                              config["config_optimizer"]["n_epochs"], exp_state)
 
     return optimizer
 
 
 class DDPGOptimizer:
-    def __init__(self, exp_state, model, target_function, initial_design,
-                 n_iters: int, n_epochs: int=2):
-        assert exp_state._target_metric == "throughput"
+    def __init__(self, model, target_function, initial_design, n_iters: int,
+                 n_epochs: int, exp_state):
+        assert exp_state.target_metric == "throughput" # TODO: Check why this is necessary
 
         self.exp_state = exp_state
         self.model = model
@@ -103,52 +104,53 @@ class DDPGOptimizer:
         for i, dbms_config in enumerate(init_configurations):
             self.logger.info(f"Iter {i} -- Sample from Initial Design:")
 
-            perf, internal_metrics = self.target_function(dbms_config)
-            perf = -perf # maximize
-            assert perf >= 0 # TODO: Need to double check this assertion
-            # compute reward
+            perf, numeric_stats = self.target_function(dbms_config)
+            assert perf >= 0
+            
+            # Compute reward
             reward = self.get_reward(perf, prev_perf)
 
             self.logger.info(f"Performance: {perf}")
-            self.logger.info(f"Internal Metrics: {internal_metrics}")
+            self.logger.info(f"DBMS numeric stats: {numeric_stats}")
             self.logger.info(f"Reward: {reward}")
 
             if i > 0:
-                self.model.add_sample(prev_internal_metrics, prev_dbms_config,
-                                      prev_reward, internal_metrics)
+                self.model.add_sample(prev_numeric_stats, prev_dbms_config,
+                                      prev_reward, numeric_stats)
 
-            prev_internal_metrics = internal_metrics
+            prev_numeric_stats = numeric_stats
             prev_dbms_config = dbms_config.get_array() # scale to [0, 1]
             prev_reward = reward
             prev_perf = perf
 
         # Add last random sample
-        self.model.add_sample(prev_internal_metrics, prev_dbms_config,
-                              prev_reward, internal_metrics)
+        self.model.add_sample(prev_numeric_stats, prev_dbms_config,
+                              prev_reward, numeric_stats)
 
         # Start guided search
         for i in range(len(init_configurations), self.n_iters):
             self.logger.info(f"Iter {i} -- Sample from DDPG:")
-            # get next recommendation from DDPG
-            dbms_config = self.model.choose_action(prev_internal_metrics)
+            
+            # Get next recommendation from DDPG
+            ddpg_action = self.model.choose_action(prev_numeric_stats)
+            dbms_config = self.convert_model_outputs_to_dbms_config(ddpg_action)
 
-            # metrics & perf
-            perf, internal_metrics = self.target_function(dbms_config)
-            perf = -perf # maximize
+            perf, numeric_stats = self.target_function(dbms_config)
             assert perf >= 0
-            # compute reward
+            
+            # Compute reward
             reward = self.get_reward(perf, prev_perf)
 
             self.logger.info(f"Performance: {perf}")
-            self.logger.info(f"Internal Metrics: {internal_metrics}")
+            self.logger.info(f"DBMS numeric stats: {numeric_stats}")
             self.logger.info(f"Reward: {reward}")
 
             # register point to the optimizer
-            self.model.add_sample(prev_internal_metrics, prev_dbms_config,
-                                  prev_reward, internal_metrics)
+            self.model.add_sample(prev_numeric_stats, prev_dbms_config,
+                                  prev_reward, numeric_stats)
 
-            prev_internal_metrics = internal_metrics
-            prev_dbms_config = dbms_config
+            prev_numeric_stats = numeric_stats
+            prev_dbms_config = ddpg_action
             prev_reward = reward
             prev_perf = perf
 
