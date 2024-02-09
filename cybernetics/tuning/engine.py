@@ -61,8 +61,8 @@ class TuningEngine:
         assert rtn_predicate, "Failed to apply DBMS configuration."
 
         # Reset DBMS statistics which are needed for DDPG-based tuning
-        reset_predicate = self.dbms_wrapper.reset_cumulative_stats()
-        assert reset_predicate, "Failed to reset DBMS cumulative statistics."
+        # reset_predicate = self.dbms_wrapper.reset_cumulative_stats()
+        # assert reset_predicate, "Failed to reset DBMS cumulative statistics."
 
         # Run the workload
         self.workload_wrapper.run()
