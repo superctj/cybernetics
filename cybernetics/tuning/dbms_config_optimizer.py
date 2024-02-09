@@ -95,7 +95,7 @@ class DDPGOptimizer:
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
 
     def run(self):
-        prev_perf = self.state.default_perf
+        prev_perf = self.exp_state.default_perf
         assert prev_perf >= 0 # TODO: Check why this is necessary
 
         # Bootstrap with random samples
@@ -133,7 +133,7 @@ class DDPGOptimizer:
             
             # Get next recommendation from DDPG
             ddpg_action = self.model.choose_action(prev_numeric_stats)
-            dbms_config = self.convert_model_outputs_to_dbms_config(ddpg_action)
+            dbms_config = self.convert_ddpg_action_to_dbms_config(ddpg_action)
 
             perf, numeric_stats = self.target_function(dbms_config)
             assert perf >= 0
@@ -158,6 +158,8 @@ class DDPGOptimizer:
             if len(self.model.replay_memory) >= self.model.batch_size:
                 for _ in range(self.n_epochs):
                     self.model.update()
+        
+        return self.exp_state.best_config
 
     def get_reward(self, perf, prev_perf):
         """Reward calculation same as CDBTune paper -- Section 4.2
@@ -174,16 +176,16 @@ class DDPGOptimizer:
 
             return reward
 
-        if perf == self.state.worse_perf:
+        if perf == self.exp_state.worst_perf:
             return 0
 
         # perf diff from default / prev evaluation
-        delta_default = (perf - self.state.default_perf) / self.state.default_perf
+        delta_default = (perf - self.exp_state.default_perf) / self.exp_state.default_perf
         delta_prev = (perf - prev_perf) / prev_perf
 
         return calculate_reward(delta_default, delta_prev)
 
-    def convert_model_outputs_to_dbms_config(self, model_outputs) -> dict:
+    def convert_ddpg_action_to_dbms_config(self, model_outputs) -> dict:
         dbms_config = {}
 
         # TODO: Need to double check if model_outputs matches the input space
