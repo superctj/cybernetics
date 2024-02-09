@@ -111,35 +111,6 @@ class PostgresWrapper:
             "tup_deleted", "conflicts", "temp_files", "temp_bytes", "deadlocks",
             "blk_read_time", "blk_write_time"
         ]
-
-        # self.num_metrics = 60
-        # self.PG_STAT_VIEWS = [
-        #     "pg_stat_archiver", "pg_stat_bgwriter",  # global
-        #     "pg_stat_database", "pg_stat_database_conflicts",  # local
-        #     "pg_stat_user_tables", "pg_statio_user_tables",  # local
-        #     "pg_stat_user_indexes", "pg_statio_user_indexes"  # local
-        # ]
-        # self.PG_STAT_VIEWS_LOCAL_DATABASE = ["pg_stat_database", "pg_stat_database_conflicts"]
-        # self.PG_STAT_VIEWS_LOCAL_TABLE = ["pg_stat_user_tables", "pg_statio_user_tables"]
-        # self.PG_STAT_VIEWS_LOCAL_INDEX = ["pg_stat_user_indexes", "pg_statio_user_indexes"]
-        # self.NUMERIC_METRICS = [
-        #     # global
-        #     "buffers_alloc", "buffers_backend", "buffers_backend_fsync", "buffers_checkpoint", "buffers_clean",
-        #     "checkpoints_req", "checkpoints_timed", "checkpoint_sync_time", "checkpoint_write_time", "maxwritten_clean",
-        #     "archived_count", "failed_count",
-        #     # database
-        #     "blk_read_time", "blks_hit", "blks_read", "blk_write_time", "conflicts", "deadlocks", "temp_bytes",
-        #     "temp_files", "tup_deleted", "tup_fetched", "tup_inserted", "tup_returned", "tup_updated", "xact_commit",
-        #     "xact_rollback", "confl_tablespace", "confl_lock", "confl_snapshot", "confl_bufferpin", "confl_deadlock",
-        #     # table
-        #     "analyze_count", "autoanalyze_count", "autovacuum_count", "heap_blks_hit", "heap_blks_read", "idx_blks_hit",
-        #     "idx_blks_read", "idx_scan", "idx_tup_fetch", "n_dead_tup", "n_live_tup", "n_tup_del", "n_tup_hot_upd",
-        #     "n_tup_ins", "n_tup_upd", "n_mod_since_analyze", "seq_scan", "seq_tup_read", "tidx_blks_hit",
-        #     "tidx_blks_read",
-        #     "toast_blks_hit", "toast_blks_read", "vacuum_count",
-        #     # index
-        #     "idx_blks_hit", "idx_blks_read", "idx_scan", "idx_tup_fetch", "idx_tup_read"
-        # ]
     
     def _start_postgres(self) -> bool:
         # This function is only used when failing to restart Postgres due to invalid DBMS configuration (e.g., request too many resources)
