@@ -328,7 +328,7 @@ class PostgresWrapper:
 
                 for key in results[0]:
                     if key in self.NUMERIC_STATS:
-                        numeric_stats.append(key)
+                        numeric_stats.append(results[0][key])
 
             for view in self.DB_STATS_VIEWS: # row per database per view
                 sql = f"SELECT * FROM {view};"
@@ -342,7 +342,7 @@ class PostgresWrapper:
 
                         for key in res:
                             if key in self.NUMERIC_STATS:
-                                numeric_stats.append(key)
+                                numeric_stats.append(res[key])
                         break
             
             numeric_stats = np.array(numeric_stats)
