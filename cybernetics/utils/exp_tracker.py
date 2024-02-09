@@ -11,11 +11,10 @@ from cybernetics.utils.util import create_dir
 class ExperimentState:
     def __init__(self, dbms_info: dict, workload_info: dict, target_metric: str, results_path: str):
         self.iter = 0
-        self.best_conf = None
-        self.best_perf = None
-        self.worse_perf = None
         self.default_perf = None
-        self.default_perf_stats = None
+        self.best_perf = None
+        self.worst_perf = None
+        self.best_config = None
 
         assert target_metric in ["throughput", "latency"], f"Unsupported target metric: {target_metric}"
         self._target_metric = target_metric
