@@ -83,13 +83,13 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
 class DDPGOptimizer:
     def __init__(self, model, target_function, initial_design, n_iters: int,
                  n_epochs: int, exp_state):
-        assert exp_state.target_metric == "throughput" # TODO: Check why this is necessary
+        # assert exp_state.target_metric == "throughput" # TODO: Check why this is necessary
 
         self.exp_state = exp_state
         self.model = model
         self.target_function = target_function
         self.initial_design = initial_design
-        self.input_space = initial_design.cs
+        self.input_space = initial_design._configspace
         self.n_iters = n_iters
         self.n_epochs = n_epochs # CDBTune uses 2
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
@@ -185,21 +185,17 @@ class DDPGOptimizer:
 
         return calculate_reward(delta_default, delta_prev)
 
-    def convert_ddpg_action_to_dbms_config(self, model_outputs) -> dict:
+    def convert_ddpg_action_to_dbms_config(self, ddpg_action) -> dict:
         dbms_config = {}
 
         # TODO: Need to double check if model_outputs matches the input space
-        for hp, value in zip(self.input_space.get_hyperparameters(), model_outputs):
+        for hp, ddpg_value in zip(self.input_space.get_hyperparameters(), ddpg_action):
             if isinstance(hp, CSH.CategoricalHyperparameter):
-                if hp.num_choices == 2:
-                    value = hp.choices[0] if value <= 0.5 else hp.choices[1]
-                else:
-                    raise NotImplementedError()
+                choice_idx = int(round(ddpg_value * (hp.num_choices - 1)))
+                dbms_config[hp.name] = hp.choices[choice_idx]
             elif isinstance(hp, CSH.UniformIntegerHyperparameter) or isinstance(hp, CSH.UniformFloatHyperparameter):
-                value = hp._transform(value)
+                dbms_config[hp.name] = hp._transform(ddpg_value)
             else:
                 raise NotImplementedError()
-
-            dbms_config[hp.name] = value
 
         return dbms_config
