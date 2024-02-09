@@ -183,7 +183,7 @@ class DDPG(object):
 
     @staticmethod
     def totensor(x):
-        return Variable(torch.FloatTensor(x))
+        return torch.tensor(x, dtype=torch.float, requires_grad=True)
 
     def _build_network(self):
         self.actor = Actor(self.n_states, self.n_actions, self.a_hidden_sizes,
@@ -233,13 +233,16 @@ class DDPG(object):
         self.actor.eval()
         self.target_critic.eval()
         self.target_actor.eval()
-        batch_state = self.totensor([state.tolist()])
-        batch_next_state = self.totensor([next_state.tolist()])
-        current_value = self.critic(batch_state,
-                                    self.totensor([action.tolist()]))
+        
+        batch_state = self.totensor(np.expand_dims(state, axis=0))
+        batch_next_state = self.totensor(np.expand_dims(next_state, axis=0))
+        current_value = self.critic(
+            batch_state,
+            self.totensor(np.expand_dims(action, axis=0))
+        )
         target_action = self.target_actor(batch_next_state)
-        target_value = self.totensor([reward]) \
-            + self.target_critic(batch_next_state, target_action) * self.gamma
+        target_value = self.totensor([reward]) + \
+            self.target_critic(batch_next_state, target_action) * self.gamma
         error = float(torch.abs(current_value - target_value).data.numpy()[0])
 
         self.target_actor.train()
@@ -291,7 +294,8 @@ class DDPG(object):
 
     def choose_action(self, states):
         self.actor.eval()
-        act = self.actor(self.totensor([states.tolist()])).squeeze(0)
+        act = self.actor(self.totensor(
+            np.expand_dims(states, axis=0))).squeeze(0)
         self.actor.train()
         action = act.data.numpy()
         action += self.noise.noise()
