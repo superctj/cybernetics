@@ -28,7 +28,8 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
         seed=int(config["knob_space"]["random_seed"])
     )
 
-    target_function = partial(target_function, seed=int(config["knob_space"]["random_seed"]))
+    target_function = partial(target_function,
+                              seed=int(config["knob_space"]["random_seed"]))
 
     if config["config_optimizer"]["optimizer"] == "bo-gp":
         optimizer = BBFacade(
@@ -73,9 +74,14 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
 
     target_function = partial(target_function,
                               seed=int(config["knob_space"]["random_seed"]))
-    optimizer = DDPGOptimizer(model, target_function, initial_design,
-                              config["config_optimizer"]["n_total_configs"],
-                              config["config_optimizer"]["n_epochs"], exp_state)
+    optimizer = DDPGOptimizer(
+        model,
+        target_function,
+        initial_design,
+        int(config["config_optimizer"]["n_total_configs"]),
+        int(config["config_optimizer"]["n_epochs"]),
+        exp_state
+    )
 
     return optimizer
 
