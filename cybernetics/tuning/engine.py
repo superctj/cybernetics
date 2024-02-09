@@ -56,9 +56,15 @@ class TuningEngine:
     def rl_target_function(self, dbms_config, seed: int):
         """Target function for RL-based optimizer.
         """
+        # Apply DBMS configuration
         rtn_predicate = self.dbms_wrapper.apply_knobs(dbms_config)
         assert rtn_predicate, "Failed to apply DBMS configuration."
 
+        # Reset DBMS statistics which are needed for DDPG-based tuning
+        reset_predicate = self.dbms_wrapper.reset_cumulative_stats()
+        assert reset_predicate, "Failed to reset DBMS cumulative statistics."
+
+        # Run the workload
         self.workload_wrapper.run()
         performance = self.dbms_wrapper.get_benchbase_metrics()
         numeric_stats, _ = self.dbms_wrapper.get_dbms_stats()
@@ -70,6 +76,9 @@ class TuningEngine:
             if self.exp_state.best_perf is None or throughput > self.exp_state.best_perf:
                 self.exp_state.best_perf = throughput
 
+            if self.exp_state.worst_perf is None or throughput < self.exp_state.worst_perf:
+                self.exp_state.worst_perf = throughput
+
             return throughput, numeric_stats
         
         elif self.target_metric == "latency":
@@ -78,6 +87,9 @@ class TuningEngine:
 
             if self.exp_state.best_perf is None or latency < self.exp_state.best_perf:
                 self.exp_state.best_perf = latency
+            
+            if self.exp_state.worst_perf is None or latency > self.exp_state.worst_perf:
+                self.exp_state.worst_perf = latency
 
             return latency, numeric_stats
     
@@ -93,10 +105,6 @@ class TuningEngine:
         elif self.config["config_optimizer"]["optimizer"].startswith("rl"):
             self.logger.info("Initiating RL-based optimizer...")
             
-            # Reset DBMS statistics which are needed for DDPG-based tuning
-            predicate = self.dbms_wrapper.reset_cumulative_stats()
-            assert predicate, "Failed to reset DBMS cumulative statistics."
-            
             optimizer = get_ddpg_optimizer(
                 self.config,
                 self.dbms_config_space,
@@ -109,12 +117,34 @@ class TuningEngine:
         return optimizer
 
     def run(self):
+        # Restart DBMS with default configuration
+        self.dbms_wrapper.reset_knobs_by_restarting_db()
+
+        # Run the default configuration
+        self.workload_wrapper.run()
+        performance = self.dbms_wrapper.get_benchbase_metrics()
+
+        if self.target_metric == "throughput":
+            throughput = performance["Throughput (requests/second)"]
+            self.exp_state.default_perf = throughput
+            self.exp_state.best_perf = throughput
+            self.exp_state.worst_perf = throughput
+            
+            self.logger.info(f"Default Throughput (requests/second): {throughput}")
+        elif self.target_metric == "latency":
+            latency = performance["Latency Distribution"]["95th Percentile Latency (microseconds)"]
+            self.exp_state.default_perf = latency
+            self.exp_state.best_perf = latency
+            self.exp_state.worst_perf = latency
+
+            self.logger.info(f"Default 95th Percentile Latency (microseconds): {latency}")
+
         # SMAC
         if hasattr(self.optimizer, "optimize"):
             best_dbms_config = self.optimizer.optimize()
-        # OpenBox
+        # RL-DDPG
         else:
-            self.optimizer.run()
+            best_dbms_config = self.optimizer.run()
         
         # Complete tuning
         self.logger.info(f"\nBest DBMS Configuration:\n{best_dbms_config}")
