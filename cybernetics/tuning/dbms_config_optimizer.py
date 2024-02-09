@@ -60,14 +60,14 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
     if config["config_optimizer"]["initial_design"] == "random":
         initial_design = smac_init_design.RandomInitialDesign(
             scenario=scenario,
-            n_configs=config["config_optimizer"]["n_initial_configs"],
-            seed=config["knob_space"]["random_seed"]
+            n_configs=int(config["config_optimizer"]["n_initial_configs"]),
+            seed=int(config["knob_space"]["random_seed"])
         )
 
     # DDPG Model
     from cybernetics.tuning.ddpg.model import DDPG
     
-    n_states = config["dbms_info"]["n_numeric_stats"]
+    n_states = int(config["dbms_info"]["n_numeric_stats"])
     n_actions = len(dbms_config_space)
     model = DDPG(n_states, n_actions, model_name="ddpg_model")
 
