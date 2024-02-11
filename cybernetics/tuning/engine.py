@@ -44,13 +44,26 @@ class TuningEngine:
             
             if self.exp_state.best_perf is None or throughput > self.exp_state.best_perf:
                 self.exp_state.best_perf = throughput
+                self.exp_state.best_config = dbms_config
+
+            if self.exp_state.worst_perf is None or throughput < self.exp_state.worst_perf:
+                self.exp_state.worst_perf = throughput
+                self.exp_state.worst_config = dbms_config
+
             return -throughput
+
         elif self.target_metric == "latency":
             latency = performance["Latency Distribution"]["95th Percentile Latency (microseconds)"]
             self.logger.info(f"95th Percentile Latency (microseconds): {latency}")
 
             if self.exp_state.best_perf is None or latency < self.exp_state.best_perf:
                 self.exp_state.best_perf = latency
+                self.exp_state.best_config = dbms_config
+
+            if self.exp_state.worst_perf is None or latency > self.exp_state.worst_perf:
+                self.exp_state.worst_perf = latency
+                self.exp_state.worst_config = dbms_config
+
             return latency
     
     def rl_target_function(self, dbms_config, seed: int):
@@ -75,9 +88,11 @@ class TuningEngine:
             
             if self.exp_state.best_perf is None or throughput > self.exp_state.best_perf:
                 self.exp_state.best_perf = throughput
+                self.exp_state.best_config = dbms_config
 
             if self.exp_state.worst_perf is None or throughput < self.exp_state.worst_perf:
                 self.exp_state.worst_perf = throughput
+                self.exp_state.worst_config = dbms_config
 
             return throughput, numeric_stats
         
@@ -87,9 +102,11 @@ class TuningEngine:
 
             if self.exp_state.best_perf is None or latency < self.exp_state.best_perf:
                 self.exp_state.best_perf = latency
+                self.exp_state.best_config = dbms_config
             
             if self.exp_state.worst_perf is None or latency > self.exp_state.worst_perf:
                 self.exp_state.worst_perf = latency
+                self.exp_state.worst_config = dbms_config
 
             return latency, numeric_stats
     
@@ -147,9 +164,18 @@ class TuningEngine:
             best_dbms_config = self.optimizer.run()
         
         # Complete tuning
+        self.logger.info("\nCompleted DBMS configuration tuning.")
+        
         self.logger.info(f"\nBest DBMS Configuration:\n{best_dbms_config}")
         
         if self.exp_state.target_metric == "throughput":
             self.logger.info(f"Best Throughput: {self.exp_state.best_perf} ops/sec")
         else:
-            self.dbms_config_spacelogger.info(f"Best 95-th Latency: {self.exp_state.best_perf} microseconds")
+            self.logger.info(f"Best 95-th Latency: {self.exp_state.best_perf} microseconds")
+        
+        self.logger.info(f"\nWorst DBMS Configuration:\n{self.exp_state.worst_config}")
+        
+        if self.exp_state.target_metric == "throughput":
+            self.logger.info(f"Worst Throughput: {self.exp_state.worst_perf} ops/sec")
+        else:
+            self.logger.info(f"Best 95-th Latency: {self.exp_state.worst_perf} microseconds")
