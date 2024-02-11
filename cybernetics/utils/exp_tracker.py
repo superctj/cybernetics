@@ -15,6 +15,7 @@ class ExperimentState:
         self.best_perf = None
         self.worst_perf = None
         self.best_config = None
+        self.worst_confg = None
 
         assert target_metric in ["throughput", "latency"], f"Unsupported target metric: {target_metric}"
         self._target_metric = target_metric
