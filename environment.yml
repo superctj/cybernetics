@@ -18,7 +18,7 @@ dependencies:
   - bzip2=1.0.8=h7b6447c_0
   - c-ares=1.19.1=h5eee18b_0
   - ca-certificates=2023.12.12=h06a4308_0
-  - certifi=2023.11.17=py310h06a4308_0
+  - certifi=2024.2.2=py310h06a4308_0
   - cffi=1.16.0=py310h5eee18b_0
   - chardet=4.0.0=py310h06a4308_1003
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
