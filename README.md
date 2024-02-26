@@ -35,7 +35,7 @@ Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) fo
     ```
     e.g.,
     ```
-    conda develop /home/tianji/cybernetics
+    conda develop $HOME/cybernetics
     ```
 
 

@@ -14,12 +14,25 @@ if __name__ == "__main__":
         required=True,
         help="Path to the configuration file"
     )
+    parser.add_argument(
+        "--cybernetics_path",
+        type=str,
+        required=True,
+        help="Absolute path to cybernetics directory (for example: $HOME/cybernetics)"
+    )
+    parser.add_argument(
+        "--benchbase_path",
+        type=str,
+        required=True,
+        help="Absolute path to benchbase directory (for example: $HOME/benchbase)"
+    )
 
     args = parser.parse_args()
 
     # Parse configuration
     config = parse_config(args.config_path)
-
+    cyber_path = args.cybernetics_path
+    benchbase_path = args.benchbase_path
     # Set global random state
     fix_global_random_state(int(config["knob_space"]["random_seed"]))
 

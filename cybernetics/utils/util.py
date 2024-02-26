@@ -58,5 +58,7 @@ def parse_config(config_path: str) -> ConfigParser:
     
     parser = ConfigParser()
     parser.read(config_path)
-
+    for key, value in config.items(section):
+        # Replace variables with their values
+        config.set(section, key, os.path.expandvars(value))
     return parser
