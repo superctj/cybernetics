@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     # Parse configuration
     config = parse_config(args.config_path)
-
+    print(config)
     # Set global random state
     fix_global_random_state(int(config["knob_space"]["random_seed"]))
 
@@ -50,9 +50,18 @@ if __name__ == "__main__":
     dbms_config_space = dbms_config_space_generator.generate_input_space(
         ignored_knobs=[]
     )
+
+    # PROJECTING POINTS
+    adapter = None
+    low_dim_project = True
+    if low_dim_project:
+        target_dim = 16
+        # print(dbms_config_space)
+        adapter = dbms_config_space_generator.get_input_space_adapter(dbms_config_space, target_dim)
+        dbms_config_space = adapter.target
     
     # Init tuning engine
     tuning_engine = TuningEngine(
-        config, postgres_wrapper, dbms_config_space, workload_wrapper
+        config, postgres_wrapper, dbms_config_space, workload_wrapper, adapter = adapter
     )
     tuning_engine.run()

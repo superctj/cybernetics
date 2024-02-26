@@ -5,8 +5,9 @@ https://github.com/uw-mad-dash/llamatune/blob/main/space.py
 import json
 
 import ConfigSpace.hyperparameters as CSH
+import ConfigSpace as CS
 from ConfigSpace import ConfigurationSpace
-
+from adapters import *
 
 class KnobSpaceGenerator:
     def __init__(self, knob_spec: str, random_seed: int):
@@ -83,3 +84,5 @@ class KnobSpaceGenerator:
         knob_space.add_hyperparameters(input_knobs)
         
         return knob_space
+    def get_input_space_adapter(self, knob_space: CS.ConfigurationSpace, target_dim):
+        return LinearEmbeddingConfigSpace.create(knob_space, 1, target_dim = target_dim)
