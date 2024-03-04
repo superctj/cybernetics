@@ -46,9 +46,11 @@ class PostgresClient(DBClient):
             if self.logger:
                 self.logger.info("Connected to Postgres.")
             return conn, cursor
-        except:
+        except Exception as e:
             if self.logger:
-                self.logger.info("Unable to connect to Postgres.")
+
+                self.logger.info("THis is the error: " + str(e))
+                self.logger.info("Unable to connect to Postgres.")   
 
     def close_connection(self):
         if self.cursor:
@@ -259,6 +261,7 @@ class PostgresWrapper:
 
     def get_benchbase_metrics(self):
         metrics_files = glob.glob(f"{self.results_dir}/*.summary.json")
+        self.logger.info(self.results_dir)
         latest_metrics_file = max(metrics_files, key=os.path.getctime)
 
         with open(latest_metrics_file, "r") as f:

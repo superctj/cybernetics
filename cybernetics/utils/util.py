@@ -1,6 +1,6 @@
 import os
 import random
-
+from pathlib import Path
 from shutil import rmtree
 
 from configparser import ConfigParser
@@ -55,10 +55,15 @@ def parse_config(config_path: str) -> ConfigParser:
     Returns:
         (dict): The parsed configuration.
     """
-    
+
+    home_path = str(Path.home())
     parser = ConfigParser()
     parser.read(config_path)
-    for key, value in config.items(section):
-        # Replace variables with their values
-        config.set(section, key, os.path.expandvars(value))
+    for section in parser.sections():
+        for key, value in parser.items(section):
+            # Replace variables with their values
+            if value.startswith("$HOME"):
+                parser.set(section, key, home_path + value[5:])
+            else:
+                parser.set(section, key, value)
     return parser
