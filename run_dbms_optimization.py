@@ -20,6 +20,11 @@ if __name__ == "__main__":
     # Parse configuration
     config = parse_config(args.config_path)
 
+    for section in config.sections():
+        print(f"Section: {section}")
+        for key in config[section]:
+            print(f"  Key: {key} = {config[section][key]}")
+
     # Set global random state
     fix_global_random_state(int(config["knob_space"]["random_seed"]))
 
