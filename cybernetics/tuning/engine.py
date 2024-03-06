@@ -6,7 +6,7 @@ https://github.com/PKU-DAIR/DBTune/blob/main/autotune/tuner.py
 https://github.com/uw-mad-dash/llamatune/blob/main/run-smac.py
 """
 
-from cybernetics.tuning.dbms_config_optimizer import get_bo_optimizer, get_ddpg_optimizer
+from cybernetics.tuning.dbms_config_optimizer import get_bo_optimizer, get_ddpg_optimizer, get_liquid_ddpg_optimizer
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 from cybernetics.utils.exp_tracker import ExperimentState
 
@@ -111,6 +111,7 @@ class TuningEngine:
             return latency, numeric_stats
     
     def init_optimizer(self):
+        print(self.config["config_optimizer"]["optimizer"])
         if self.config["config_optimizer"]["optimizer"].startswith("bo"):
             self.logger.info("Initiating BO-based optimizer...")
             
@@ -123,6 +124,15 @@ class TuningEngine:
             self.logger.info("Initiating RL-based optimizer...")
             
             optimizer = get_ddpg_optimizer(
+                self.config,
+                self.dbms_config_space,
+                self.rl_target_function,
+                self.exp_state
+            )
+        elif self.config["config_optimizer"]["optimizer"].startswith("liquid"):
+            self.logger.info("Initiating RL-based optimizer...")
+            
+            optimizer = get_liquid_ddpg_optimizer(
                 self.config,
                 self.dbms_config_space,
                 self.rl_target_function,

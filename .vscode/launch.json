@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Python: Run DBMS Optimization",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/run_dbms_optimization.py",
+        "console": "integratedTerminal",
+        "args": [
+          "--config_path",
+          "./cybernetics/configs/benchbase/tpcc/postgres_liquid_ddpg.ini"
+        ]
+      }
+    ]
+  }
+  
