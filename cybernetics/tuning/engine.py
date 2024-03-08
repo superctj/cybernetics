@@ -130,7 +130,7 @@ class TuningEngine:
                 self.exp_state
             )
         elif self.config["config_optimizer"]["optimizer"].startswith("liquid"):
-            self.logger.info("Initiating RL-based optimizer...")
+            self.logger.info("Initiating Liquid-RL-based optimizer...")
             
             optimizer = get_liquid_ddpg_optimizer(
                 self.config,

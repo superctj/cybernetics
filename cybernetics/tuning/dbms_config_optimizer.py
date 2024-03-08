@@ -140,6 +140,9 @@ class DDPGOptimizer:
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
 
     def run(self):
+        # TODO: separate an individual function for liquid ddpg later
+        hidden = None
+
         prev_perf = self.exp_state.default_perf
         assert prev_perf >= 0 # TODO: Check why this is necessary
 
@@ -177,7 +180,7 @@ class DDPGOptimizer:
             self.logger.info(f"Iter {i} -- Sample from DDPG:")
             
             # Get next recommendation from DDPG
-            ddpg_action = self.model.choose_action(prev_numeric_stats)
+            ddpg_action, hidden = self.model.choose_action(prev_numeric_stats, hidden)
             dbms_config = self.convert_ddpg_action_to_dbms_config(ddpg_action)
 
             perf, numeric_stats = self.target_function(dbms_config)

@@ -10,6 +10,7 @@ import torch
 torch.set_num_threads(1)
 import torch.nn as nn
 import torch.optim as optimizer
+from ncps.torch import LTC
 
 from torch.autograd import Variable
 
@@ -22,6 +23,8 @@ class Actor(nn.Module):
     """
     def __init__(self, n_states: int, n_actions: int, hidden_sizes: list, use_default: bool):
         super(Actor, self).__init__()
+        # define the liquid layer
+        self.ltc_layer = LTC(input_size=n_states, units=n_states, return_sequences=True, batch_first=True)
 
         if use_default:
             self.layers = nn.Sequential(
@@ -61,11 +64,15 @@ class Actor(nn.Module):
             if isinstance(m, nn.Linear):
                 m.weight.data.normal_(0.0, 1e-2)
                 m.bias.data.uniform_(-0.1, 0.1)
-
-    def forward(self, states): # pylint: disable=arguments-differ
-        print(states.shape)
-        actions = self.sigmoid(self.layers(states))
-        return actions
+    
+    # add hidden input and output
+    def forward(self, states, hidden = None): # pylint: disable=arguments-differ
+        # add an extra dimension to state
+        states = states.view(1, 1, -1)
+        ltc_output, hidden = self.ltc_layer(states,hidden)
+        ltc_output = ltc_output.squeeze(1)
+        actions = self.sigmoid(self.layers(ltc_output))
+        return actions, hidden
 
 
 class Critic(nn.Module):
@@ -241,7 +248,9 @@ class DDPG(object):
             batch_state,
             self.totensor(np.expand_dims(action, axis=0))
         )
-        target_action = self.target_actor(batch_next_state)
+
+
+        target_action, hidden = self.target_actor(batch_next_state)
         target_value = self.totensor([reward]) + \
             self.target_critic(batch_next_state, target_action) * self.gamma
         error = float(torch.abs(current_value - target_value).data.numpy()[0])
@@ -256,11 +265,21 @@ class DDPG(object):
         idxs, states, next_states, actions, rewards = self._sample_batch()
         batch_states = self.totensor(states)
         batch_next_states = self.totensor(next_states)
+
+        # TODO: because of inconsistent input shape in training model, set agents to evaluation mode first
+        batch_next_states = torch.mean(batch_next_states, dim=0).view(1,-1)
+        self.target_actor.eval()
+        self.target_critic.eval()
+        self.actor.eval()
+
+
         batch_actions = self.totensor(actions)
         batch_rewards = self.totensor(rewards)
 
-        target_next_actions = self.target_actor(batch_next_states).detach()
-        target_next_value = self.target_critic(batch_next_states, target_next_actions).detach()
+        target_next_actions, hidden = self.target_actor(batch_next_states)
+        target_next_actions = target_next_actions.detach()
+        # target_next_value = self.target_critic(batch_next_states, target_next_actions).detach()
+        target_next_value = self.target_critic(batch_next_states, target_next_actions).detach().squeeze(1)
         current_value = self.critic(batch_states, batch_actions)
         batch_rewards = batch_rewards[:, None]
         next_value = batch_rewards + target_next_value * self.gamma + self.shift
@@ -278,9 +297,14 @@ class DDPG(object):
         loss.backward()
         self.critic_optimizer.step()
 
+        # TODO: may need to be changed later
+        batch_states = torch.mean(batch_states, dim=0).view(1,-1)
+
         # Update Actor
         self.critic.eval()
-        policy_loss = -self.critic(batch_states, self.actor(batch_states))
+        # TODO: think about what is the hidden input here
+        actor_output, hidden = self.actor(batch_states)
+        policy_loss = -self.critic(batch_states, actor_output)
         policy_loss = policy_loss.mean()
         self.actor_optimizer.zero_grad()
         policy_loss.backward()
@@ -293,14 +317,15 @@ class DDPG(object):
 
         return loss.data, policy_loss.data
 
-    def choose_action(self, states):
+    def choose_action(self, states, hidden):
         self.actor.eval()
-        act = self.actor(self.totensor(
-            np.expand_dims(states, axis=0))).squeeze(0)
+        act, hidden = self.actor(self.totensor(
+            np.expand_dims(states, axis=0)),hidden)
+        act = act.squeeze(0)
         self.actor.train()
         action = act.data.numpy()
         action += self.noise.noise()
-        return action.clip(0, 1)
+        return action.clip(0, 1), hidden
 
     def set_model(self, actor_dict, critic_dict):
         self.actor.load_state_dict(pickle.loads(actor_dict))
