@@ -32,7 +32,7 @@ class BenchBaseWrapper:
 
 if __name__ == "__main__":
     workload="tpcc"
-    script="/home/tianji/cybernetics/scripts/benchbase_tpcc_postgres.sh"
+    script="/home/zhenyu/MLforDB/cybernetics/scripts/benchbase_tpcc_postgres.sh"
 
     benchbase_wrapper = BenchBaseWrapper(workload, script)
     benchbase_wrapper.run()

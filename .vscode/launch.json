@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug run_dbms_optimization",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_dbms_optimization.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_path",
+                "cybernetics/configs/benchbase/tpcc/postgres_liquid_ddpg.ini"
+            ],
+            "cwd": "${workspaceFolder}",
+            // "python": "${env:CONDA_PREFIX}/bin/python" // This will use the Python interpreter within your Conda environment
+        }
+    ]
+}

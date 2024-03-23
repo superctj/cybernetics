@@ -1,0 +1,163 @@
+{
+  "hyperparameters": [
+    {
+      "name": "checkpoint_completion_target",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 0.0,
+      "upper": 1.0,
+      "default": 0.5,
+      "q": null
+    },
+    {
+      "name": "default_statistics_target",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 100,
+      "upper": 200,
+      "default": 100,
+      "q": null
+    },
+    {
+      "name": "effective_cache_size",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 524288,
+      "upper": 524290,
+      "default": 524288,
+      "q": null
+    },
+    {
+      "name": "effective_io_concurrency",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 1,
+      "upper": 10,
+      "default": 1,
+      "q": null
+    },
+    {
+      "name": "huge_pages",
+      "type": "categorical",
+      "choices": [
+        "off",
+        "on",
+        "try"
+      ],
+      "default": "try",
+      "weights": null
+    },
+    {
+      "name": "maintenance_work_mem",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 65536,
+      "upper": 655360,
+      "default": 65536,
+      "q": null
+    },
+    {
+      "name": "max_connections",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 50,
+      "upper": 100,
+      "default": 100,
+      "q": null
+    },
+    {
+      "name": "max_parallel_maintenance_workers",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 1,
+      "upper": 4,
+      "default": 2,
+      "q": null
+    },
+    {
+      "name": "max_parallel_workers",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 4,
+      "upper": 16,
+      "default": 8,
+      "q": null
+    },
+    {
+      "name": "max_parallel_workers_per_gather",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 1,
+      "upper": 4,
+      "default": 2,
+      "q": null
+    },
+    {
+      "name": "max_wal_size",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 1024,
+      "upper": 10240,
+      "default": 1024,
+      "q": null
+    },
+    {
+      "name": "max_worker_processes",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 4,
+      "upper": 16,
+      "default": 8,
+      "q": null
+    },
+    {
+      "name": "min_wal_size",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 10,
+      "upper": 80,
+      "default": 80,
+      "q": null
+    },
+    {
+      "name": "random_page_cost",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 1.0,
+      "upper": 8.0,
+      "default": 4.0,
+      "q": null
+    },
+    {
+      "name": "shared_buffers",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 8192,
+      "upper": 32768,
+      "default": 16384,
+      "q": null
+    },
+    {
+      "name": "wal_buffers",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 512,
+      "upper": 5120,
+      "default": 512,
+      "q": null
+    },
+    {
+      "name": "work_mem",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 4096,
+      "upper": 40960,
+      "default": 4096,
+      "q": null
+    }
+  ],
+  "conditions": [],
+  "forbiddens": [],
+  "python_module_version": "0.6.1",
+  "json_format_version": 0.4
+}
