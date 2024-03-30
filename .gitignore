@@ -1,5 +1,7 @@
 # Experiment results
 exps/
+bo_gp*/
+liquid_ddpg*/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -154,6 +156,13 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+#knobSelection
+KnobSelection.py
+
+#ipynb files and pics
+*.png
+*.ipynb
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

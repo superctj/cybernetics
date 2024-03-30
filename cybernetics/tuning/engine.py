@@ -9,6 +9,7 @@ https://github.com/uw-mad-dash/llamatune/blob/main/run-smac.py
 from cybernetics.tuning.dbms_config_optimizer import get_bo_optimizer, get_ddpg_optimizer,get_liquid_ddpg_optimizer
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 from cybernetics.utils.exp_tracker import ExperimentState
+import time
 
 
 class TuningEngine:
@@ -131,7 +132,11 @@ class TuningEngine:
         self.dbms_wrapper.reset_knobs_by_restarting_db()
 
         # Run the default configuration
+        start_time = time.time()
         self.workload_wrapper.run()
+        end_time = time.time()
+        self.logger.info(f"Executing Time: {end_time - start_time}")
+        
         performance = self.dbms_wrapper.get_benchbase_metrics()
 
         if self.target_metric == "throughput":
@@ -151,7 +156,10 @@ class TuningEngine:
 
         # SMAC
         if hasattr(self.optimizer, "optimize"):
+            opt_start_time = time.time()
             best_dbms_config = self.optimizer.optimize()
+            opt_end_time = time.time()
+            self.logger.info(f"Optimization Time:{opt_end_time - opt_start_time}")
         # RL-DDPG
         else:
             best_dbms_config = self.optimizer.run()

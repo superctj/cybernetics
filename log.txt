@@ -1,2 +1,13 @@
-alloc!
-alloc!
+[INFO][abstract_initial_design.py:95] Reducing the number of initial configurations from 136 to 25 (max_ratio == 0.25).
+[INFO][abstract_initial_design.py:147] Using 25 initial design configurations and 0 additional configurations.
+[INFO][engine.py:31] DBMS config optimizer is ready.
+[INFO][postgres.py:47] Connected to Postgres.
+[INFO][postgres.py:60] Closed connection to Postgres.
+[INFO][postgres.py:147] Restarted Postgres.
+[INFO][postgres.py:148] Subprocess output: 
+waiting for server to shut down.... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:254] Reset knobs with Postgres restarted.

@@ -35,7 +35,8 @@ if __name__ == "__main__":
 
         workload_wrapper = BenchBaseWrapper(
             config["workload_info"]["workload"],
-            config["workload_info"]["script"]
+            config["workload_info"]["first_script"],
+            config["workload_info"]["script"],
         )
         
         
