@@ -13,6 +13,7 @@ from ConfigSpace import ConfigurationSpace
 from smac import BlackBoxFacade as BBFacade
 from smac import HyperparameterOptimizationFacade as HPOFacade
 from smac import Scenario
+import time
 
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
@@ -81,7 +82,7 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
         int(config["config_optimizer"]["n_total_configs"]),
         int(config["config_optimizer"]["n_epochs"]),
         exp_state
-    )
+    ) 
 
     return optimizer
 
@@ -166,7 +167,6 @@ class DDPGOptimizer:
                     self.model.update()
         
         return self.exp_state.best_config
-
     def get_reward(self, perf, prev_perf):
         """Reward calculation same as CDBTune paper -- Section 4.2
         """

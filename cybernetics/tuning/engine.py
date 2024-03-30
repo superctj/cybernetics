@@ -6,9 +6,10 @@ https://github.com/PKU-DAIR/DBTune/blob/main/autotune/tuner.py
 https://github.com/uw-mad-dash/llamatune/blob/main/run-smac.py
 """
 
-from cybernetics.tuning.dbms_config_optimizer import get_bo_optimizer, get_ddpg_optimizer
+from cybernetics.tuning.dbms_config_optimizer import get_bo_optimizer, get_ddpg_optimizer,get_liquid_ddpg_optimizer
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 from cybernetics.utils.exp_tracker import ExperimentState
+import time
 
 
 class TuningEngine:
@@ -44,26 +45,13 @@ class TuningEngine:
             
             if self.exp_state.best_perf is None or throughput > self.exp_state.best_perf:
                 self.exp_state.best_perf = throughput
-                self.exp_state.best_config = dbms_config
-
-            if self.exp_state.worst_perf is None or throughput < self.exp_state.worst_perf:
-                self.exp_state.worst_perf = throughput
-                self.exp_state.worst_config = dbms_config
-
             return -throughput
-
         elif self.target_metric == "latency":
             latency = performance["Latency Distribution"]["95th Percentile Latency (microseconds)"]
             self.logger.info(f"95th Percentile Latency (microseconds): {latency}")
 
             if self.exp_state.best_perf is None or latency < self.exp_state.best_perf:
                 self.exp_state.best_perf = latency
-                self.exp_state.best_config = dbms_config
-
-            if self.exp_state.worst_perf is None or latency > self.exp_state.worst_perf:
-                self.exp_state.worst_perf = latency
-                self.exp_state.worst_config = dbms_config
-
             return latency
     
     def rl_target_function(self, dbms_config, seed: int):
@@ -88,11 +76,9 @@ class TuningEngine:
             
             if self.exp_state.best_perf is None or throughput > self.exp_state.best_perf:
                 self.exp_state.best_perf = throughput
-                self.exp_state.best_config = dbms_config
 
             if self.exp_state.worst_perf is None or throughput < self.exp_state.worst_perf:
                 self.exp_state.worst_perf = throughput
-                self.exp_state.worst_config = dbms_config
 
             return throughput, numeric_stats
         
@@ -102,11 +88,9 @@ class TuningEngine:
 
             if self.exp_state.best_perf is None or latency < self.exp_state.best_perf:
                 self.exp_state.best_perf = latency
-                self.exp_state.best_config = dbms_config
             
             if self.exp_state.worst_perf is None or latency > self.exp_state.worst_perf:
                 self.exp_state.worst_perf = latency
-                self.exp_state.worst_config = dbms_config
 
             return latency, numeric_stats
     
@@ -128,6 +112,16 @@ class TuningEngine:
                 self.rl_target_function,
                 self.exp_state
             )
+        elif self.config["config_optimizer"]["optimizer"].startswith("liquid"):
+            self.logger.info("Initiating RL-based optimizer...")
+
+            optimizer = get_liquid_ddpg_optimizer(
+                self.config,
+                self.dbms_config_space,
+                self.rl_target_function,
+                self.exp_state
+            )
+
         else:
             raise ValueError(f"Optimizer {optimizer} not supported.")
 
@@ -138,7 +132,11 @@ class TuningEngine:
         self.dbms_wrapper.reset_knobs_by_restarting_db()
 
         # Run the default configuration
+        start_time = time.time()
         self.workload_wrapper.run()
+        end_time = time.time()
+        self.logger.info(f"Executing Time: {end_time - start_time}")
+        
         performance = self.dbms_wrapper.get_benchbase_metrics()
 
         if self.target_metric == "throughput":
@@ -158,24 +156,18 @@ class TuningEngine:
 
         # SMAC
         if hasattr(self.optimizer, "optimize"):
+            opt_start_time = time.time()
             best_dbms_config = self.optimizer.optimize()
+            opt_end_time = time.time()
+            self.logger.info(f"Optimization Time:{opt_end_time - opt_start_time}")
         # RL-DDPG
         else:
             best_dbms_config = self.optimizer.run()
         
         # Complete tuning
-        self.logger.info("\nCompleted DBMS configuration tuning.")
-        
         self.logger.info(f"\nBest DBMS Configuration:\n{best_dbms_config}")
         
         if self.exp_state.target_metric == "throughput":
             self.logger.info(f"Best Throughput: {self.exp_state.best_perf} ops/sec")
         else:
-            self.logger.info(f"Best 95-th Latency: {self.exp_state.best_perf} microseconds")
-        
-        self.logger.info(f"\nWorst DBMS Configuration:\n{self.exp_state.worst_config}")
-        
-        if self.exp_state.target_metric == "throughput":
-            self.logger.info(f"Worst Throughput: {self.exp_state.worst_perf} ops/sec")
-        else:
-            self.logger.info(f"Best 95-th Latency: {self.exp_state.worst_perf} microseconds")
+            self.dbms_config_spacelogger.info(f"Best 95-th Latency: {self.exp_state.best_perf} microseconds")
