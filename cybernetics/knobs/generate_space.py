@@ -84,5 +84,8 @@ class KnobSpaceGenerator:
         knob_space.add_hyperparameters(input_knobs)
         
         return knob_space
-    def get_input_space_adapter(self, knob_space: CS.ConfigurationSpace, target_dim):
-        return LinearEmbeddingConfigSpace.create(knob_space, 1, target_dim = target_dim)
+    def get_input_space_adapter(self, knob_space: CS.ConfigurationSpace, target_dim, bias_prob = None, quantization_factor = None):
+        if bias_prob:
+            knob_space = PostgresBiasSampling(knob_space, 1, bias_prob_sv = bias_prob).target
+        
+        return LinearEmbeddingConfigSpace.create(knob_space, 1, target_dim = target_dim, bias_prob_sv=bias_prob, max_num_values=quantization_factor)

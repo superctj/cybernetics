@@ -9,7 +9,7 @@ https://github.com/uw-mad-dash/llamatune/blob/main/run-smac.py
 from cybernetics.tuning.dbms_config_optimizer import get_bo_optimizer, get_ddpg_optimizer
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 from cybernetics.utils.exp_tracker import ExperimentState
-
+import time
 
 class TuningEngine:
     def __init__(self, config, dbms_wrapper, dbms_config_space, workload_wrapper, adapter = None) -> None:
@@ -28,6 +28,8 @@ class TuningEngine:
         self.target_metric = self.config["config_optimizer"]["target_metric"]
         self.optimizer = self.init_optimizer()
         self.logger.info("DBMS config optimizer is ready.")
+        self.start_time = time.time()
+        self.evaluation_time = 0
 
     def target_function(self, dbms_config, seed: int):
         """Target function for BO-based optimizer.
@@ -35,12 +37,17 @@ class TuningEngine:
         if self.adapter:
             dbms_config = self.adapter.unproject_point(dbms_config)
             print(dbms_config)
+        beg_time = time.time()
         rtn_predicate = self.dbms_wrapper.apply_knobs(dbms_config)
         assert rtn_predicate, "Failed to apply DBMS configuration."
-
+        
         self.workload_wrapper.run()
         performance = self.dbms_wrapper.get_benchbase_metrics()
-
+        end_time = time.time()
+        self.evaluation_time += (end_time - beg_time)
+        optimization_time = end_time - self.start_time - self.evaluation_time
+        self.logger.info("TOTAL USED EVALUATION TIME: " + str(self.evaluation_time))
+        self.logger.info("TOTAL USED OPTIMIZATION TIME: " + str(optimization_time))
         if self.target_metric == "throughput":
             throughput = performance["Throughput (requests/second)"]
             self.logger.info(f"Throughput (requests/second): {throughput}")
@@ -138,12 +145,17 @@ class TuningEngine:
 
     def run(self):
         # Restart DBMS with default configuration
+        beg_time = time.time()
         self.dbms_wrapper.reset_knobs_by_restarting_db()
 
         # Run the default configuration
         self.workload_wrapper.run()
         performance = self.dbms_wrapper.get_benchbase_metrics()
-
+        end_time = time.time()
+        self.evaluation_time += (end_time - beg_time)
+        optimization_time = end_time - self.start_time - self.evaluation_time
+        self.logger.info("TOTAL USED EVALUATION TIME: " + str(self.evaluation_time))
+        self.logger.info("TOTAL USED OPTIMIZATION TIME: " + str(optimization_time))
         if self.target_metric == "throughput":
             throughput = performance["Throughput (requests/second)"]
             self.exp_state.default_perf = throughput

@@ -54,10 +54,13 @@ if __name__ == "__main__":
     # PROJECTING POINTS
     adapter = None
     low_dim_project = True
+    bias_prob = None
+    quantization_factor = None
     if low_dim_project:
         target_dim = 16
-        # print(dbms_config_space)
-        adapter = dbms_config_space_generator.get_input_space_adapter(dbms_config_space, target_dim)
+        bias_prob = 0.2
+        quantization_factor = 10000
+        adapter = dbms_config_space_generator.get_input_space_adapter(dbms_config_space, target_dim, bias_prob, quantization_factor)
         dbms_config_space = adapter.target
     
     # Init tuning engine

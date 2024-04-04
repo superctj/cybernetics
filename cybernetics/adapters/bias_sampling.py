@@ -220,6 +220,7 @@ class PostgresBiasSampling:
             # NOTE: assume splitting occurs in the lower point
             info = KNOBS_WITH_SPECIAL_VALUES[adaptee_hp.name]
             assert isinstance(adaptee_hp, CS.UniformIntegerHyperparameter)
+            adaptee_hp.lower = info['special_value']
             assert adaptee_hp.lower == info['special_value']
 
             biased_hyperparam = UniformIntegerHyperparameterWithSpecialValue(
