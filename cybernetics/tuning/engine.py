@@ -122,28 +122,31 @@ class TuningEngine:
         # Restart DBMS with default configuration
         self.dbms_wrapper.reset_knobs_by_restarting_db()
 
-        # Run the default configuration
-        start_time = time.time()
-        self.workload_wrapper.run()
-        end_time = time.time()
-        self.logger.info(f"Executing Time: {end_time - start_time}")
+        # Run default configuration 100 times to see if throughout and latency change significantly
         
-        performance = self.dbms_wrapper.get_benchbase_metrics()
+        for _ in range(100):
+            start_time = time.time()
+            self.workload_wrapper.run()
+            end_time = time.time()
+            self.logger.info(f"Executing Time: {end_time - start_time}")
+            
+            performance = self.dbms_wrapper.get_benchbase_metrics()
 
-        if self.target_metric == "throughput":
+           
             throughput = performance["Throughput (requests/second)"]
             self.exp_state.default_perf = throughput
             self.exp_state.best_perf = throughput
             self.exp_state.worst_perf = throughput
             
             self.logger.info(f"Default Throughput (requests/second): {throughput}")
-        elif self.target_metric == "latency":
+            
             latency = performance["Latency Distribution"]["95th Percentile Latency (microseconds)"]
             self.exp_state.default_perf = latency
             self.exp_state.best_perf = latency
             self.exp_state.worst_perf = latency
 
             self.logger.info(f"Default 95th Percentile Latency (microseconds): {latency}")
+        return
 
         # SMAC
         if hasattr(self.optimizer, "optimize"):

@@ -9,10 +9,10 @@ from cybernetics.tuning.dbms_config_optimizer import DDPGOptimizer
 
 
 def test_convert_ddpg_action_to_dbms_config():
-    dbms_param_spec = "/home/tianji/cybernetics/cybernetics/knobs/postgres_12.17_pgtune_knobs.json"
+    dbms_param_spec = "/home/aditk/cybernetics/cybernetics/knobs/postgres_12.17_pgtune_knobs.json"
     n_initial_configs = 10
     random_seed = 12345
-    results_save_path = "/home/tianji/cybernetics/exps/benchbase_tpcc/postgres/rl_ddpg"
+    results_save_path = "/home/aditk/cybernetics/exps/benchbase_tpcc/postgres/rl_ddpg"
     
     # Consider shared_buffers (integer), checkpoint_completion_target (float), and huge_pages (enum) for testing
     ignored_knobs = [
