@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     # PROJECTING POINTS
     adapter = None
-    low_dim_project = True
+    low_dim_project = False
     bias_prob = None
     quantization_factor = None
     if low_dim_project:
