@@ -80,7 +80,8 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
         initial_design,
         int(config["config_optimizer"]["n_total_configs"]),
         int(config["config_optimizer"]["n_epochs"]),
-        exp_state
+        exp_state,
+        is_liquid= False
     )
 
     return optimizer
@@ -118,7 +119,8 @@ def get_liquid_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
         initial_design,
         int(config["config_optimizer"]["n_total_configs"]),
         int(config["config_optimizer"]["n_epochs"]),
-        exp_state
+        exp_state,
+        True
     )
 
     return optimizer
@@ -127,7 +129,7 @@ def get_liquid_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
 
 class DDPGOptimizer:
     def __init__(self, model, target_function, initial_design, n_iters: int,
-                 n_epochs: int, exp_state):
+                 n_epochs: int, exp_state, is_liquid):
         # assert exp_state.target_metric == "throughput" # TODO: Check why this is necessary
 
         self.exp_state = exp_state
@@ -138,10 +140,12 @@ class DDPGOptimizer:
         self.n_iters = n_iters
         self.n_epochs = n_epochs # CDBTune uses 2
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
+        self.is_liquid = is_liquid
 
     def run(self):
-        # TODO: separate an individual function for liquid ddpg later
-        hidden = None
+        # If using liquid model, initialized the hidden state
+        if self.is_liquid:
+            hidden = None
 
         prev_perf = self.exp_state.default_perf
         assert prev_perf >= 0 # TODO: Check why this is necessary
@@ -174,13 +178,20 @@ class DDPGOptimizer:
         # Add last random sample
         self.model.add_sample(prev_numeric_stats, prev_dbms_config,
                               prev_reward, numeric_stats)
+        
+        # To count the number of update, delete later
+        # numUpdate = 0
 
         # Start guided search
         for i in range(len(init_configurations), self.n_iters):
             self.logger.info(f"Iter {i} -- Sample from DDPG:")
             
             # Get next recommendation from DDPG
-            ddpg_action, hidden = self.model.choose_action(prev_numeric_stats, hidden)
+            if self.is_liquid:
+                ddpg_action, hidden = self.model.choose_action(prev_numeric_stats, hidden)
+            else:
+                ddpg_action = self.model.choose_action(prev_numeric_stats)
+
             dbms_config = self.convert_ddpg_action_to_dbms_config(ddpg_action)
 
             perf, numeric_stats = self.target_function(dbms_config)
@@ -206,6 +217,9 @@ class DDPGOptimizer:
             if len(self.model.replay_memory) >= self.model.batch_size:
                 for _ in range(self.n_epochs):
                     self.model.update()
+                    # For debugging, delete later
+                    # numUpdate += 1
+                    # print(f'Number of Update done: {numUpdate}.')
         
         return self.exp_state.best_config
 

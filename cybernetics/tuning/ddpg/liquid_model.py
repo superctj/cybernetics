@@ -11,6 +11,7 @@ torch.set_num_threads(1)
 import torch.nn as nn
 import torch.optim as optimizer
 from ncps.torch import LTC
+from ncps.wirings import AutoNCP
 
 from torch.autograd import Variable
 
@@ -24,11 +25,14 @@ class Actor(nn.Module):
     def __init__(self, n_states: int, n_actions: int, hidden_sizes: list, use_default: bool):
         super(Actor, self).__init__()
         # define the liquid layer
-        self.ltc_layer = LTC(input_size=n_states, units=n_states, return_sequences=True, batch_first=True)
+        self.NCP_neuron = n_states
+        self.NCP_output = 8
+        self.wiring = AutoNCP(self.NCP_neuron, self.NCP_output) # Use Autowiring here for optimization
+        self.ltc_layer = LTC(input_size=n_states, units=self.wiring, return_sequences=True, batch_first=True)
 
         if use_default:
             self.layers = nn.Sequential(
-                nn.Linear(n_states, 128),
+                nn.Linear(self.NCP_output, 128),
                 nn.LeakyReLU(negative_slope=0.2),
                 nn.BatchNorm1d(hidden_sizes[0]),
                 nn.Linear(128, 128),
@@ -41,7 +45,7 @@ class Actor(nn.Module):
             )
         else:
             self.layers = nn.Sequential(
-                nn.Linear(n_states, hidden_sizes[0]),
+                nn.Linear(self.NCP_output, hidden_sizes[0]),
                 nn.LeakyReLU(negative_slope=0.2),
                 nn.BatchNorm1d(hidden_sizes[0]),
                 nn.Linear(hidden_sizes[0], hidden_sizes[1]),
