@@ -43,7 +43,7 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
         )
     else:
         raise ValueError(f"Optimizer {optimizer} not supported.")
-    
+
     return optimizer
 
 
@@ -67,7 +67,7 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
 
     # DDPG Model
     from cybernetics.tuning.ddpg.model import DDPG
-    
+
     n_states = int(config["dbms_info"]["n_numeric_stats"])
     n_actions = len(dbms_config_space)
     model = DDPG(n_states, n_actions, model_name="ddpg_model")
@@ -80,15 +80,56 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
         initial_design,
         int(config["config_optimizer"]["n_total_configs"]),
         int(config["config_optimizer"]["n_epochs"]),
-        exp_state
+        exp_state,
+        is_liquid= False
+    )
+
+    return optimizer
+
+def get_liquid_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
+                       target_function, exp_state):
+    scenario = Scenario(
+        configspace=dbms_config_space,
+        output_directory=config["results"]["save_path"],
+        deterministic=True,
+        objectives="cost", # minimize the objective
+        n_trials=100, # 100 is the default value
+        seed=int(config["knob_space"]["random_seed"])
+    )
+
+    if config["config_optimizer"]["initial_design"] == "random":
+        initial_design = smac_init_design.RandomInitialDesign(
+            scenario=scenario,
+            n_configs=int(config["config_optimizer"]["n_initial_configs"]),
+            seed=int(config["knob_space"]["random_seed"])
+        )
+
+    # DDPG Model
+    from cybernetics.tuning.ddpg.liquid_model import DDPG
+
+    n_states = int(config["dbms_info"]["n_numeric_stats"])
+    n_actions = len(dbms_config_space)
+    model = DDPG(n_states, n_actions, model_name="ddpg_model")
+
+    target_function = partial(target_function,
+                              seed=int(config["knob_space"]["random_seed"]))
+    optimizer = DDPGOptimizer(
+        model,
+        target_function,
+        initial_design,
+        int(config["config_optimizer"]["n_total_configs"]),
+        int(config["config_optimizer"]["n_epochs"]),
+        exp_state,
+        True
     )
 
     return optimizer
 
 
+
 class DDPGOptimizer:
     def __init__(self, model, target_function, initial_design, n_iters: int,
-                 n_epochs: int, exp_state):
+                 n_epochs: int, exp_state, is_liquid):
         # assert exp_state.target_metric == "throughput" # TODO: Check why this is necessary
 
         self.exp_state = exp_state
@@ -99,8 +140,13 @@ class DDPGOptimizer:
         self.n_iters = n_iters
         self.n_epochs = n_epochs # CDBTune uses 2
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
+        self.is_liquid = is_liquid
 
     def run(self):
+        # If using liquid model, initialized the hidden state
+        if self.is_liquid:
+            hidden = None
+
         prev_perf = self.exp_state.default_perf
         assert prev_perf >= 0 # TODO: Check why this is necessary
 
@@ -112,7 +158,7 @@ class DDPGOptimizer:
 
             perf, numeric_stats = self.target_function(dbms_config)
             assert perf >= 0
-            
+
             # Compute reward
             reward = self.get_reward(perf, prev_perf)
 
@@ -136,14 +182,18 @@ class DDPGOptimizer:
         # Start guided search
         for i in range(len(init_configurations), self.n_iters):
             self.logger.info(f"Iter {i} -- Sample from DDPG:")
-            
+
             # Get next recommendation from DDPG
-            ddpg_action = self.model.choose_action(prev_numeric_stats)
+            if self.is_liquid:
+                ddpg_action, hidden = self.model.choose_action(prev_numeric_stats, hidden)
+            else:
+                ddpg_action = self.model.choose_action(prev_numeric_stats)
+
             dbms_config = self.convert_ddpg_action_to_dbms_config(ddpg_action)
 
             perf, numeric_stats = self.target_function(dbms_config)
             assert perf >= 0
-            
+
             # Compute reward
             reward = self.get_reward(perf, prev_perf)
 
@@ -164,7 +214,7 @@ class DDPGOptimizer:
             if len(self.model.replay_memory) >= self.model.batch_size:
                 for _ in range(self.n_epochs):
                     self.model.update()
-        
+
         return self.exp_state.best_config
 
     def get_reward(self, perf, prev_perf):
