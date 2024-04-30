@@ -28,11 +28,6 @@ if __name__ == "__main__":
     if config["workload_info"]["framework"] == "benchbase":
         from cybernetics.workload.benchbase import BenchBaseWrapper
         
-        #Initialize the knob selection workload
-        # sample_workload_wrapper = BenchBaseWrapper(
-        #    config["workload_info"]["workload"],
-        #    config["workload_info"]["sample_script"]
-        # )
 
         workload_wrapper = BenchBaseWrapper(
             config["workload_info"]["workload"],
@@ -46,11 +41,6 @@ if __name__ == "__main__":
     if config["dbms_info"]["dbms_name"] == "postgres":
         from cybernetics.dbms_interface.postgres import PostgresWrapper
 
-        # sample_postgres_wrapper = PostgresWrapper(
-        #    config["dbms_info"], 
-        #    workload_wrapper,
-        #    config["results"]["sample_save_path"]
-        #)
 
         postgres_wrapper = PostgresWrapper(
             config["dbms_info"], 
@@ -58,38 +48,18 @@ if __name__ == "__main__":
             config["results"]["save_path"]
         )
     
-    # knobSelection starts ============================
-    #execute to start knob selection
-    # sample_times = 20
+    # executes same loads ============================
+    sample_times = 50
     # import json
     # with open(config["knob_space"]["knob_spec"], 'r') as f:
     #     data = json.load(f)
     # knobs_list = list(data)
-    # #print(knobs_list)
+    #print(knobs_list)
 
     
-    # import random
-
-    # def sample_knob_val():
-    #     knobs_dict = {}
-    #     x_point = []
-    #     for knob in knobs_list:
-    #         try:
-    #             knobs_dict[knob["name"]] = random.randint(int(knob["min_val"]),int(knob["max_val"]))
-    #             x_point.append(knobs_dict[knob["name"]])
-    #         except:
-    #             knobs_dict[knob["name"]] = random.choice(knob["enumvals"])
-    #             x_point.append(knob["enumvals"].index(knobs_dict[knob["name"]])) # TODO 
-    #     return knobs_dict,x_point
-
-    # X = []
-    # y = []  
-    # for i in range(sample_times):
-    #     knobs_dict,x_point = sample_knob_val()
-    #     X.append(x_point)
-    #     sample_postgres_wrapper.apply_knobs(knobs_dict)
-    #     print("knobs changed")
-    #     sample_postgres_wrapper.workload_wrapper.run()
+    postgres_wrapper.reset_knobs_by_restarting_db()
+    for i in range(sample_times):
+        postgres_wrapper.workload_wrapper.run()
         
     # import glob
 
@@ -123,20 +93,6 @@ if __name__ == "__main__":
     #     if i not in keepIndices:
     #         tobeIgnoreKnobs.append(knobs_list[i]["name"])
     # print(tobeIgnoreKnobs)
-    # knobSelection ends ===============================
+    # executes workload ends ===============================
 
     # Init DBMS config space
-    dbms_config_space_generator = KnobSpaceGenerator(
-        config["knob_space"]["knob_spec"],
-        int(config["knob_space"]["random_seed"])
-    )
-
-    dbms_config_space = dbms_config_space_generator.generate_input_space(
-        ignored_knobs=[]
-    )
-    
-    # Init tuning engine
-    tuning_engine = TuningEngine(
-        config, postgres_wrapper, dbms_config_space, workload_wrapper
-    )
-    tuning_engine.run()
