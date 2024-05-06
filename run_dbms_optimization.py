@@ -6,13 +6,32 @@ from cybernetics.utils.util import fix_global_random_state, parse_config
 
 
 if __name__ == "__main__":
+    # Parsing command line arguments
     parser = argparse.ArgumentParser()
-    
     parser.add_argument(
         "--config_path",
         type=str,
         required=True,
         help="Path to the configuration file"
+    )
+
+    parser.add_argument(
+        "--projection_dim",
+        type=int,
+        required=False,
+        help="Number of dimensions to project to (optional. Suggested value: 16)"
+    )
+    parser.add_argument(
+        "--quantization_factor",
+        type=float,
+        required=False,
+        help="Quantization factor (optional. Suggested value: 10000)"
+    )
+    parser.add_argument(
+        "--bias_prob",
+        type=float,
+        required=False,
+        help="Bias for selecting special values (optional. Suggested value: 0.2)"
     )
 
     args = parser.parse_args()
@@ -52,16 +71,13 @@ if __name__ == "__main__":
     )
 
     # PROJECTING POINTS
-    adapter = None
-    low_dim_project = False
-    bias_prob = None
-    quantization_factor = None
-    if low_dim_project:
-        target_dim = 16
-        bias_prob = 0.2
-        quantization_factor = 10000
-        adapter = dbms_config_space_generator.get_input_space_adapter(dbms_config_space, target_dim, bias_prob, quantization_factor)
+    target_dim = args.projection_dim
+    bias_prob = args.bias_prob
+    quantization_factor = args.quantization_factor
+    adapter = dbms_config_space_generator.get_input_space_adapter(dbms_config_space, target_dim, bias_prob, quantization_factor)
+    if adapter:
         dbms_config_space = adapter.target
+
     
     # Init tuning engine
     tuning_engine = TuningEngine(

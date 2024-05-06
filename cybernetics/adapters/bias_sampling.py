@@ -11,6 +11,7 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
+# List of values for knobs that you want to be sampled more than others
 KNOBS_WITH_SPECIAL_VALUES = {
     'autovacuum_vacuum_cost_delay': {
         # Value of -1 infers the value from `vacuum_cost_delay'
@@ -99,7 +100,7 @@ def special_value_scaler(hp, value):
     return hp._inverse_transform(hp._transform_scalar(
         (value - hp._special_value_prob) / (1. - hp._special_value_prob)))
 
-
+# Used for when you do not want biased sampling
 class UniformIntegerHyperparameterWithSpecialValue(CS.UniformIntegerHyperparameter):
     def __init__(self, *args, special_value: Optional[int] = None,
                             special_value_prob: Optional[float], **kwargs):
@@ -140,62 +141,8 @@ class UniformIntegerHyperparameterWithSpecialValue(CS.UniformIntegerHyperparamet
         return repr_str.getvalue()
 
 
-# class LHDesignWithBiasedSampling(LHDesign):
-#     def _transform_continuous_designs(self,
-#                                       design: np.ndarray,
-#                                       origin: str,
-#                                       cs: CS.ConfigurationSpace) -> List[CS.Configuration]:
 
-#         params = cs.get_hyperparameters()
-#         for idx, param in enumerate(params):
-#             if isinstance(param, CSH.NumericalHyperparameter):
-#                 if not isinstance(param, UniformIntegerHyperparameterWithSpecialValue):
-#                     continue
-
-#                 # handle bias to the special value
-#                 special_value, special_value_prob = \
-#                     param._special_value, param._special_value_prob
-
-#                 for row, v in enumerate(design[:, idx]):
-#                     if v < special_value_prob:
-#                         v = param._inverse_transform(special_value)
-#                     else:
-#                         v = param._inverse_transform(param._transform_scalar(
-#                             (v - special_value_prob) / (1. - special_value_prob)))
-#                     design[row, idx] = v
-
-#             elif isinstance(param, CSH.Constant):
-#                 # add a vector with zeros
-#                 design_ = np.zeros(np.array(design.shape) + np.array((0, 1)))
-#                 design_[:, :idx] = design[:, :idx]
-#                 design_[:, idx + 1:] = design[:, idx:]
-#                 design = design_
-#             elif isinstance(param, CSH.CategoricalHyperparameter):
-#                 v_design = design[:, idx]
-#                 v_design[v_design == 1] = 1 - 10**-10
-#                 design[:, idx] = np.array(v_design * len(param.choices), dtype=np.int)
-#             elif isinstance(param, CSH.OrdinalHyperparameter):
-#                 v_design = design[:, idx]
-#                 v_design[v_design == 1] = 1 - 10**-10
-#                 design[:, idx] = np.array(v_design * len(param.sequence), dtype=np.int)
-#             else:
-#                 raise ValueError("Hyperparameter not supported in LHD")
-
-#         self.logger.debug("Initial Design")
-#         configs = []
-#         for vector in design:
-#             conf = CS.util.deactivate_inactive_hyperparameters(configuration=None,
-#                                                        configuration_space=cs,
-#                                                        vector=vector)
-#             conf.origin = origin
-#             configs.append(conf)
-#             self.logger.debug(conf)
-
-#         self.logger.debug("Size of initial design: %d" % (len(configs)))
-
-#         return configs
-
-
+# Used for biased sampling, where certain values for specific knobs are given preference to be selected
 class PostgresBiasSampling:
     def __init__(self, adaptee: CS.ConfigurationSpace, seed: int, bias_prob_sv: float):
         self._adaptee: CS.ConfigurationSpace = adaptee

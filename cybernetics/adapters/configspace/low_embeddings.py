@@ -11,6 +11,7 @@ from adapters.bias_sampling import UniformIntegerHyperparameterWithSpecialValue,
 import logging
 logger = logging.getLogger(__name__)
 
+# Used to project and unproject configurations to lower dimensions
 class LinearEmbeddingConfigSpace(ABC):
     def __init__(self,
             adaptee: CS.ConfigurationSpace, seed: int, target_dim: int,

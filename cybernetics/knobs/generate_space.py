@@ -84,8 +84,24 @@ class KnobSpaceGenerator:
         knob_space.add_hyperparameters(input_knobs)
         
         return knob_space
-    def get_input_space_adapter(self, knob_space: CS.ConfigurationSpace, target_dim, bias_prob = None, quantization_factor = None):
+
+    def get_input_space_adapter(self, knob_space: CS.ConfigurationSpace, target_dim = None, bias_prob = None, quantization_factor = None):
+        """
+        Do transformations on search space as described in LlamaTune
+
+        Args:
+            target_dim: Number of dimensions to project to
+            bias_prob: Amount of bias given to special knob values
+            quantization_factor: Makes configuration space discrete rather than continuous
+        Returns:
+            (Adapter): Adapter object that contains altered configuation space and can be used to unproject points during evaluation
+        """
+        adapter = None
         if bias_prob:
-            knob_space = PostgresBiasSampling(knob_space, 1, bias_prob_sv = bias_prob).target
-        
-        return LinearEmbeddingConfigSpace.create(knob_space, 1, target_dim = target_dim, bias_prob_sv=bias_prob, max_num_values=quantization_factor)
+            adapter = PostgresBiasSampling(knob_space, 1, bias_prob_sv = bias_prob).target
+            knob_space = adapter.target
+        if target_dim:
+            return LinearEmbeddingConfigSpace.create(knob_space, 1, target_dim = target_dim, bias_prob_sv=bias_prob, max_num_values=quantization_factor)
+        if quantization_factor:
+            adapter = Quantization(knob_space, 1, quantization_factor)
+        return adapter

@@ -251,12 +251,6 @@ class PostgresWrapper:
                                        password=self.password,
                                        db_name=self.db_name,
                                        logger=self.logger)
-            # self.logger.info(host=self.host,
-            #                            port=self.port,
-            #                            user=self.user,
-            #                            password=self.password,
-            #                            db_name=self.db_name,
-            #                            logger=self.logger)
             reset_sql = "ALTER SYSTEM RESET ALL;"
             _ = pg_client.execute(reset_sql)
             pg_client.close_connection()
