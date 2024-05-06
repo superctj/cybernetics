@@ -1,3 +1,3 @@
 #!bin/bash
-cd /home/aditk/benchbase/target/benchbase-postgres
-java -jar benchbase.jar -b tpcc -c /home/aditk/benchbase/target/benchbase-postgres/config/postgres/sample_tpcc_config.xml -d /home/aditk/cybernetics/exps/benchbase_tpcc/postgres --create=true --load=true --execute=true 
+cd /home/tianji/benchbase/target/benchbase-postgres
+java -jar benchbase.jar -b tpcc -c /home/tianji/benchbase/target/benchbase-postgres/config/postgres/sample_tpcc_config.xml -d /home/tianji/cybernetics/exps/benchbase_tpcc/postgres --create=true --load=true --execute=true 
