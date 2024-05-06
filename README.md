@@ -35,7 +35,7 @@ Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) fo
     ```
     e.g.,
     ```
-    conda develop /home/aditk/cybernetics
+    conda develop /home/tianji/cybernetics
     ```
 
 
@@ -55,7 +55,7 @@ Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian P
 4. Once tuning is complete, check ```./logs/<latest run>/cybernetics.log``` for logs and results (refer to ```./exps/benchbase_tpcc/postgres/bo_gp``` for Benchbase and optimizer outputs).
 
 ## Wish List
-Cybernetics is under active development by [aditk Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
+Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
 
 ### Configuration optimizers
 - [x] BO - Gaussian Process (Vanilla BO)
