@@ -36,7 +36,6 @@ class TuningEngine:
         """
         if self.adapter:
             dbms_config = self.adapter.unproject_point(dbms_config)
-            print(dbms_config)
         beg_time = time.time()
         rtn_predicate = self.dbms_wrapper.apply_knobs(dbms_config)
         assert rtn_predicate, "Failed to apply DBMS configuration."
