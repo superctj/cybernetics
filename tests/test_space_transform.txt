@@ -1,0 +1,6 @@
+The search space transformations implemented in this repository are taken from LlamaTune. 
+For reference, see the LlamaTune paper(https://arxiv.org/pdf/2203.05128) or code(https://github.com/uw-mad-dash/llamatune) 
+The primary advantages of these transformations is that they reduce optimization time both in terms of number of iterations as well as reducing clock time used per iteration.
+Further experiments must be conducted to gather conclusive evidence that the transformations cause a reduction in number of iterations.
+But a reduction in the amount of clock time Cybernetics uses to run an ML optimizer has been observed.
+Optimization time was reduced from 125s to 73s for 100 iterations. Results: https://docs.google.com/spreadsheets/d/1VRq3uvkJ8ZYDsqi6IG288k8uUsWoadYSekjJx3CbEnI/edit#gid=0

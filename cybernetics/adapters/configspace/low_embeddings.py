@@ -1,23 +1,35 @@
+"""This module is adapted from LlamaTune's input space adapter.
+
+https://github.com/uw-mad-dash/llamatune/blob/main/adapters/configspace/low_embeddings.py
+"""
+
 from abc import ABC, abstractmethod
 from typing import Optional
 
 import ConfigSpace as CS
-import ConfigSpace.hyperparameters as CSH
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-from adapters.bias_sampling import UniformIntegerHyperparameterWithSpecialValue, special_value_scaler
+from adapters.bias_sampling import (
+    UniformIntegerHyperparameterWithSpecialValue,
+    special_value_scaler,
+)
 
 import logging
+
 logger = logging.getLogger(__name__)
+
 
 # Used to project and unproject configurations to lower dimensions
 class LinearEmbeddingConfigSpace(ABC):
-    def __init__(self,
-            adaptee: CS.ConfigurationSpace, seed: int, target_dim: int,
-            bias_prob_sv: Optional[float] = None, # biased-sampling
-            max_num_values: Optional[int] = None, # quantization
-            ):
+    def __init__(
+        self,
+        adaptee: CS.ConfigurationSpace,
+        seed: int,
+        target_dim: int,
+        bias_prob_sv: Optional[float] = None,  # biased-sampling
+        max_num_values: Optional[int] = None,  # quantization
+    ):
 
         self._adaptee: CS.ConfigurationSpace = adaptee
         self._target: CS.ConfigurationSpace = None
@@ -50,7 +62,7 @@ class LinearEmbeddingConfigSpace(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    def unproject_point(self, point:CS.Configuration) -> dict:
+    def unproject_point(self, point: CS.Configuration) -> dict:
         raise NotImplementedError()
 
     def project_dataframe(self, df, in_place: bool):
@@ -60,13 +72,13 @@ class LinearEmbeddingConfigSpace(ABC):
         raise NotImplementedError()
 
     @staticmethod
-    def create(*args, method: str = 'hesbo', **kwargs):
-        if method not in ['hesbo', 'rembo']:
+    def create(*args, method: str = "hesbo", **kwargs):
+        if method not in ["hesbo", "rembo"]:
             raise ValueError("Supported methods are 'rembo', 'hesbo'")
 
-        if method == 'rembo':
+        if method == "rembo":
             return REMBOConfigSpace(*args, **kwargs)
-        elif method == 'hesbo':
+        elif method == "hesbo":
             return HesBOConfigSpace(*args, **kwargs)
         else:
             raise NotImplementedError()
@@ -80,21 +92,22 @@ class REMBOConfigSpace(LinearEmbeddingConfigSpace):
         # Create lower dimensionality configuration space
         # NOTE: space bounds are [-sqrt(low_dim), sqrt(low_dim)] rather than [-1, 1]
         box_bound = np.sqrt(self._target_dim)
-        target = CS.ConfigurationSpace(
-            name=self._adaptee.name, seed=self._seed)
+        target = CS.ConfigurationSpace(name=self._adaptee.name, seed=self._seed)
 
         if self._max_num_values is None:
             hps = [
                 CS.UniformFloatHyperparameter(
-                    name=f'rembo_{idx}', lower=-box_bound, upper=box_bound)
+                    name=f"rembo_{idx}", lower=-box_bound, upper=box_bound
+                )
                 for idx in range(self._target_dim)
             ]
             q_scaler = None
         else:
-            logger.info(f'Using quantization: q={self._max_num_values}')
+            logger.info(f"Using quantization: q={self._max_num_values}")
             hps = [
                 CS.UniformIntegerHyperparameter(
-                    name=f'rembo_{idx}', lower=1, upper=self._max_num_values)
+                    name=f"rembo_{idx}", lower=1, upper=self._max_num_values
+                )
                 for idx in range(self._target_dim)
             ]
             # (1, q) -> (-sqrt(low_dim), sqrt(low_dim)) scaling
@@ -112,19 +125,20 @@ class REMBOConfigSpace(LinearEmbeddingConfigSpace):
         self._scaler = MinMaxScaler(feature_range=(0, 1))
         bbound_vector = np.ones(len(self.active_hps)) * box_bound
         # use two points (minimum & maximum)
-        self._scaler.fit(
-            np.array([-bbound_vector, bbound_vector]))
+        self._scaler.fit(np.array([-bbound_vector, bbound_vector]))
 
         # Create random project matrix: A ~ N(0,1)
         self._A = self._rs.normal(
-            0, 1, (len(self.active_hps), self._target_dim))
+            0, 1, (len(self.active_hps), self._target_dim)
+        )
 
     def unproject_point(self, point: CS.Configuration) -> dict:
-        low_dim_point = np.array([
-            point.get(f'rembo_{idx}') for idx in range(len(point)) ])
+        low_dim_point = np.array(
+            [point.get(f"rembo_{idx}") for idx in range(len(point))]
+        )
 
         if self._max_num_values is not None:
-            assert self._q_scaler is not None # self-validate
+            assert self._q_scaler is not None  # self-validate
             low_dim_point = self._q_scaler.transform([low_dim_point])[0]
 
         high_dim_point = [
@@ -133,23 +147,25 @@ class REMBOConfigSpace(LinearEmbeddingConfigSpace):
         ]
         high_dim_point = self._scaler.transform([high_dim_point])[0]
 
-        high_dim_conf = { }
+        high_dim_conf = {}
         dims_clipped = 0
         for hp, value in zip(self.active_hps, high_dim_point):
             if value <= 0 or value >= 1:
-                logger.warning('Point clipped in dim: %s' % hp.name)
+                logger.warning("Point clipped in dim: %s" % hp.name)
                 dims_clipped += 1
             # clip value to [0, 1]
-            value = np.clip(value, 0., 1.)
+            value = np.clip(value, 0.0, 1.0)
 
             if isinstance(hp, CS.CategoricalHyperparameter):
-                index = int(value * len(hp.choices)) # truncate integer part
+                index = int(value * len(hp.choices))  # truncate integer part
                 index = max(0, min(len(hp.choices) - 1, index))
                 # NOTE: rounding here would be unfair to first & last values
                 value = hp.choices[index]
             elif isinstance(hp, CS.hyperparameters.NumericalHyperparameter):
                 if isinstance(hp, UniformIntegerHyperparameterWithSpecialValue):
-                    value = special_value_scaler(hp, value) # bias special value
+                    value = special_value_scaler(
+                        hp, value
+                    )  # bias special value
 
                 value = hp._transform(value)
                 value = max(hp.lower, min(hp.upper, value))
@@ -160,7 +176,7 @@ class REMBOConfigSpace(LinearEmbeddingConfigSpace):
             high_dim_conf[hp.name] = value
 
         if dims_clipped > 0:
-            logger.info('# dimensions clipped: %d' % dims_clipped)
+            logger.info("# dimensions clipped: %d" % dims_clipped)
 
         return high_dim_conf
 
@@ -171,21 +187,22 @@ class HesBOConfigSpace(LinearEmbeddingConfigSpace):
         self.active_hps = self._get_active_hps()
 
         # Create lower dimensionality configuration space
-        target = CS.ConfigurationSpace(
-            name=self._adaptee.name, seed=self._seed)
+        target = CS.ConfigurationSpace(name=self._adaptee.name, seed=self._seed)
 
         if self._max_num_values is None:
             hps = [
                 CS.UniformFloatHyperparameter(
-                    name=f'hesbo_{idx}', lower=-1, upper=1)
+                    name=f"hesbo_{idx}", lower=-1, upper=1
+                )
                 for idx in range(self._target_dim)
             ]
         else:
-            logger.info(f'Using quantization: q={self._max_num_values}')
-            q = 2. / self._max_num_values
+            logger.info(f"Using quantization: q={self._max_num_values}")
+            q = 2.0 / self._max_num_values
             hps = [
                 CS.UniformFloatHyperparameter(
-                    name=f'hesbo_{idx}', lower=-1, upper=1, q=q)
+                    name=f"hesbo_{idx}", lower=-1, upper=1, q=q
+                )
                 for idx in range(self._target_dim)
             ]
 
@@ -198,20 +215,17 @@ class HesBOConfigSpace(LinearEmbeddingConfigSpace):
         self._scaler = MinMaxScaler(feature_range=(0, 1))
         ones = np.ones(len(self.active_hps))
         # use two points (minimum & maximum)
-        self._scaler.fit(
-            np.array([-ones, ones]))
+        self._scaler.fit(np.array([-ones, ones]))
 
         # Implicitely define matrix S'
-        self._h = self._rs.choice(
-            range(self._target_dim), len(self.active_hps))
+        self._h = self._rs.choice(range(self._target_dim), len(self.active_hps))
         self._sigma = self._rs.choice([-1, 1], len(self.active_hps))
 
     def unproject_point(self, point: CS.Configuration) -> dict:
-        low_dim_point = [
-            point.get(f'hesbo_{idx}') for idx in range(len(point)) ]
+        low_dim_point = [point.get(f"hesbo_{idx}") for idx in range(len(point))]
 
         # OLD METHOD OF QUANTIZATION
-        #if self._max_num_values is not None and self.q_use_integer:
+        # if self._max_num_values is not None and self.q_use_integer:
         #    assert self._q_scaler is not None # self-validate
         #    low_dim_point = self._q_scaler.transform([low_dim_point])[0]
 
@@ -221,20 +235,22 @@ class HesBOConfigSpace(LinearEmbeddingConfigSpace):
         ]
         high_dim_point = self._scaler.transform([high_dim_point])[0]
 
-        high_dim_conf = { }
+        high_dim_conf = {}
         for hp, value in zip(self.active_hps, high_dim_point):
             # hesbo does not project values outside of range
             # NOTE: need this cause of weird floating point errors
             value = max(0, min(1, value))
 
             if isinstance(hp, CS.CategoricalHyperparameter):
-                index = int(value * len(hp.choices)) # truncate integer part
+                index = int(value * len(hp.choices))  # truncate integer part
                 index = max(0, min(len(hp.choices) - 1, index))
                 # NOTE: rounding here would be unfair to first & last values
                 value = hp.choices[index]
             elif isinstance(hp, CS.hyperparameters.NumericalHyperparameter):
                 if isinstance(hp, UniformIntegerHyperparameterWithSpecialValue):
-                    value = special_value_scaler(hp, value) # bias special value
+                    value = special_value_scaler(
+                        hp, value
+                    )  # bias special value
 
                 value = hp._transform(value)
                 value = max(hp.lower, min(hp.upper, value))
