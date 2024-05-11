@@ -42,7 +42,7 @@
         "vartype": "integer",
         "source": "default",
         "min_val": "524288",
-        "max_val": "5242880",
+        "max_val": "524290",
         "enumvals": null,
         "boot_val": "524288",
         "reset_val": "524288"
