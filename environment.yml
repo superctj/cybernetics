@@ -193,4 +193,4 @@ dependencies:
       - urllib3==2.1.0
       - zict==3.0.0
       - zipp==3.17.0
-prefix: /home/tianji/miniconda3/envs/cybernetics
+prefix: /home/phdonn/miniconda3/envs/cybernetics

@@ -34,6 +34,11 @@ class PostgresClient(DBClient):
         self.conn, self.cursor = self.connect_db()
 
     def connect_db(self):
+        # conn = psycopg2.connect(host=self.host,
+        #                             port=self.port,
+        #                             user=self.user,
+        #                             password=self.password,
+        #                             database=self.db_name)
         try:
             conn = psycopg2.connect(host=self.host,
                                     port=self.port,
@@ -46,9 +51,10 @@ class PostgresClient(DBClient):
             if self.logger:
                 self.logger.info("Connected to Postgres.")
             return conn, cursor
-        except:
+        except Exception as error:
             if self.logger:
                 self.logger.info("Unable to connect to Postgres.")
+                self.logger.info(error)
 
     def close_connection(self):
         if self.cursor:
@@ -245,7 +251,6 @@ class PostgresWrapper:
                                        password=self.password,
                                        db_name=self.db_name,
                                        logger=self.logger)
-            
             reset_sql = "ALTER SYSTEM RESET ALL;"
             _ = pg_client.execute(reset_sql)
             pg_client.close_connection()
