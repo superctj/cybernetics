@@ -10,7 +10,7 @@ import ConfigSpace as CS
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-from adapters.bias_sampling import (
+from cybernetics.adapters.bias_sampling import (
     UniformIntegerHyperparameterWithSpecialValue,
     special_value_scaler,
 )
@@ -90,7 +90,8 @@ class REMBOConfigSpace(LinearEmbeddingConfigSpace):
         self.active_hps = self._get_active_hps()
 
         # Create lower dimensionality configuration space
-        # NOTE: space bounds are [-sqrt(low_dim), sqrt(low_dim)] rather than [-1, 1]
+        # NOTE: space bounds are [-sqrt(low_dim), sqrt(low_dim)] rather than
+        # [-1, 1]
         box_bound = np.sqrt(self._target_dim)
         target = CS.ConfigurationSpace(name=self._adaptee.name, seed=self._seed)
 

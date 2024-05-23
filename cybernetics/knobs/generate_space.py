@@ -7,8 +7,10 @@ import json
 
 import ConfigSpace.hyperparameters as CSH
 import ConfigSpace as CS
+
 from ConfigSpace import ConfigurationSpace
-from adapters import (
+
+from cybernetics.adapters import (
     Quantization,
     PostgresBiasSampling,
     LinearEmbeddingConfigSpace,
@@ -30,7 +32,8 @@ class KnobSpaceGenerator:
             knob_filepath (str): The path to the file containing the knobs.
 
         Returns:
-            (dict): Dictionary with knob name as key and knob specification as value.
+            (dict): Dictionary with knob name as key and knob specification as
+            value.
         """
 
         with open(knob_config, "r") as f:

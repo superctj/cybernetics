@@ -3,13 +3,15 @@
 https://github.com/uw-mad-dash/llamatune/blob/main/adapters/__init__.py
 """
 
-from adapters.configspace.low_embeddings import LinearEmbeddingConfigSpace
-from adapters.bias_sampling import (
+from cybernetics.adapters.configspace.low_embeddings import (
+    LinearEmbeddingConfigSpace,
+)
+from cybernetics.adapters.bias_sampling import (
     PostgresBiasSampling,
     special_value_scaler,
     UniformIntegerHyperparameterWithSpecialValue,
 )
-from adapters.configspace.quantization import Quantization
+from cybernetics.adapters.configspace.quantization import Quantization
 
 __all__ = [
     "LinearEmbeddingConfigSpace",
