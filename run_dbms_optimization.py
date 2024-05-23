@@ -19,7 +19,7 @@ if __name__ == "__main__":
         "--projection_dim",
         type=int,
         required=False,
-        help="Number of dimensions to project to (optional. Suggested value: 16)",
+        help="Number of dimensions to project to (optional. Suggested value: 16)",  # noqa: E501
     )
     parser.add_argument(
         "--quantization_factor",
@@ -31,7 +31,7 @@ if __name__ == "__main__":
         "--bias_prob",
         type=float,
         required=False,
-        help="Bias for selecting special values (optional. Suggested value: 0.2)",
+        help="Bias for selecting special values (optional. Suggested value: 0.2)",  # noqa: E501
     )
 
     args = parser.parse_args()
