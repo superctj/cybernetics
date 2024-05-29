@@ -19,13 +19,14 @@ def create_dir(dir_path: str, force: bool) -> None:
             raise ValueError(f"Directory {dir_path} already exists.")
 
 
-def get_proj_dir(filepath: str, file_level: int=3) -> str:
+def get_proj_dir(filepath: str, file_level: int = 3) -> str:
     """Get the project directory.
 
     Args:
         filepath (str): The path of the file.
-        file_level (int): The level of the file relative to the project directory starting at 1.
-    
+        file_level (int): The level of the file relative to the project
+            directory starting at 1.
+
     Returns:
         (str): The project directory.
     """
@@ -41,7 +42,7 @@ def fix_global_random_state(seed: int):
     Args:
         seed (int): The seed to use.
     """
-    
+
     random.seed(seed)
     np.random.seed(seed)
 
@@ -55,8 +56,28 @@ def parse_config(config_path: str) -> ConfigParser:
     Returns:
         (dict): The parsed configuration.
     """
-    
+
     parser = ConfigParser()
     parser.read(config_path)
 
     return parser
+
+
+def get_postgres_user_and_password() -> tuple:
+    """Get Postgres user and password from the environment variables.
+
+    Returns:
+        (tuple): The DBMS user and password.
+    """
+
+    postgres_user = os.getenv("POSTGRES_USER")
+    if not postgres_user:
+        raise EnvironmentError("Environment variable POSTGRES_USER not set.")
+
+    postgres_password = os.getenv("POSTGRES_PASSWORD")
+    if not postgres_password:
+        raise EnvironmentError(
+            "Environment variable POSTGRES_PASSWORD not set."
+        )
+
+    return postgres_user, postgres_password
