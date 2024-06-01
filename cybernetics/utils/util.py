@@ -81,3 +81,20 @@ def get_postgres_user_and_password() -> tuple:
         )
 
     return postgres_user, postgres_password
+
+
+def get_benchbase_postgres_target_dir() -> str:
+    """Get the BenchBase target directory for Postgres from the environment
+      variable.
+
+    Returns:
+        (str): The target directory containing the Java executable.
+    """
+
+    benchbase_postgres_target_dir = os.getenv("BENCHBASE_POSTGRES_TARGET_DIR")
+    if not benchbase_postgres_target_dir:
+        raise EnvironmentError(
+            "Environment variable BENCHBASE_POSTGRES_TARGET_DIR not set."
+        )
+
+    return benchbase_postgres_target_dir
