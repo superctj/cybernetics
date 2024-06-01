@@ -40,19 +40,37 @@ Assume using [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/) fo
 
 
 ## Quick Start
-Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian Process) over the TPC-C workload.
+Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian Process) for Postgres over the TPC-C workload.
 
-1. Specify runtime config such as DBMS and workload info in ```cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini```.
+1. (a) Set your Postgres username, password and BenchBase target directory as environment variables in e.g., ```~/.bashrc```:
 
-2. Change Benchbase-related paths in ```./scripts/benchbase_tpcc_postgres_bo_gp.sh``` to your own.
+    ```
+    export POSTGRES_USER=<your username>
+    export POSTGRES_PASSWORD=<your password>
+    export BENCHBASE_POSTGRES_TARGET_DIR=<path to directory containing BenchBase executable jar>
+    ```
+
+    E.g., If `benchbase.jar` is under `~/benchbase/target/benchbase-postgres`, then set ```export BENCHBASE_POSTGRES_TARGET_DIR=~/benchbase/target/benchbase-postgres```
+
+   (b) Apply the changes: ```source ~/.bashrc```
+
+2. Specify local paths in ```cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini``` including
+
+    ```dbms_info.db_cluster```: where Postgres stores all data
+    
+    ```dbms_info.db_log_filepath```: where Postgres saves logs
+
+    ```results.save_path```: where you want to save the experiment results
+
+<!-- 3. Change Benchbase-related paths in ```./scripts/benchbase_tpcc_postgres_bo_gp.sh``` to your own. -->
 
 3. Start DBMS config tuning:
 
    ```
-   python run_dbms_optimization.py --config_path ./cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini
+   python ./examples/run_dbms_config_tuning.py --config_path ./cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini
    ```
 
-4. Once tuning is complete, check ```./logs/<latest run>/cybernetics.log``` for logs and results (refer to ```./exps/benchbase_tpcc/postgres/bo_gp``` for Benchbase and optimizer outputs).
+4. Once tuning is complete, check ```./logs/<latest run>/cybernetics.log``` for logs and results (refer to ```./exps/benchbase_tpcc/postgres/bo_gp``` for Benchbase and tuning optimizer outputs).
 
 ## Wish List
 Cybernetics is under active development by [Tianji Cong](https://superctj.github.io). Please use GitHub's issue tracker for all issues and feature requests.
