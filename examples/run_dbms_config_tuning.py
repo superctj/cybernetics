@@ -4,6 +4,7 @@ from cybernetics.tuning.engine import TuningEngine
 from cybernetics.knobs.generate_space import KnobSpaceGenerator
 from cybernetics.utils.util import (
     fix_global_random_state,
+    get_benchbase_postgres_target_dir,
     get_postgres_user_and_password,
     parse_config,
 )
@@ -28,22 +29,25 @@ if __name__ == "__main__":
     # Set global random state
     fix_global_random_state(int(config["knob_space"]["random_seed"]))
 
-    # Create workload wrapper
-    if config["workload_info"]["framework"] == "benchbase":
-        from cybernetics.workload.benchbase import BenchBaseWrapper
-
-        workload_wrapper = BenchBaseWrapper(
-            config["workload_info"]["workload"],
-            config["workload_info"]["script"],
-        )
-
     # Create DBMS executor
     if config["dbms_info"]["dbms_name"] == "postgres":
         from cybernetics.dbms_interface.postgres import PostgresWrapper
 
         postgres_user, postgres_password = get_postgres_user_and_password()
+        benchbase_postgres_target_dir = get_benchbase_postgres_target_dir()
+
         config["dbms_info"]["user"] = postgres_user
         config["dbms_info"]["password"] = postgres_password
+
+        if config["workload_info"]["framework"] == "benchbase":
+            from cybernetics.workload.benchbase import BenchBaseWrapper
+
+            workload_wrapper = BenchBaseWrapper(
+                target_dir=benchbase_postgres_target_dir,
+                dbms_name=config["dbms_info"]["dbms_name"],
+                workload=config["workload_info"]["workload"],
+                results_save_dir=config["results"]["save_path"],
+            )
 
         postgres_wrapper = PostgresWrapper(
             config["dbms_info"],
