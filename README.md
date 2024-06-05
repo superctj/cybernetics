@@ -54,7 +54,9 @@ Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian P
 
    (b) Apply the changes: ```source ~/.bashrc```
 
-2. Specify local paths in ```cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini``` including
+2. (a) Make a copy of ```cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini```, name it ```cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini``` (.gitignore will prevent *.local.ini config files from being pushed to the repo so we won't step on each other for local changes to config files.)
+
+   (b) Specify your local paths in ```cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini``` including
 
     ```dbms_info.db_cluster```: where Postgres stores all data
     
@@ -65,7 +67,7 @@ Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian P
 3. Start DBMS config tuning:
 
    ```
-   python ./examples/run_dbms_config_tuning.py --config_path ./cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini
+   python ./examples/run_dbms_config_tuning.py --config_path ./cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini
    ```
 
 4. Once tuning is complete, check ```./logs/<latest run>/cybernetics.log``` for logs and see BenchBase and tuning optimizer outputs in ```results.save_path```.
