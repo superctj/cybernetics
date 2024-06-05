@@ -167,3 +167,6 @@ cython_debug/
 
 # Plots
 plotting/
+
+# Local config files
+*.local.ini
