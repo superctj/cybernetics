@@ -1,0 +1,1340 @@
+2024-06-09 01:55:55.329 EDT [836773] FATAL:  lock file "postmaster.pid" already exists
+2024-06-09 01:55:55.329 EDT [836773] HINT:  Is another postmaster (PID 836102) running in data directory "/home/phdonn/data/pgsql/data"?
+2024-06-09 01:57:27.592 EDT [837144] FATAL:  lock file "postmaster.pid" already exists
+2024-06-09 01:57:27.592 EDT [837144] HINT:  Is another postmaster (PID 836102) running in data directory "/home/phdonn/data/pgsql/data"?
+2024-06-09 01:59:59.373 EDT [837738] LOG:  starting PostgreSQL 16.2 (Ubuntu 16.2-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-09 01:59:59.373 EDT [837738] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2024-06-09 01:59:59.373 EDT [837738] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2024-06-09 01:59:59.373 EDT [837738] WARNING:  could not create listen socket for "localhost"
+2024-06-09 01:59:59.373 EDT [837738] FATAL:  could not create any TCP/IP sockets
+2024-06-09 01:59:59.375 EDT [837738] LOG:  database system is shut down
+2024-06-09 02:00:47.145 EDT [837932] LOG:  starting PostgreSQL 16.2 (Ubuntu 16.2-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-09 02:00:47.145 EDT [837932] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-09 02:00:47.146 EDT [837932] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-09 02:00:47.150 EDT [837935] LOG:  database system was shut down at 2024-06-09 01:59:54 EDT
+2024-06-09 02:00:47.155 EDT [837932] LOG:  database system is ready to accept connections
+2024-06-09 02:04:47.896 EDT [839008] FATAL:  lock file "postmaster.pid" already exists
+2024-06-09 02:04:47.896 EDT [839008] HINT:  Is another postmaster (PID 837932) running in data directory "/home/phdonn/data/pgsql/data"?
+2024-06-09 02:05:01.554 EDT [839081] FATAL:  role "postgres" does not exist
+2024-06-09 02:05:20.565 EDT [839186] FATAL:  database "phdonn" does not exist
+2024-06-09 02:05:47.155 EDT [837933] LOG:  checkpoint starting: time
+2024-06-09 02:05:51.388 EDT [837933] LOG:  checkpoint complete: wrote 45 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.213 s, sync=0.009 s, total=4.234 s; sync files=11, longest=0.009 s, average=0.001 s; distance=262 kB, estimate=262 kB; lsn=0/152D508, redo lsn=0/152D4D0
+2024-06-09 02:05:58.242 EDT [839379] FATAL:  lock file "postmaster.pid" already exists
+2024-06-09 02:05:58.242 EDT [839379] HINT:  Is another postmaster (PID 837932) running in data directory "/home/phdonn/data/pgsql/data"?
+2024-06-09 02:06:42.532 EDT [839548] FATAL:  lock file "postmaster.pid" already exists
+2024-06-09 02:06:42.532 EDT [839548] HINT:  Is another postmaster (PID 837932) running in data directory "/home/phdonn/data/pgsql/data"?
+2024-06-09 02:07:47.327 EDT [837932] LOG:  could not open file "postmaster.pid": No such file or directory
+2024-06-09 02:07:47.327 EDT [837932] LOG:  performing immediate shutdown because data directory lock file is invalid
+2024-06-09 02:07:47.327 EDT [837932] LOG:  received immediate shutdown request
+2024-06-09 02:07:47.327 EDT [837932] LOG:  could not open file "postmaster.pid": No such file or directory
+2024-06-09 02:07:47.337 EDT [837932] LOG:  database system is shut down
+2024-06-09 02:09:34.343 EDT [840243] LOG:  starting PostgreSQL 16.2 (Ubuntu 16.2-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-09 02:09:34.343 EDT [840243] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-09 02:09:34.344 EDT [840243] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-09 02:09:34.349 EDT [840246] LOG:  database system was shut down at 2024-06-09 02:08:09 EDT
+2024-06-09 02:09:34.356 EDT [840243] LOG:  database system is ready to accept connections
+2024-06-09 02:11:39.061 EDT [840550] FATAL:  terminating connection due to administrator command
+2024-06-09 02:11:39.061 EDT [840550] STATEMENT:  SELECT pg_terminate_backend(pid)
+	FROM pg_stat_activity
+	WHERE usename = 'phdonn';
+2024-06-09 02:11:39.065 EDT [840243] LOG:  background worker "logical replication launcher" (PID 840249) exited with exit code 1
+2024-06-09 02:11:58.984 EDT [840691] ERROR:  current user cannot be dropped
+2024-06-09 02:11:58.984 EDT [840691] STATEMENT:  DROP ROLE phdonn;
+2024-06-09 02:14:34.448 EDT [840244] LOG:  checkpoint starting: time
+2024-06-09 02:14:38.684 EDT [840244] LOG:  checkpoint complete: wrote 45 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.213 s, sync=0.011 s, total=4.236 s; sync files=11, longest=0.010 s, average=0.001 s; distance=262 kB, estimate=262 kB; lsn=0/152D508, redo lsn=0/152D4D0
+2024-06-09 02:19:03.104 EDT [842059] ERROR:  syntax error at or near "CREATE" at character 21
+2024-06-09 02:19:03.104 EDT [842059] STATEMENT:  CREATE ROLE phdonn1
+	CREATE USER phdonn1  CREATEDB PASSWORD '12345';
+2024-06-09 02:19:34.784 EDT [840244] LOG:  checkpoint starting: time
+2024-06-09 02:19:35.208 EDT [840244] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.403 s, sync=0.009 s, total=0.424 s; sync files=5, longest=0.009 s, average=0.002 s; distance=3 kB, estimate=236 kB; lsn=0/152E2D8, redo lsn=0/152E2A0
+2024-06-09 02:21:00.991 EDT [843376] FATAL:  database "benchbase_tpcc" does not exist
+2024-06-09 02:24:34.308 EDT [840244] LOG:  checkpoint starting: time
+2024-06-09 02:24:34.424 EDT [840244] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.116 s; sync files=2, longest=0.002 s, average=0.001 s; distance=2 kB, estimate=213 kB; lsn=0/152ED48, redo lsn=0/152ED10
+2024-06-09 12:05:49.640 EDT [931003] FATAL:  role "linmacse" does not exist
+2024-06-09 12:22:22.144 EDT [933539] FATAL:  role "linmacse" does not exist
+2024-06-09 12:22:32.855 EDT [933566] FATAL:  role "linmacse" does not exist
+2024-06-09 12:25:51.424 EDT [934082] FATAL:  database "phdonn" does not exist
+2024-06-09 12:28:03.126 EDT [934416] FATAL:  role "linmacse" does not exist
+2024-06-09 12:47:12.283 EDT [938339] FATAL:  role "postgres" does not exist
+2024-06-09 12:47:23.623 EDT [938414] FATAL:  database "phdonn" does not exist
+2024-06-10 10:58:27.267 EDT [1142438] FATAL:  role "linmacse" does not exist
+2024-06-10 11:01:05.167 EDT [1142936] FATAL:  role "postgres" does not exist
+2024-06-10 11:01:32.031 EDT [1143020] FATAL:  database "phdonn" does not exist
+2024-06-10 11:01:37.277 EDT [1143065] FATAL:  role "postgres" does not exist
+2024-06-10 11:02:22.130 EDT [1143208] FATAL:  database "phdonn" does not exist
+2024-06-10 11:07:20.638 EDT [840243] LOG:  received fast shutdown request
+2024-06-10 11:07:20.647 EDT [840243] LOG:  aborting any active transactions
+2024-06-10 11:07:20.652 EDT [840243] LOG:  background worker "logical replication launcher" (PID 840710) exited with exit code 1
+2024-06-10 11:07:20.654 EDT [840244] LOG:  shutting down
+2024-06-10 11:07:20.655 EDT [840244] LOG:  checkpoint starting: shutdown immediate
+2024-06-10 11:07:20.658 EDT [840244] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.005 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=192 kB; lsn=0/152EDF8, redo lsn=0/152EDF8
+2024-06-10 11:07:20.663 EDT [840243] LOG:  database system is shut down
+2024-06-10 11:19:47.114 EDT [1148690] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 11:19:47.115 EDT [1148690] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 11:19:47.115 EDT [1148690] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 11:19:47.118 EDT [1148691] LOG:  database system was shut down at 2024-06-10 11:19:46 EDT
+2024-06-10 11:19:47.127 EDT [1148690] LOG:  database system is ready to accept connections
+2024-06-10 11:23:06.134 EDT [1149458] FATAL:  database "benchbase" does not exist
+2024-06-10 11:23:17.072 EDT [1149564] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:23:17.072 EDT [1149564] STATEMENT:  ALTER SYSTEM RESET ALL;
+2024-06-10 11:23:17.074 EDT [1148690] LOG:  received fast shutdown request
+2024-06-10 11:23:17.075 EDT [1148690] LOG:  aborting any active transactions
+2024-06-10 11:23:17.079 EDT [1148690] LOG:  background worker "logical replication launcher" (PID 1148697) exited with exit code 1
+2024-06-10 11:23:17.079 EDT [1148692] LOG:  shutting down
+2024-06-10 11:23:17.089 EDT [1148690] LOG:  database system is shut down
+2024-06-10 11:23:17.192 EDT [1149566] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 11:23:17.192 EDT [1149566] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 11:23:17.193 EDT [1149566] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 11:23:17.196 EDT [1149567] LOG:  database system was shut down at 2024-06-10 11:23:17 EDT
+2024-06-10 11:23:17.202 EDT [1149566] LOG:  database system is ready to accept connections
+2024-06-10 11:23:17.640 EDT [1149610] FATAL:  database "benchbase" does not exist
+2024-06-10 11:23:59.891 EDT [1149849] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:23:59.891 EDT [1149849] STATEMENT:  ALTER SYSTEM RESET ALL;
+2024-06-10 11:23:59.893 EDT [1149566] LOG:  received fast shutdown request
+2024-06-10 11:23:59.894 EDT [1149566] LOG:  aborting any active transactions
+2024-06-10 11:23:59.898 EDT [1149566] LOG:  background worker "logical replication launcher" (PID 1149573) exited with exit code 1
+2024-06-10 11:23:59.898 EDT [1149568] LOG:  shutting down
+2024-06-10 11:23:59.908 EDT [1149566] LOG:  database system is shut down
+2024-06-10 11:24:00.013 EDT [1149851] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 11:24:00.013 EDT [1149851] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 11:24:00.013 EDT [1149851] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 11:24:00.018 EDT [1149852] LOG:  database system was shut down at 2024-06-10 11:23:59 EDT
+2024-06-10 11:24:00.024 EDT [1149851] LOG:  database system is ready to accept connections
+2024-06-10 11:25:32.732 EDT [1150213] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.732 EDT [1150213] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.26874313224107027;
+2024-06-10 11:25:32.762 EDT [1150215] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.762 EDT [1150215] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.6708086747676134;
+2024-06-10 11:25:32.793 EDT [1150217] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.793 EDT [1150217] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.9525035880506039;
+2024-06-10 11:25:32.823 EDT [1150219] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.823 EDT [1150219] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.11183177959173918;
+2024-06-10 11:25:32.852 EDT [1150221] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.852 EDT [1150221] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.21617628261446953;
+2024-06-10 11:25:32.886 EDT [1150223] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.886 EDT [1150223] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.8442547125741839;
+2024-06-10 11:25:32.914 EDT [1150225] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.914 EDT [1150225] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.5011641876772046;
+2024-06-10 11:25:32.942 EDT [1150227] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.942 EDT [1150227] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.43447949178516865;
+2024-06-10 11:25:32.974 EDT [1150229] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:32.974 EDT [1150229] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.4468503436073661;
+2024-06-10 11:25:33.004 EDT [1150231] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.004 EDT [1150231] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.6135644391179085;
+2024-06-10 11:25:33.037 EDT [1150233] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.037 EDT [1150233] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.7714819516986609;
+2024-06-10 11:25:33.068 EDT [1150235] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.068 EDT [1150235] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.1642084578052163;
+2024-06-10 11:25:33.103 EDT [1150237] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.103 EDT [1150237] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.0078089889138937;
+2024-06-10 11:25:33.134 EDT [1150239] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.134 EDT [1150239] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.9317857334390283;
+2024-06-10 11:25:33.164 EDT [1150241] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.164 EDT [1150241] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.7144295563921332;
+2024-06-10 11:25:33.193 EDT [1150243] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.193 EDT [1150243] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.3498934134840965;
+2024-06-10 11:25:33.224 EDT [1150245] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.224 EDT [1150245] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.32051501143723726;
+2024-06-10 11:25:33.252 EDT [1150247] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.252 EDT [1150247] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.7401582021266222;
+2024-06-10 11:25:33.283 EDT [1150249] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.283 EDT [1150249] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.8948723338544369;
+2024-06-10 11:25:33.315 EDT [1150251] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.315 EDT [1150251] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.04052912723273039;
+2024-06-10 11:25:33.346 EDT [1150253] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.346 EDT [1150253] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.13119937106966972;
+2024-06-10 11:25:33.377 EDT [1150255] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.377 EDT [1150255] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.8081064028665423;
+2024-06-10 11:25:33.405 EDT [1150257] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.405 EDT [1150257] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.5880942242220044;
+2024-06-10 11:25:33.436 EDT [1150259] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.436 EDT [1150259] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.47648717649281025;
+2024-06-10 11:25:33.467 EDT [1150261] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:25:33.467 EDT [1150261] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.3931553801521659;
+2024-06-10 11:47:35.512 EDT [1154751] FATAL:  database "phdonn1" does not exist
+2024-06-10 11:48:27.908 EDT [1154975] FATAL:  database "phdonn1" does not exist
+2024-06-10 11:51:58.513 EDT [1155035] ERROR:  must be superuser to execute ALTER SYSTEM command
+2024-06-10 11:51:58.513 EDT [1155035] STATEMENT:  ALTER SYSTEM SET checkpoint_completion_target=0.8;
+2024-06-10 11:52:44.042 EDT [1155035] ERROR:  role "postgres" does not exist
+2024-06-10 11:52:44.042 EDT [1155035] STATEMENT:  ALTER USER postgres WITH SUPERUSER;
+2024-06-10 11:52:53.376 EDT [1155035] ERROR:  must be superuser to alter superuser roles or change superuser attribute
+2024-06-10 11:52:53.376 EDT [1155035] STATEMENT:  ALTER USER phdonn1 WITH SUPERUSER;
+2024-06-10 11:54:44.423 EDT [1149851] LOG:  received fast shutdown request
+2024-06-10 11:54:44.424 EDT [1149851] LOG:  aborting any active transactions
+2024-06-10 11:54:44.427 EDT [1149851] LOG:  background worker "logical replication launcher" (PID 1149858) exited with exit code 1
+2024-06-10 11:54:44.430 EDT [1149853] LOG:  shutting down
+2024-06-10 11:54:44.456 EDT [1149851] LOG:  database system is shut down
+2024-06-10 11:54:44.539 EDT [1156712] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 11:54:44.540 EDT [1156712] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 11:54:44.540 EDT [1156712] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 11:54:44.544 EDT [1156713] LOG:  database system was shut down at 2024-06-10 11:54:44 EDT
+2024-06-10 11:54:44.549 EDT [1156712] LOG:  database system is ready to accept connections
+2024-06-10 11:56:16.574 EDT [1156712] LOG:  received fast shutdown request
+2024-06-10 11:56:16.575 EDT [1156712] LOG:  aborting any active transactions
+2024-06-10 11:56:16.578 EDT [1156712] LOG:  background worker "logical replication launcher" (PID 1156719) exited with exit code 1
+2024-06-10 11:56:16.580 EDT [1156714] LOG:  shutting down
+2024-06-10 11:56:16.721 EDT [1156712] LOG:  database system is shut down
+2024-06-10 11:56:16.841 EDT [1157077] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 11:56:16.842 EDT [1157077] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 11:56:16.842 EDT [1157077] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 11:56:16.846 EDT [1157078] LOG:  database system was shut down at 2024-06-10 11:56:16 EDT
+2024-06-10 11:56:16.851 EDT [1157077] LOG:  database system is ready to accept connections
+2024-06-10 11:57:48.968 EDT [1157077] LOG:  received fast shutdown request
+2024-06-10 11:57:48.972 EDT [1157077] LOG:  aborting any active transactions
+2024-06-10 11:57:48.976 EDT [1157077] LOG:  background worker "logical replication launcher" (PID 1157084) exited with exit code 1
+2024-06-10 11:57:48.980 EDT [1157079] LOG:  shutting down
+2024-06-10 11:57:49.162 EDT [1157077] LOG:  database system is shut down
+2024-06-10 11:57:49.180 EDT [1157450] FATAL:  could not map anonymous shared memory: Cannot allocate memory
+2024-06-10 11:57:49.180 EDT [1157450] HINT:  This error usually means that PostgreSQL's request for a shared memory segment exceeded available memory, swap space, or huge pages. To reduce the request size (currently 283115520 bytes), reduce PostgreSQL's shared memory usage, perhaps by reducing shared_buffers or max_connections.
+2024-06-10 11:57:49.180 EDT [1157450] LOG:  database system is shut down
+2024-06-10 11:57:49.314 EDT [1157454] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 11:57:49.315 EDT [1157454] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 11:57:49.318 EDT [1157454] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 11:57:49.328 EDT [1157455] LOG:  database system was shut down at 2024-06-10 11:57:49 EDT
+2024-06-10 11:57:49.343 EDT [1157454] LOG:  database system is ready to accept connections
+2024-06-10 11:59:29.068 EDT [1157454] LOG:  received fast shutdown request
+2024-06-10 11:59:29.071 EDT [1157454] LOG:  aborting any active transactions
+2024-06-10 11:59:29.075 EDT [1157454] LOG:  background worker "logical replication launcher" (PID 1157461) exited with exit code 1
+2024-06-10 11:59:29.076 EDT [1157456] LOG:  shutting down
+2024-06-10 11:59:29.272 EDT [1157454] LOG:  database system is shut down
+2024-06-10 11:59:29.416 EDT [1157847] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 11:59:29.416 EDT [1157847] LOG:  database system is shut down
+2024-06-10 11:59:29.509 EDT [1157851] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 11:59:29.509 EDT [1157851] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 11:59:29.513 EDT [1157851] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 11:59:29.522 EDT [1157852] LOG:  database system was shut down at 2024-06-10 11:59:29 EDT
+2024-06-10 11:59:29.531 EDT [1157851] LOG:  database system is ready to accept connections
+2024-06-10 12:01:09.262 EDT [1157851] LOG:  received fast shutdown request
+2024-06-10 12:01:09.266 EDT [1157851] LOG:  aborting any active transactions
+2024-06-10 12:01:09.270 EDT [1157851] LOG:  background worker "logical replication launcher" (PID 1157858) exited with exit code 1
+2024-06-10 12:01:09.273 EDT [1157853] LOG:  shutting down
+2024-06-10 12:01:09.463 EDT [1157851] LOG:  database system is shut down
+2024-06-10 12:01:09.612 EDT [1158249] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:01:09.612 EDT [1158249] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:01:09.614 EDT [1158249] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:01:09.621 EDT [1158250] LOG:  database system was shut down at 2024-06-10 12:01:09 EDT
+2024-06-10 12:01:09.633 EDT [1158249] LOG:  database system is ready to accept connections
+2024-06-10 12:02:49.540 EDT [1158249] LOG:  received fast shutdown request
+2024-06-10 12:02:49.541 EDT [1158249] LOG:  aborting any active transactions
+2024-06-10 12:02:49.544 EDT [1158249] LOG:  background worker "logical replication launcher" (PID 1158256) exited with exit code 1
+2024-06-10 12:02:49.547 EDT [1158251] LOG:  shutting down
+2024-06-10 12:02:49.658 EDT [1158249] LOG:  database system is shut down
+2024-06-10 12:02:49.783 EDT [1158638] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:02:49.783 EDT [1158638] LOG:  database system is shut down
+2024-06-10 12:02:49.882 EDT [1158642] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:02:49.882 EDT [1158642] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:02:49.883 EDT [1158642] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:02:49.886 EDT [1158643] LOG:  database system was shut down at 2024-06-10 12:02:49 EDT
+2024-06-10 12:02:49.892 EDT [1158642] LOG:  database system is ready to accept connections
+2024-06-10 12:04:21.922 EDT [1158642] LOG:  received fast shutdown request
+2024-06-10 12:04:21.926 EDT [1158642] LOG:  aborting any active transactions
+2024-06-10 12:04:21.930 EDT [1158642] LOG:  background worker "logical replication launcher" (PID 1158649) exited with exit code 1
+2024-06-10 12:04:21.935 EDT [1158644] LOG:  shutting down
+2024-06-10 12:04:22.144 EDT [1158642] LOG:  database system is shut down
+2024-06-10 12:04:22.267 EDT [1159003] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:04:22.267 EDT [1159003] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:04:22.271 EDT [1159003] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:04:22.280 EDT [1159004] LOG:  database system was shut down at 2024-06-10 12:04:22 EDT
+2024-06-10 12:04:22.294 EDT [1159003] LOG:  database system is ready to accept connections
+2024-06-10 12:06:01.928 EDT [1159003] LOG:  received fast shutdown request
+2024-06-10 12:06:01.931 EDT [1159003] LOG:  aborting any active transactions
+2024-06-10 12:06:01.935 EDT [1159003] LOG:  background worker "logical replication launcher" (PID 1159010) exited with exit code 1
+2024-06-10 12:06:01.937 EDT [1159005] LOG:  shutting down
+2024-06-10 12:06:02.161 EDT [1159003] LOG:  database system is shut down
+2024-06-10 12:06:02.258 EDT [1159415] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:06:02.258 EDT [1159415] LOG:  database system is shut down
+2024-06-10 12:06:02.365 EDT [1159419] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:06:02.365 EDT [1159419] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:06:02.369 EDT [1159419] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:06:02.379 EDT [1159420] LOG:  database system was shut down at 2024-06-10 12:06:02 EDT
+2024-06-10 12:06:02.394 EDT [1159419] LOG:  database system is ready to accept connections
+2024-06-10 12:07:42.322 EDT [1159419] LOG:  received fast shutdown request
+2024-06-10 12:07:42.325 EDT [1159419] LOG:  aborting any active transactions
+2024-06-10 12:07:42.329 EDT [1159419] LOG:  background worker "logical replication launcher" (PID 1159426) exited with exit code 1
+2024-06-10 12:07:42.332 EDT [1159421] LOG:  shutting down
+2024-06-10 12:07:42.513 EDT [1159419] LOG:  database system is shut down
+2024-06-10 12:07:42.560 EDT [1159945] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:07:42.560 EDT [1159945] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:07:42.562 EDT [1159945] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:07:42.569 EDT [1159946] LOG:  database system was shut down at 2024-06-10 12:07:42 EDT
+2024-06-10 12:07:42.578 EDT [1159945] LOG:  database system is ready to accept connections
+2024-06-10 12:09:22.344 EDT [1159945] LOG:  received fast shutdown request
+2024-06-10 12:09:22.347 EDT [1159945] LOG:  aborting any active transactions
+2024-06-10 12:09:22.349 EDT [1159945] LOG:  background worker "logical replication launcher" (PID 1159952) exited with exit code 1
+2024-06-10 12:09:22.358 EDT [1159947] LOG:  shutting down
+2024-06-10 12:09:22.540 EDT [1159945] LOG:  database system is shut down
+2024-06-10 12:09:22.563 EDT [1160391] FATAL:  could not map anonymous shared memory: Cannot allocate memory
+2024-06-10 12:09:22.563 EDT [1160391] HINT:  This error usually means that PostgreSQL's request for a shared memory segment exceeded available memory, swap space, or huge pages. To reduce the request size (currently 224395264 bytes), reduce PostgreSQL's shared memory usage, perhaps by reducing shared_buffers or max_connections.
+2024-06-10 12:09:22.563 EDT [1160391] LOG:  database system is shut down
+2024-06-10 12:09:22.688 EDT [1160395] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:09:22.688 EDT [1160395] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:09:22.692 EDT [1160395] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:09:22.701 EDT [1160396] LOG:  database system was shut down at 2024-06-10 12:09:22 EDT
+2024-06-10 12:09:22.711 EDT [1160395] LOG:  database system is ready to accept connections
+2024-06-10 12:11:02.258 EDT [1160395] LOG:  received fast shutdown request
+2024-06-10 12:11:02.262 EDT [1160395] LOG:  aborting any active transactions
+2024-06-10 12:11:02.266 EDT [1160395] LOG:  background worker "logical replication launcher" (PID 1160402) exited with exit code 1
+2024-06-10 12:11:02.268 EDT [1160397] LOG:  shutting down
+2024-06-10 12:11:02.449 EDT [1160395] LOG:  database system is shut down
+2024-06-10 12:11:02.473 EDT [1160791] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:11:02.473 EDT [1160791] LOG:  database system is shut down
+2024-06-10 12:11:02.607 EDT [1160795] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:11:02.607 EDT [1160795] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:11:02.609 EDT [1160795] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:11:02.616 EDT [1160796] LOG:  database system was shut down at 2024-06-10 12:11:02 EDT
+2024-06-10 12:11:02.624 EDT [1160795] LOG:  database system is ready to accept connections
+2024-06-10 12:12:42.439 EDT [1160795] LOG:  received fast shutdown request
+2024-06-10 12:12:42.441 EDT [1160795] LOG:  aborting any active transactions
+2024-06-10 12:12:42.445 EDT [1160795] LOG:  background worker "logical replication launcher" (PID 1160802) exited with exit code 1
+2024-06-10 12:12:42.447 EDT [1160797] LOG:  shutting down
+2024-06-10 12:12:42.647 EDT [1160795] LOG:  database system is shut down
+2024-06-10 12:12:42.821 EDT [1161189] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:12:42.822 EDT [1161189] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:12:42.824 EDT [1161189] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:12:42.830 EDT [1161190] LOG:  database system was shut down at 2024-06-10 12:12:42 EDT
+2024-06-10 12:12:42.839 EDT [1161189] LOG:  database system is ready to accept connections
+2024-06-10 12:14:20.929 EDT [1161189] LOG:  received fast shutdown request
+2024-06-10 12:14:20.933 EDT [1161189] LOG:  aborting any active transactions
+2024-06-10 12:14:20.936 EDT [1161189] LOG:  background worker "logical replication launcher" (PID 1161197) exited with exit code 1
+2024-06-10 12:14:20.940 EDT [1161191] LOG:  shutting down
+2024-06-10 12:14:21.123 EDT [1161189] LOG:  database system is shut down
+2024-06-10 12:14:21.168 EDT [1161608] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:14:21.168 EDT [1161608] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:14:21.171 EDT [1161608] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:14:21.181 EDT [1161609] LOG:  database system was shut down at 2024-06-10 12:14:21 EDT
+2024-06-10 12:14:21.192 EDT [1161608] LOG:  database system is ready to accept connections
+2024-06-10 12:16:00.790 EDT [1161608] LOG:  received fast shutdown request
+2024-06-10 12:16:00.792 EDT [1161608] LOG:  aborting any active transactions
+2024-06-10 12:16:00.795 EDT [1161608] LOG:  background worker "logical replication launcher" (PID 1161615) exited with exit code 1
+2024-06-10 12:16:00.798 EDT [1161610] LOG:  shutting down
+2024-06-10 12:16:00.984 EDT [1161608] LOG:  database system is shut down
+2024-06-10 12:16:01.033 EDT [1162000] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:16:01.033 EDT [1162000] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:16:01.037 EDT [1162000] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:16:01.046 EDT [1162001] LOG:  database system was shut down at 2024-06-10 12:16:00 EDT
+2024-06-10 12:16:01.060 EDT [1162000] LOG:  database system is ready to accept connections
+2024-06-10 12:17:40.710 EDT [1162000] LOG:  received fast shutdown request
+2024-06-10 12:17:40.713 EDT [1162000] LOG:  aborting any active transactions
+2024-06-10 12:17:40.717 EDT [1162000] LOG:  background worker "logical replication launcher" (PID 1162007) exited with exit code 1
+2024-06-10 12:17:40.718 EDT [1162002] LOG:  shutting down
+2024-06-10 12:17:40.923 EDT [1162000] LOG:  database system is shut down
+2024-06-10 12:17:41.042 EDT [1162390] FATAL:  could not map anonymous shared memory: Cannot allocate memory
+2024-06-10 12:17:41.042 EDT [1162390] HINT:  This error usually means that PostgreSQL's request for a shared memory segment exceeded available memory, swap space, or huge pages. To reduce the request size (currently 123731968 bytes), reduce PostgreSQL's shared memory usage, perhaps by reducing shared_buffers or max_connections.
+2024-06-10 12:17:41.042 EDT [1162390] LOG:  database system is shut down
+2024-06-10 12:17:41.148 EDT [1162394] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:17:41.148 EDT [1162394] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:17:41.151 EDT [1162394] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:17:41.159 EDT [1162395] LOG:  database system was shut down at 2024-06-10 12:17:40 EDT
+2024-06-10 12:17:41.172 EDT [1162394] LOG:  database system is ready to accept connections
+2024-06-10 12:19:21.115 EDT [1162394] LOG:  received fast shutdown request
+2024-06-10 12:19:21.118 EDT [1162394] LOG:  aborting any active transactions
+2024-06-10 12:19:21.122 EDT [1162394] LOG:  background worker "logical replication launcher" (PID 1162401) exited with exit code 1
+2024-06-10 12:19:21.123 EDT [1162396] LOG:  shutting down
+2024-06-10 12:19:21.390 EDT [1162394] LOG:  database system is shut down
+2024-06-10 12:19:21.481 EDT [1162921] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:19:21.482 EDT [1162921] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:19:21.485 EDT [1162921] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:19:21.494 EDT [1162922] LOG:  database system was shut down at 2024-06-10 12:19:21 EDT
+2024-06-10 12:19:21.507 EDT [1162921] LOG:  database system is ready to accept connections
+2024-06-10 12:21:03.508 EDT [1162921] LOG:  received fast shutdown request
+2024-06-10 12:21:03.511 EDT [1162921] LOG:  aborting any active transactions
+2024-06-10 12:21:03.515 EDT [1162921] LOG:  background worker "logical replication launcher" (PID 1162928) exited with exit code 1
+2024-06-10 12:21:03.516 EDT [1162923] LOG:  shutting down
+2024-06-10 12:21:03.743 EDT [1162921] LOG:  database system is shut down
+2024-06-10 12:21:03.851 EDT [1163453] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:21:03.851 EDT [1163453] LOG:  database system is shut down
+2024-06-10 12:21:03.944 EDT [1163457] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:21:03.944 EDT [1163457] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:21:03.947 EDT [1163457] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:21:03.955 EDT [1163458] LOG:  database system was shut down at 2024-06-10 12:21:03 EDT
+2024-06-10 12:21:03.967 EDT [1163457] LOG:  database system is ready to accept connections
+2024-06-10 12:22:43.368 EDT [1163457] LOG:  received fast shutdown request
+2024-06-10 12:22:43.372 EDT [1163457] LOG:  aborting any active transactions
+2024-06-10 12:22:43.374 EDT [1163457] LOG:  background worker "logical replication launcher" (PID 1163464) exited with exit code 1
+2024-06-10 12:22:43.378 EDT [1163459] LOG:  shutting down
+2024-06-10 12:22:43.587 EDT [1163457] LOG:  database system is shut down
+2024-06-10 12:22:43.731 EDT [1163847] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:22:43.731 EDT [1163847] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:22:43.735 EDT [1163847] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:22:43.745 EDT [1163848] LOG:  database system was shut down at 2024-06-10 12:22:43 EDT
+2024-06-10 12:22:43.759 EDT [1163847] LOG:  database system is ready to accept connections
+2024-06-10 12:24:23.931 EDT [1163847] LOG:  received fast shutdown request
+2024-06-10 12:24:23.935 EDT [1163847] LOG:  aborting any active transactions
+2024-06-10 12:24:23.938 EDT [1163847] LOG:  background worker "logical replication launcher" (PID 1163854) exited with exit code 1
+2024-06-10 12:24:23.941 EDT [1163849] LOG:  shutting down
+2024-06-10 12:24:24.141 EDT [1163847] LOG:  database system is shut down
+2024-06-10 12:24:24.248 EDT [1164312] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:24:24.248 EDT [1164312] LOG:  database system is shut down
+2024-06-10 12:24:24.374 EDT [1164316] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:24:24.374 EDT [1164316] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:24:24.378 EDT [1164316] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:24:24.388 EDT [1164317] LOG:  database system was shut down at 2024-06-10 12:24:24 EDT
+2024-06-10 12:24:24.401 EDT [1164316] LOG:  database system is ready to accept connections
+2024-06-10 12:26:04.136 EDT [1164316] LOG:  received fast shutdown request
+2024-06-10 12:26:04.140 EDT [1164316] LOG:  aborting any active transactions
+2024-06-10 12:26:04.144 EDT [1164316] LOG:  background worker "logical replication launcher" (PID 1164323) exited with exit code 1
+2024-06-10 12:26:04.147 EDT [1164318] LOG:  shutting down
+2024-06-10 12:26:04.349 EDT [1164316] LOG:  database system is shut down
+2024-06-10 12:26:04.453 EDT [1164711] FATAL:  could not map anonymous shared memory: Cannot allocate memory
+2024-06-10 12:26:04.453 EDT [1164711] HINT:  This error usually means that PostgreSQL's request for a shared memory segment exceeded available memory, swap space, or huge pages. To reduce the request size (currently 295698432 bytes), reduce PostgreSQL's shared memory usage, perhaps by reducing shared_buffers or max_connections.
+2024-06-10 12:26:04.453 EDT [1164711] LOG:  database system is shut down
+2024-06-10 12:26:04.580 EDT [1164715] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:26:04.580 EDT [1164715] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:26:04.584 EDT [1164715] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:26:04.593 EDT [1164716] LOG:  database system was shut down at 2024-06-10 12:26:04 EDT
+2024-06-10 12:26:04.603 EDT [1164715] LOG:  database system is ready to accept connections
+2024-06-10 12:27:44.299 EDT [1164715] LOG:  received fast shutdown request
+2024-06-10 12:27:44.299 EDT [1164715] LOG:  aborting any active transactions
+2024-06-10 12:27:44.300 EDT [1164715] LOG:  background worker "logical replication launcher" (PID 1164722) exited with exit code 1
+2024-06-10 12:27:44.304 EDT [1164717] LOG:  shutting down
+2024-06-10 12:27:44.417 EDT [1164715] LOG:  database system is shut down
+2024-06-10 12:27:44.527 EDT [1165082] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:27:44.527 EDT [1165082] LOG:  database system is shut down
+2024-06-10 12:27:44.634 EDT [1165086] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:27:44.634 EDT [1165086] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:27:44.634 EDT [1165086] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:27:44.638 EDT [1165087] LOG:  database system was shut down at 2024-06-10 12:27:44 EDT
+2024-06-10 12:27:44.644 EDT [1165086] LOG:  database system is ready to accept connections
+2024-06-10 12:29:16.439 EDT [1165086] LOG:  received fast shutdown request
+2024-06-10 12:29:16.443 EDT [1165086] LOG:  aborting any active transactions
+2024-06-10 12:29:16.447 EDT [1165086] LOG:  background worker "logical replication launcher" (PID 1165093) exited with exit code 1
+2024-06-10 12:29:16.449 EDT [1165088] LOG:  shutting down
+2024-06-10 12:29:16.649 EDT [1165086] LOG:  database system is shut down
+2024-06-10 12:29:16.778 EDT [1166487] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:29:16.779 EDT [1166487] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:29:16.782 EDT [1166487] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:29:16.791 EDT [1166488] LOG:  database system was shut down at 2024-06-10 12:29:16 EDT
+2024-06-10 12:29:16.808 EDT [1166487] LOG:  database system is ready to accept connections
+2024-06-10 12:30:56.688 EDT [1166487] LOG:  received fast shutdown request
+2024-06-10 12:30:56.690 EDT [1166487] LOG:  aborting any active transactions
+2024-06-10 12:30:56.692 EDT [1166487] LOG:  background worker "logical replication launcher" (PID 1166494) exited with exit code 1
+2024-06-10 12:30:56.696 EDT [1166489] LOG:  shutting down
+2024-06-10 12:30:56.888 EDT [1166487] LOG:  database system is shut down
+2024-06-10 12:30:57.003 EDT [1166866] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:30:57.003 EDT [1166866] LOG:  database system is shut down
+2024-06-10 12:30:57.130 EDT [1166870] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:30:57.130 EDT [1166870] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:30:57.134 EDT [1166870] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:30:57.144 EDT [1166871] LOG:  database system was shut down at 2024-06-10 12:30:56 EDT
+2024-06-10 12:30:57.160 EDT [1166870] LOG:  database system is ready to accept connections
+2024-06-10 12:32:37.304 EDT [1166870] LOG:  received fast shutdown request
+2024-06-10 12:32:37.307 EDT [1166870] LOG:  aborting any active transactions
+2024-06-10 12:32:37.309 EDT [1166870] LOG:  background worker "logical replication launcher" (PID 1166877) exited with exit code 1
+2024-06-10 12:32:37.311 EDT [1166872] LOG:  shutting down
+2024-06-10 12:32:37.515 EDT [1166870] LOG:  database system is shut down
+2024-06-10 12:32:37.631 EDT [1167485] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:32:37.631 EDT [1167485] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:32:37.634 EDT [1167485] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:32:37.642 EDT [1167486] LOG:  database system was shut down at 2024-06-10 12:32:37 EDT
+2024-06-10 12:32:37.656 EDT [1167485] LOG:  database system is ready to accept connections
+2024-06-10 12:34:26.533 EDT [1167485] LOG:  received fast shutdown request
+2024-06-10 12:34:26.534 EDT [1167485] LOG:  aborting any active transactions
+2024-06-10 12:34:26.536 EDT [1167485] LOG:  background worker "logical replication launcher" (PID 1167492) exited with exit code 1
+2024-06-10 12:34:26.537 EDT [1167487] LOG:  shutting down
+2024-06-10 12:34:26.678 EDT [1167485] LOG:  database system is shut down
+2024-06-10 12:34:26.779 EDT [1179160] FATAL:  could not map anonymous shared memory: Cannot allocate memory
+2024-06-10 12:34:26.779 EDT [1179160] HINT:  This error usually means that PostgreSQL's request for a shared memory segment exceeded available memory, swap space, or huge pages. To reduce the request size (currently 192937984 bytes), reduce PostgreSQL's shared memory usage, perhaps by reducing shared_buffers or max_connections.
+2024-06-10 12:34:26.779 EDT [1179160] LOG:  database system is shut down
+2024-06-10 12:34:26.857 EDT [1179254] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:34:26.857 EDT [1179254] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:34:26.857 EDT [1179254] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:34:26.859 EDT [1179275] LOG:  database system was shut down at 2024-06-10 12:34:26 EDT
+2024-06-10 12:34:26.865 EDT [1179254] LOG:  database system is ready to accept connections
+2024-06-10 12:36:09.734 EDT [1179254] LOG:  received fast shutdown request
+2024-06-10 12:36:09.736 EDT [1179254] LOG:  aborting any active transactions
+2024-06-10 12:36:09.740 EDT [1179254] LOG:  background worker "logical replication launcher" (PID 1179291) exited with exit code 1
+2024-06-10 12:36:09.745 EDT [1179286] LOG:  shutting down
+2024-06-10 12:36:09.919 EDT [1179254] LOG:  database system is shut down
+2024-06-10 12:36:09.949 EDT [1319433] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:36:09.949 EDT [1319433] LOG:  database system is shut down
+2024-06-10 12:36:10.080 EDT [1319437] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:36:10.080 EDT [1319437] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:36:10.084 EDT [1319437] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:36:10.093 EDT [1319438] LOG:  database system was shut down at 2024-06-10 12:36:09 EDT
+2024-06-10 12:36:10.103 EDT [1319437] LOG:  database system is ready to accept connections
+2024-06-10 12:37:57.431 EDT [1319437] LOG:  received fast shutdown request
+2024-06-10 12:37:57.435 EDT [1319437] LOG:  aborting any active transactions
+2024-06-10 12:37:57.437 EDT [1319437] LOG:  background worker "logical replication launcher" (PID 1319444) exited with exit code 1
+2024-06-10 12:37:57.444 EDT [1319439] LOG:  shutting down
+2024-06-10 12:37:57.636 EDT [1319437] LOG:  database system is shut down
+2024-06-10 12:37:57.787 EDT [1319895] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:37:57.787 EDT [1319895] LOG:  database system is shut down
+2024-06-10 12:37:57.870 EDT [1319899] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:37:57.870 EDT [1319899] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:37:57.872 EDT [1319899] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:37:57.879 EDT [1319900] LOG:  database system was shut down at 2024-06-10 12:37:57 EDT
+2024-06-10 12:37:57.889 EDT [1319899] LOG:  database system is ready to accept connections
+2024-06-10 12:39:30.429 EDT [1319899] LOG:  received fast shutdown request
+2024-06-10 12:39:30.429 EDT [1319899] LOG:  aborting any active transactions
+2024-06-10 12:39:30.431 EDT [1319899] LOG:  background worker "logical replication launcher" (PID 1319906) exited with exit code 1
+2024-06-10 12:39:30.434 EDT [1319901] LOG:  shutting down
+2024-06-10 12:39:30.559 EDT [1319899] LOG:  database system is shut down
+2024-06-10 12:39:30.647 EDT [1320293] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:39:30.647 EDT [1320293] LOG:  database system is shut down
+2024-06-10 12:39:30.760 EDT [1320297] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:39:30.760 EDT [1320297] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:39:30.761 EDT [1320297] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:39:30.765 EDT [1320298] LOG:  database system was shut down at 2024-06-10 12:39:30 EDT
+2024-06-10 12:39:30.772 EDT [1320297] LOG:  database system is ready to accept connections
+2024-06-10 12:41:02.980 EDT [1320297] LOG:  received fast shutdown request
+2024-06-10 12:41:02.983 EDT [1320297] LOG:  aborting any active transactions
+2024-06-10 12:41:02.984 EDT [1320297] LOG:  background worker "logical replication launcher" (PID 1320304) exited with exit code 1
+2024-06-10 12:41:02.988 EDT [1320299] LOG:  shutting down
+2024-06-10 12:41:03.175 EDT [1320297] LOG:  database system is shut down
+2024-06-10 12:41:03.195 EDT [1320799] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:41:03.195 EDT [1320799] LOG:  database system is shut down
+2024-06-10 12:41:03.325 EDT [1320803] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:41:03.325 EDT [1320803] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:41:03.329 EDT [1320803] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:41:03.337 EDT [1320804] LOG:  database system was shut down at 2024-06-10 12:41:03 EDT
+2024-06-10 12:41:03.347 EDT [1320803] LOG:  database system is ready to accept connections
+2024-06-10 12:42:45.053 EDT [1320803] LOG:  received fast shutdown request
+2024-06-10 12:42:45.056 EDT [1320803] LOG:  aborting any active transactions
+2024-06-10 12:42:45.058 EDT [1320803] LOG:  background worker "logical replication launcher" (PID 1320810) exited with exit code 1
+2024-06-10 12:42:45.061 EDT [1320805] LOG:  shutting down
+2024-06-10 12:42:45.230 EDT [1320803] LOG:  database system is shut down
+2024-06-10 12:42:45.268 EDT [1321189] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:42:45.268 EDT [1321189] LOG:  database system is shut down
+2024-06-10 12:42:45.395 EDT [1321193] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:42:45.395 EDT [1321193] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:42:45.399 EDT [1321193] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:42:45.407 EDT [1321194] LOG:  database system was shut down at 2024-06-10 12:42:45 EDT
+2024-06-10 12:42:45.414 EDT [1321193] LOG:  database system is ready to accept connections
+2024-06-10 12:44:27.290 EDT [1321193] LOG:  received fast shutdown request
+2024-06-10 12:44:27.292 EDT [1321193] LOG:  aborting any active transactions
+2024-06-10 12:44:27.295 EDT [1321193] LOG:  background worker "logical replication launcher" (PID 1321200) exited with exit code 1
+2024-06-10 12:44:27.298 EDT [1321195] LOG:  shutting down
+2024-06-10 12:44:27.459 EDT [1321193] LOG:  database system is shut down
+2024-06-10 12:44:27.540 EDT [1321583] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:44:27.540 EDT [1321583] LOG:  database system is shut down
+2024-06-10 12:44:27.620 EDT [1321587] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:44:27.620 EDT [1321587] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:44:27.623 EDT [1321587] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:44:27.628 EDT [1321596] LOG:  database system was shut down at 2024-06-10 12:44:27 EDT
+2024-06-10 12:44:27.635 EDT [1321587] LOG:  database system is ready to accept connections
+2024-06-10 12:46:08.272 EDT [1321587] LOG:  received fast shutdown request
+2024-06-10 12:46:08.275 EDT [1321587] LOG:  aborting any active transactions
+2024-06-10 12:46:08.277 EDT [1321587] LOG:  background worker "logical replication launcher" (PID 1321609) exited with exit code 1
+2024-06-10 12:46:08.280 EDT [1321604] LOG:  shutting down
+2024-06-10 12:46:08.481 EDT [1321587] LOG:  database system is shut down
+2024-06-10 12:46:08.608 EDT [1321983] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:46:08.608 EDT [1321983] LOG:  database system is shut down
+2024-06-10 12:46:08.730 EDT [1321987] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:46:08.730 EDT [1321987] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:46:08.734 EDT [1321987] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:46:08.743 EDT [1321988] LOG:  database system was shut down at 2024-06-10 12:46:08 EDT
+2024-06-10 12:46:08.752 EDT [1321987] LOG:  database system is ready to accept connections
+2024-06-10 12:47:51.157 EDT [1321987] LOG:  received fast shutdown request
+2024-06-10 12:47:51.159 EDT [1321987] LOG:  aborting any active transactions
+2024-06-10 12:47:51.161 EDT [1321987] LOG:  background worker "logical replication launcher" (PID 1321994) exited with exit code 1
+2024-06-10 12:47:51.169 EDT [1321989] LOG:  shutting down
+2024-06-10 12:47:51.348 EDT [1321987] LOG:  database system is shut down
+2024-06-10 12:47:51.371 EDT [1322393] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:47:51.371 EDT [1322393] LOG:  database system is shut down
+2024-06-10 12:47:51.506 EDT [1322397] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:47:51.506 EDT [1322397] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:47:51.510 EDT [1322397] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:47:51.518 EDT [1322398] LOG:  database system was shut down at 2024-06-10 12:47:51 EDT
+2024-06-10 12:47:51.525 EDT [1322397] LOG:  database system is ready to accept connections
+2024-06-10 12:49:33.364 EDT [1322397] LOG:  received fast shutdown request
+2024-06-10 12:49:33.365 EDT [1322397] LOG:  aborting any active transactions
+2024-06-10 12:49:33.368 EDT [1322397] LOG:  background worker "logical replication launcher" (PID 1322404) exited with exit code 1
+2024-06-10 12:49:33.370 EDT [1322399] LOG:  shutting down
+2024-06-10 12:49:33.480 EDT [1322397] LOG:  database system is shut down
+2024-06-10 12:49:33.577 EDT [1322785] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:49:33.577 EDT [1322785] LOG:  database system is shut down
+2024-06-10 12:49:33.701 EDT [1322789] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:49:33.701 EDT [1322789] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:49:33.701 EDT [1322789] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:49:33.704 EDT [1322790] LOG:  database system was shut down at 2024-06-10 12:49:33 EDT
+2024-06-10 12:49:33.711 EDT [1322789] LOG:  database system is ready to accept connections
+2024-06-10 12:51:09.851 EDT [1322789] LOG:  received fast shutdown request
+2024-06-10 12:51:09.854 EDT [1322789] LOG:  aborting any active transactions
+2024-06-10 12:51:09.858 EDT [1322789] LOG:  background worker "logical replication launcher" (PID 1322796) exited with exit code 1
+2024-06-10 12:51:09.863 EDT [1322791] LOG:  shutting down
+2024-06-10 12:51:10.086 EDT [1322789] LOG:  database system is shut down
+2024-06-10 12:51:10.187 EDT [1323250] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:51:10.187 EDT [1323250] LOG:  database system is shut down
+2024-06-10 12:51:10.300 EDT [1323254] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:51:10.300 EDT [1323254] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:51:10.302 EDT [1323254] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:51:10.309 EDT [1323255] LOG:  database system was shut down at 2024-06-10 12:51:09 EDT
+2024-06-10 12:51:10.316 EDT [1323254] LOG:  database system is ready to accept connections
+2024-06-10 12:52:50.099 EDT [1323254] LOG:  received fast shutdown request
+2024-06-10 12:52:50.102 EDT [1323254] LOG:  aborting any active transactions
+2024-06-10 12:52:50.106 EDT [1323254] LOG:  background worker "logical replication launcher" (PID 1323261) exited with exit code 1
+2024-06-10 12:52:50.109 EDT [1323256] LOG:  shutting down
+2024-06-10 12:52:50.299 EDT [1323254] LOG:  database system is shut down
+2024-06-10 12:52:50.451 EDT [1323626] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:52:50.451 EDT [1323626] LOG:  database system is shut down
+2024-06-10 12:52:50.540 EDT [1323630] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:52:50.540 EDT [1323630] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:52:50.543 EDT [1323630] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:52:50.553 EDT [1323631] LOG:  database system was shut down at 2024-06-10 12:52:50 EDT
+2024-06-10 12:52:50.563 EDT [1323630] LOG:  database system is ready to accept connections
+2024-06-10 12:54:30.340 EDT [1323630] LOG:  received fast shutdown request
+2024-06-10 12:54:30.343 EDT [1323630] LOG:  aborting any active transactions
+2024-06-10 12:54:30.345 EDT [1323630] LOG:  background worker "logical replication launcher" (PID 1323637) exited with exit code 1
+2024-06-10 12:54:30.347 EDT [1323632] LOG:  shutting down
+2024-06-10 12:54:30.520 EDT [1323630] LOG:  database system is shut down
+2024-06-10 12:54:30.551 EDT [1324142] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:54:30.551 EDT [1324142] LOG:  database system is shut down
+2024-06-10 12:54:30.684 EDT [1324146] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:54:30.684 EDT [1324146] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:54:30.686 EDT [1324146] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:54:30.693 EDT [1324147] LOG:  database system was shut down at 2024-06-10 12:54:30 EDT
+2024-06-10 12:54:30.701 EDT [1324146] LOG:  database system is ready to accept connections
+2024-06-10 12:56:13.206 EDT [1324146] LOG:  received fast shutdown request
+2024-06-10 12:56:13.207 EDT [1324146] LOG:  aborting any active transactions
+2024-06-10 12:56:13.209 EDT [1324146] LOG:  background worker "logical replication launcher" (PID 1324153) exited with exit code 1
+2024-06-10 12:56:13.212 EDT [1324148] LOG:  shutting down
+2024-06-10 12:56:13.321 EDT [1324146] LOG:  database system is shut down
+2024-06-10 12:56:13.417 EDT [1324537] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:56:13.417 EDT [1324537] LOG:  database system is shut down
+2024-06-10 12:56:13.530 EDT [1324541] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:56:13.530 EDT [1324541] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:56:13.530 EDT [1324541] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:56:13.533 EDT [1324542] LOG:  database system was shut down at 2024-06-10 12:56:13 EDT
+2024-06-10 12:56:13.538 EDT [1324541] LOG:  database system is ready to accept connections
+2024-06-10 12:57:48.699 EDT [1324541] LOG:  received fast shutdown request
+2024-06-10 12:57:48.700 EDT [1324541] LOG:  aborting any active transactions
+2024-06-10 12:57:48.701 EDT [1324541] LOG:  background worker "logical replication launcher" (PID 1324548) exited with exit code 1
+2024-06-10 12:57:48.704 EDT [1324543] LOG:  shutting down
+2024-06-10 12:57:48.821 EDT [1324541] LOG:  database system is shut down
+2024-06-10 12:57:48.921 EDT [1324930] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:57:48.922 EDT [1324930] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:57:48.922 EDT [1324930] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:57:48.925 EDT [1324931] LOG:  database system was shut down at 2024-06-10 12:57:48 EDT
+2024-06-10 12:57:48.929 EDT [1324930] LOG:  database system is ready to accept connections
+2024-06-10 12:59:24.168 EDT [1324930] LOG:  received fast shutdown request
+2024-06-10 12:59:24.169 EDT [1324930] LOG:  aborting any active transactions
+2024-06-10 12:59:24.171 EDT [1324930] LOG:  background worker "logical replication launcher" (PID 1324937) exited with exit code 1
+2024-06-10 12:59:24.174 EDT [1324932] LOG:  shutting down
+2024-06-10 12:59:24.375 EDT [1324930] LOG:  database system is shut down
+2024-06-10 12:59:24.511 EDT [1325285] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 12:59:24.511 EDT [1325285] LOG:  database system is shut down
+2024-06-10 12:59:24.602 EDT [1325289] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 12:59:24.602 EDT [1325289] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 12:59:24.604 EDT [1325289] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 12:59:24.612 EDT [1325290] LOG:  database system was shut down at 2024-06-10 12:59:24 EDT
+2024-06-10 12:59:24.622 EDT [1325289] LOG:  database system is ready to accept connections
+2024-06-10 13:01:06.874 EDT [1325289] LOG:  received fast shutdown request
+2024-06-10 13:01:06.877 EDT [1325289] LOG:  aborting any active transactions
+2024-06-10 13:01:06.879 EDT [1325289] LOG:  background worker "logical replication launcher" (PID 1325296) exited with exit code 1
+2024-06-10 13:01:06.881 EDT [1325291] LOG:  shutting down
+2024-06-10 13:01:07.072 EDT [1325289] LOG:  database system is shut down
+2024-06-10 13:01:07.100 EDT [1325686] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:01:07.100 EDT [1325686] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:01:07.104 EDT [1325686] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:01:07.112 EDT [1325687] LOG:  database system was shut down at 2024-06-10 13:01:06 EDT
+2024-06-10 13:01:07.124 EDT [1325686] LOG:  database system is ready to accept connections
+2024-06-10 13:02:49.278 EDT [1325686] LOG:  received fast shutdown request
+2024-06-10 13:02:49.278 EDT [1325686] LOG:  aborting any active transactions
+2024-06-10 13:02:49.282 EDT [1325686] LOG:  background worker "logical replication launcher" (PID 1325693) exited with exit code 1
+2024-06-10 13:02:49.285 EDT [1325688] LOG:  shutting down
+2024-06-10 13:02:49.394 EDT [1325686] LOG:  database system is shut down
+2024-06-10 13:02:49.523 EDT [1326076] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:02:49.523 EDT [1326076] LOG:  database system is shut down
+2024-06-10 13:02:49.612 EDT [1326080] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:02:49.613 EDT [1326080] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:02:49.613 EDT [1326080] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:02:49.616 EDT [1326081] LOG:  database system was shut down at 2024-06-10 13:02:49 EDT
+2024-06-10 13:02:49.621 EDT [1326080] LOG:  database system is ready to accept connections
+2024-06-10 13:04:25.240 EDT [1326080] LOG:  received fast shutdown request
+2024-06-10 13:04:25.242 EDT [1326080] LOG:  aborting any active transactions
+2024-06-10 13:04:25.243 EDT [1326080] LOG:  background worker "logical replication launcher" (PID 1326087) exited with exit code 1
+2024-06-10 13:04:25.247 EDT [1326082] LOG:  shutting down
+2024-06-10 13:04:25.457 EDT [1326080] LOG:  database system is shut down
+2024-06-10 13:04:25.576 EDT [1326479] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:04:25.576 EDT [1326479] LOG:  database system is shut down
+2024-06-10 13:04:25.680 EDT [1326483] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:04:25.680 EDT [1326483] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:04:25.683 EDT [1326483] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:04:25.690 EDT [1326484] LOG:  database system was shut down at 2024-06-10 13:04:25 EDT
+2024-06-10 13:04:25.697 EDT [1326483] LOG:  database system is ready to accept connections
+2024-06-10 13:06:05.479 EDT [1326483] LOG:  received fast shutdown request
+2024-06-10 13:06:05.479 EDT [1326483] LOG:  aborting any active transactions
+2024-06-10 13:06:05.482 EDT [1326483] LOG:  background worker "logical replication launcher" (PID 1326490) exited with exit code 1
+2024-06-10 13:06:05.485 EDT [1326485] LOG:  shutting down
+2024-06-10 13:06:05.594 EDT [1326483] LOG:  database system is shut down
+2024-06-10 13:06:05.713 EDT [1326864] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:06:05.713 EDT [1326864] LOG:  database system is shut down
+2024-06-10 13:06:05.809 EDT [1326868] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:06:05.809 EDT [1326868] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:06:05.809 EDT [1326868] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:06:05.813 EDT [1326869] LOG:  database system was shut down at 2024-06-10 13:06:05 EDT
+2024-06-10 13:06:05.819 EDT [1326868] LOG:  database system is ready to accept connections
+2024-06-10 13:07:37.983 EDT [1326868] LOG:  received fast shutdown request
+2024-06-10 13:07:37.984 EDT [1326868] LOG:  aborting any active transactions
+2024-06-10 13:07:37.987 EDT [1326868] LOG:  background worker "logical replication launcher" (PID 1326875) exited with exit code 1
+2024-06-10 13:07:37.989 EDT [1326870] LOG:  shutting down
+2024-06-10 13:07:38.120 EDT [1326868] LOG:  database system is shut down
+2024-06-10 13:07:38.204 EDT [1327233] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:07:38.204 EDT [1327233] LOG:  database system is shut down
+2024-06-10 13:07:38.315 EDT [1327237] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:07:38.315 EDT [1327237] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:07:38.316 EDT [1327237] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:07:38.319 EDT [1327238] LOG:  database system was shut down at 2024-06-10 13:07:38 EDT
+2024-06-10 13:07:38.326 EDT [1327237] LOG:  database system is ready to accept connections
+2024-06-10 13:09:10.366 EDT [1327237] LOG:  received fast shutdown request
+2024-06-10 13:09:10.370 EDT [1327237] LOG:  aborting any active transactions
+2024-06-10 13:09:10.373 EDT [1327237] LOG:  background worker "logical replication launcher" (PID 1327244) exited with exit code 1
+2024-06-10 13:09:10.375 EDT [1327239] LOG:  shutting down
+2024-06-10 13:09:10.608 EDT [1327237] LOG:  database system is shut down
+2024-06-10 13:09:10.714 EDT [1327702] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:09:10.714 EDT [1327702] LOG:  database system is shut down
+2024-06-10 13:09:10.809 EDT [1327752] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:09:10.809 EDT [1327752] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:09:10.813 EDT [1327752] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:09:10.822 EDT [1327753] LOG:  database system was shut down at 2024-06-10 13:09:10 EDT
+2024-06-10 13:09:10.832 EDT [1327752] LOG:  database system is ready to accept connections
+2024-06-10 13:10:50.880 EDT [1327752] LOG:  received fast shutdown request
+2024-06-10 13:10:50.882 EDT [1327752] LOG:  aborting any active transactions
+2024-06-10 13:10:50.883 EDT [1328145] FATAL:  terminating autovacuum process due to administrator command
+2024-06-10 13:10:50.886 EDT [1327752] LOG:  background worker "logical replication launcher" (PID 1327759) exited with exit code 1
+2024-06-10 13:10:50.889 EDT [1327754] LOG:  shutting down
+2024-06-10 13:10:51.077 EDT [1327752] LOG:  database system is shut down
+2024-06-10 13:10:51.096 EDT [1328146] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:10:51.096 EDT [1328146] LOG:  database system is shut down
+2024-06-10 13:10:51.223 EDT [1328150] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:10:51.223 EDT [1328150] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:10:51.225 EDT [1328150] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:10:51.231 EDT [1328151] LOG:  database system was shut down at 2024-06-10 13:10:50 EDT
+2024-06-10 13:10:51.240 EDT [1328150] LOG:  database system is ready to accept connections
+2024-06-10 13:12:30.998 EDT [1328150] LOG:  received fast shutdown request
+2024-06-10 13:12:31.002 EDT [1328150] LOG:  aborting any active transactions
+2024-06-10 13:12:31.005 EDT [1328150] LOG:  background worker "logical replication launcher" (PID 1328157) exited with exit code 1
+2024-06-10 13:12:31.006 EDT [1328152] LOG:  shutting down
+2024-06-10 13:12:31.186 EDT [1328150] LOG:  database system is shut down
+2024-06-10 13:12:31.217 EDT [1328534] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:12:31.217 EDT [1328534] LOG:  database system is shut down
+2024-06-10 13:12:31.334 EDT [1328538] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:12:31.334 EDT [1328538] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:12:31.336 EDT [1328538] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:12:31.342 EDT [1328540] LOG:  database system was shut down at 2024-06-10 13:12:31 EDT
+2024-06-10 13:12:31.349 EDT [1328538] LOG:  database system is ready to accept connections
+2024-06-10 13:14:10.971 EDT [1328538] LOG:  received fast shutdown request
+2024-06-10 13:14:10.973 EDT [1328538] LOG:  aborting any active transactions
+2024-06-10 13:14:10.977 EDT [1328538] LOG:  background worker "logical replication launcher" (PID 1328546) exited with exit code 1
+2024-06-10 13:14:10.982 EDT [1328541] LOG:  shutting down
+2024-06-10 13:14:11.166 EDT [1328538] LOG:  database system is shut down
+2024-06-10 13:14:11.184 EDT [1328927] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:14:11.184 EDT [1328927] LOG:  database system is shut down
+2024-06-10 13:14:11.309 EDT [1328931] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:14:11.309 EDT [1328931] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:14:11.311 EDT [1328931] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:14:11.318 EDT [1328932] LOG:  database system was shut down at 2024-06-10 13:14:11 EDT
+2024-06-10 13:14:11.324 EDT [1328931] LOG:  database system is ready to accept connections
+2024-06-10 13:15:50.934 EDT [1328931] LOG:  received fast shutdown request
+2024-06-10 13:15:50.938 EDT [1328931] LOG:  aborting any active transactions
+2024-06-10 13:15:50.942 EDT [1328931] LOG:  background worker "logical replication launcher" (PID 1328938) exited with exit code 1
+2024-06-10 13:15:50.942 EDT [1328933] LOG:  shutting down
+2024-06-10 13:15:51.118 EDT [1328931] LOG:  database system is shut down
+2024-06-10 13:15:51.155 EDT [1329306] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:15:51.155 EDT [1329306] LOG:  database system is shut down
+2024-06-10 13:15:51.269 EDT [1329310] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:15:51.269 EDT [1329310] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:15:51.272 EDT [1329310] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:15:51.281 EDT [1329311] LOG:  database system was shut down at 2024-06-10 13:15:51 EDT
+2024-06-10 13:15:51.289 EDT [1329310] LOG:  database system is ready to accept connections
+2024-06-10 13:17:34.868 EDT [1329310] LOG:  received fast shutdown request
+2024-06-10 13:17:34.868 EDT [1329310] LOG:  aborting any active transactions
+2024-06-10 13:17:34.870 EDT [1329310] LOG:  background worker "logical replication launcher" (PID 1329317) exited with exit code 1
+2024-06-10 13:17:34.874 EDT [1329312] LOG:  shutting down
+2024-06-10 13:17:34.993 EDT [1329310] LOG:  database system is shut down
+2024-06-10 13:17:35.105 EDT [1329749] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:17:35.106 EDT [1329749] LOG:  database system is shut down
+2024-06-10 13:17:35.209 EDT [1329753] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:17:35.209 EDT [1329753] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:17:35.210 EDT [1329753] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:17:35.215 EDT [1329754] LOG:  database system was shut down at 2024-06-10 13:17:34 EDT
+2024-06-10 13:17:35.222 EDT [1329753] LOG:  database system is ready to accept connections
+2024-06-10 13:19:07.398 EDT [1329753] LOG:  received fast shutdown request
+2024-06-10 13:19:07.402 EDT [1329753] LOG:  aborting any active transactions
+2024-06-10 13:19:07.405 EDT [1329753] LOG:  background worker "logical replication launcher" (PID 1329760) exited with exit code 1
+2024-06-10 13:19:07.411 EDT [1329755] LOG:  shutting down
+2024-06-10 13:19:07.616 EDT [1329753] LOG:  database system is shut down
+2024-06-10 13:19:07.733 EDT [1330090] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:19:07.733 EDT [1330090] LOG:  database system is shut down
+2024-06-10 13:19:07.836 EDT [1330094] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:19:07.836 EDT [1330094] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:19:07.838 EDT [1330094] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:19:07.845 EDT [1330095] LOG:  database system was shut down at 2024-06-10 13:19:07 EDT
+2024-06-10 13:19:07.852 EDT [1330094] LOG:  database system is ready to accept connections
+2024-06-10 13:20:47.439 EDT [1330094] LOG:  received fast shutdown request
+2024-06-10 13:20:47.441 EDT [1330094] LOG:  aborting any active transactions
+2024-06-10 13:20:47.443 EDT [1330094] LOG:  background worker "logical replication launcher" (PID 1330101) exited with exit code 1
+2024-06-10 13:20:47.449 EDT [1330096] LOG:  shutting down
+2024-06-10 13:20:47.639 EDT [1330094] LOG:  database system is shut down
+2024-06-10 13:20:47.658 EDT [1330495] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:20:47.658 EDT [1330495] LOG:  database system is shut down
+2024-06-10 13:20:47.796 EDT [1330499] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:20:47.796 EDT [1330499] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:20:47.799 EDT [1330499] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:20:47.809 EDT [1330500] LOG:  database system was shut down at 2024-06-10 13:20:47 EDT
+2024-06-10 13:20:47.817 EDT [1330499] LOG:  database system is ready to accept connections
+2024-06-10 13:22:27.957 EDT [1330499] LOG:  received fast shutdown request
+2024-06-10 13:22:27.958 EDT [1330499] LOG:  aborting any active transactions
+2024-06-10 13:22:27.962 EDT [1330499] LOG:  background worker "logical replication launcher" (PID 1330506) exited with exit code 1
+2024-06-10 13:22:27.966 EDT [1330501] LOG:  shutting down
+2024-06-10 13:22:28.096 EDT [1330499] LOG:  database system is shut down
+2024-06-10 13:22:28.195 EDT [1330891] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:22:28.195 EDT [1330891] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:22:28.196 EDT [1330891] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:22:28.200 EDT [1330892] LOG:  database system was shut down at 2024-06-10 13:22:28 EDT
+2024-06-10 13:22:28.205 EDT [1330891] LOG:  database system is ready to accept connections
+2024-06-10 13:24:00.419 EDT [1330891] LOG:  received fast shutdown request
+2024-06-10 13:24:00.422 EDT [1330891] LOG:  aborting any active transactions
+2024-06-10 13:24:00.426 EDT [1330891] LOG:  background worker "logical replication launcher" (PID 1330898) exited with exit code 1
+2024-06-10 13:24:00.431 EDT [1330893] LOG:  shutting down
+2024-06-10 13:24:00.635 EDT [1330891] LOG:  database system is shut down
+2024-06-10 13:24:00.755 EDT [1331252] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:24:00.755 EDT [1331252] LOG:  database system is shut down
+2024-06-10 13:24:00.857 EDT [1331256] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:24:00.857 EDT [1331256] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:24:00.859 EDT [1331256] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:24:00.866 EDT [1331257] LOG:  database system was shut down at 2024-06-10 13:24:00 EDT
+2024-06-10 13:24:00.878 EDT [1331256] LOG:  database system is ready to accept connections
+2024-06-10 13:25:40.534 EDT [1331256] LOG:  received fast shutdown request
+2024-06-10 13:25:40.536 EDT [1331256] LOG:  aborting any active transactions
+2024-06-10 13:25:40.540 EDT [1331256] LOG:  background worker "logical replication launcher" (PID 1331263) exited with exit code 1
+2024-06-10 13:25:40.540 EDT [1331258] LOG:  shutting down
+2024-06-10 13:25:40.723 EDT [1331256] LOG:  database system is shut down
+2024-06-10 13:25:40.752 EDT [1331648] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:25:40.752 EDT [1331648] LOG:  database system is shut down
+2024-06-10 13:25:40.870 EDT [1331652] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:25:40.870 EDT [1331652] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:25:40.874 EDT [1331652] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:25:40.883 EDT [1331653] LOG:  database system was shut down at 2024-06-10 13:25:40 EDT
+2024-06-10 13:25:40.891 EDT [1331652] LOG:  database system is ready to accept connections
+2024-06-10 13:27:20.137 EDT [1331652] LOG:  received fast shutdown request
+2024-06-10 13:27:20.137 EDT [1331652] LOG:  aborting any active transactions
+2024-06-10 13:27:20.141 EDT [1331652] LOG:  background worker "logical replication launcher" (PID 1331659) exited with exit code 1
+2024-06-10 13:27:20.143 EDT [1331654] LOG:  shutting down
+2024-06-10 13:27:20.260 EDT [1331652] LOG:  database system is shut down
+2024-06-10 13:27:20.376 EDT [1332042] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:27:20.376 EDT [1332042] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:27:20.376 EDT [1332042] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:27:20.380 EDT [1332043] LOG:  database system was shut down at 2024-06-10 13:27:20 EDT
+2024-06-10 13:27:20.388 EDT [1332042] LOG:  database system is ready to accept connections
+2024-06-10 13:28:52.510 EDT [1332042] LOG:  received fast shutdown request
+2024-06-10 13:28:52.513 EDT [1332042] LOG:  aborting any active transactions
+2024-06-10 13:28:52.517 EDT [1332042] LOG:  background worker "logical replication launcher" (PID 1332049) exited with exit code 1
+2024-06-10 13:28:52.519 EDT [1332044] LOG:  shutting down
+2024-06-10 13:28:52.725 EDT [1332042] LOG:  database system is shut down
+2024-06-10 13:28:52.866 EDT [1332407] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:28:52.866 EDT [1332407] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:28:52.868 EDT [1332407] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:28:52.875 EDT [1332408] LOG:  database system was shut down at 2024-06-10 13:28:52 EDT
+2024-06-10 13:28:52.887 EDT [1332407] LOG:  database system is ready to accept connections
+2024-06-10 13:30:37.352 EDT [1332407] LOG:  received fast shutdown request
+2024-06-10 13:30:37.354 EDT [1332407] LOG:  aborting any active transactions
+2024-06-10 13:30:37.356 EDT [1332407] LOG:  background worker "logical replication launcher" (PID 1332414) exited with exit code 1
+2024-06-10 13:30:37.359 EDT [1332409] LOG:  shutting down
+2024-06-10 13:30:37.553 EDT [1332407] LOG:  database system is shut down
+2024-06-10 13:30:37.677 EDT [1332828] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:30:37.677 EDT [1332828] LOG:  database system is shut down
+2024-06-10 13:30:37.801 EDT [1332832] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:30:37.802 EDT [1332832] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:30:37.804 EDT [1332832] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:30:37.811 EDT [1332833] LOG:  database system was shut down at 2024-06-10 13:30:37 EDT
+2024-06-10 13:30:37.825 EDT [1332832] LOG:  database system is ready to accept connections
+2024-06-10 13:32:14.753 EDT [1332832] LOG:  received fast shutdown request
+2024-06-10 13:32:14.754 EDT [1332832] LOG:  aborting any active transactions
+2024-06-10 13:32:14.758 EDT [1332832] LOG:  background worker "logical replication launcher" (PID 1332839) exited with exit code 1
+2024-06-10 13:32:14.759 EDT [1332834] LOG:  shutting down
+2024-06-10 13:32:14.881 EDT [1332832] LOG:  database system is shut down
+2024-06-10 13:32:14.981 EDT [1333222] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:32:14.982 EDT [1333222] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:32:14.982 EDT [1333222] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:32:14.986 EDT [1333223] LOG:  database system was shut down at 2024-06-10 13:32:14 EDT
+2024-06-10 13:32:14.991 EDT [1333222] LOG:  database system is ready to accept connections
+2024-06-10 13:33:47.214 EDT [1333222] LOG:  received fast shutdown request
+2024-06-10 13:33:47.216 EDT [1333222] LOG:  aborting any active transactions
+2024-06-10 13:33:47.220 EDT [1333222] LOG:  background worker "logical replication launcher" (PID 1333229) exited with exit code 1
+2024-06-10 13:33:47.225 EDT [1333224] LOG:  shutting down
+2024-06-10 13:33:47.406 EDT [1333222] LOG:  database system is shut down
+2024-06-10 13:33:47.435 EDT [1333588] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:33:47.435 EDT [1333588] LOG:  database system is shut down
+2024-06-10 13:33:47.563 EDT [1333592] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:33:47.563 EDT [1333592] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:33:47.566 EDT [1333592] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:33:47.575 EDT [1333593] LOG:  database system was shut down at 2024-06-10 13:33:47 EDT
+2024-06-10 13:33:47.587 EDT [1333592] LOG:  database system is ready to accept connections
+2024-06-10 13:35:27.359 EDT [1333592] LOG:  received fast shutdown request
+2024-06-10 13:35:27.363 EDT [1333592] LOG:  aborting any active transactions
+2024-06-10 13:35:27.366 EDT [1333592] LOG:  background worker "logical replication launcher" (PID 1333599) exited with exit code 1
+2024-06-10 13:35:27.370 EDT [1333594] LOG:  shutting down
+2024-06-10 13:35:27.557 EDT [1333592] LOG:  database system is shut down
+2024-06-10 13:35:27.579 EDT [1333985] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:35:27.579 EDT [1333985] LOG:  database system is shut down
+2024-06-10 13:35:27.699 EDT [1333989] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:35:27.699 EDT [1333989] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:35:27.703 EDT [1333989] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:35:27.712 EDT [1333990] LOG:  database system was shut down at 2024-06-10 13:35:27 EDT
+2024-06-10 13:35:27.718 EDT [1333989] LOG:  database system is ready to accept connections
+2024-06-10 13:37:06.079 EDT [1333989] LOG:  received fast shutdown request
+2024-06-10 13:37:06.080 EDT [1333989] LOG:  aborting any active transactions
+2024-06-10 13:37:06.082 EDT [1333989] LOG:  background worker "logical replication launcher" (PID 1333996) exited with exit code 1
+2024-06-10 13:37:06.086 EDT [1333991] LOG:  shutting down
+2024-06-10 13:37:06.203 EDT [1333989] LOG:  database system is shut down
+2024-06-10 13:37:06.315 EDT [1334354] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:37:06.315 EDT [1334354] LOG:  database system is shut down
+2024-06-10 13:37:06.415 EDT [1334358] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:37:06.415 EDT [1334358] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:37:06.416 EDT [1334358] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:37:06.419 EDT [1334359] LOG:  database system was shut down at 2024-06-10 13:37:06 EDT
+2024-06-10 13:37:06.426 EDT [1334358] LOG:  database system is ready to accept connections
+2024-06-10 13:38:38.454 EDT [1334358] LOG:  received fast shutdown request
+2024-06-10 13:38:38.457 EDT [1334358] LOG:  aborting any active transactions
+2024-06-10 13:38:38.461 EDT [1334358] LOG:  background worker "logical replication launcher" (PID 1334365) exited with exit code 1
+2024-06-10 13:38:38.464 EDT [1334360] LOG:  shutting down
+2024-06-10 13:38:38.644 EDT [1334358] LOG:  database system is shut down
+2024-06-10 13:38:38.683 EDT [1334749] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:38:38.683 EDT [1334749] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:38:38.686 EDT [1334749] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:38:38.696 EDT [1334750] LOG:  database system was shut down at 2024-06-10 13:38:38 EDT
+2024-06-10 13:38:38.710 EDT [1334749] LOG:  database system is ready to accept connections
+2024-06-10 13:40:18.562 EDT [1334749] LOG:  received fast shutdown request
+2024-06-10 13:40:18.564 EDT [1334749] LOG:  aborting any active transactions
+2024-06-10 13:40:18.566 EDT [1334749] LOG:  background worker "logical replication launcher" (PID 1334756) exited with exit code 1
+2024-06-10 13:40:18.569 EDT [1334751] LOG:  shutting down
+2024-06-10 13:40:18.758 EDT [1334749] LOG:  database system is shut down
+2024-06-10 13:40:18.775 EDT [1335203] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:40:18.776 EDT [1335203] LOG:  database system is shut down
+2024-06-10 13:40:18.910 EDT [1335207] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:40:18.910 EDT [1335207] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:40:18.913 EDT [1335207] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:40:18.920 EDT [1335208] LOG:  database system was shut down at 2024-06-10 13:40:18 EDT
+2024-06-10 13:40:18.932 EDT [1335207] LOG:  database system is ready to accept connections
+2024-06-10 13:41:55.719 EDT [1335207] LOG:  received fast shutdown request
+2024-06-10 13:41:55.722 EDT [1335207] LOG:  aborting any active transactions
+2024-06-10 13:41:55.726 EDT [1335207] LOG:  background worker "logical replication launcher" (PID 1335214) exited with exit code 1
+2024-06-10 13:41:55.729 EDT [1335209] LOG:  shutting down
+2024-06-10 13:41:55.948 EDT [1335207] LOG:  database system is shut down
+2024-06-10 13:41:56.067 EDT [1336575] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:41:56.067 EDT [1336575] LOG:  database system is shut down
+2024-06-10 13:41:56.162 EDT [1336579] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:41:56.162 EDT [1336579] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:41:56.165 EDT [1336579] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:41:56.172 EDT [1336580] LOG:  database system was shut down at 2024-06-10 13:41:55 EDT
+2024-06-10 13:41:56.180 EDT [1336579] LOG:  database system is ready to accept connections
+2024-06-10 13:43:39.918 EDT [1336579] LOG:  received fast shutdown request
+2024-06-10 13:43:39.921 EDT [1336579] LOG:  aborting any active transactions
+2024-06-10 13:43:39.923 EDT [1336579] LOG:  background worker "logical replication launcher" (PID 1336586) exited with exit code 1
+2024-06-10 13:43:39.926 EDT [1336581] LOG:  shutting down
+2024-06-10 13:43:40.112 EDT [1336579] LOG:  database system is shut down
+2024-06-10 13:43:40.133 EDT [1336989] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:43:40.133 EDT [1336989] LOG:  database system is shut down
+2024-06-10 13:43:40.266 EDT [1336993] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:43:40.266 EDT [1336993] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:43:40.270 EDT [1336993] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:43:40.280 EDT [1336994] LOG:  database system was shut down at 2024-06-10 13:43:40 EDT
+2024-06-10 13:43:40.288 EDT [1336993] LOG:  database system is ready to accept connections
+2024-06-10 13:45:19.962 EDT [1336993] LOG:  received fast shutdown request
+2024-06-10 13:45:19.965 EDT [1336993] LOG:  aborting any active transactions
+2024-06-10 13:45:19.969 EDT [1336993] LOG:  background worker "logical replication launcher" (PID 1337000) exited with exit code 1
+2024-06-10 13:45:19.972 EDT [1336995] LOG:  shutting down
+2024-06-10 13:45:20.152 EDT [1336993] LOG:  database system is shut down
+2024-06-10 13:45:20.183 EDT [1337372] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:45:20.183 EDT [1337372] LOG:  database system is shut down
+2024-06-10 13:45:20.324 EDT [1337376] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:45:20.325 EDT [1337376] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:45:20.328 EDT [1337376] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:45:20.338 EDT [1337377] LOG:  database system was shut down at 2024-06-10 13:45:20 EDT
+2024-06-10 13:45:20.347 EDT [1337376] LOG:  database system is ready to accept connections
+2024-06-10 13:47:00.127 EDT [1337376] LOG:  received fast shutdown request
+2024-06-10 13:47:00.127 EDT [1337376] LOG:  aborting any active transactions
+2024-06-10 13:47:00.130 EDT [1337376] LOG:  background worker "logical replication launcher" (PID 1337383) exited with exit code 1
+2024-06-10 13:47:00.133 EDT [1337378] LOG:  shutting down
+2024-06-10 13:47:00.262 EDT [1337376] LOG:  database system is shut down
+2024-06-10 13:47:00.353 EDT [1337764] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:47:00.353 EDT [1337764] LOG:  database system is shut down
+2024-06-10 13:47:00.468 EDT [1337768] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:47:00.468 EDT [1337768] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:47:00.469 EDT [1337768] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:47:00.474 EDT [1337769] LOG:  database system was shut down at 2024-06-10 13:47:00 EDT
+2024-06-10 13:47:00.482 EDT [1337768] LOG:  database system is ready to accept connections
+2024-06-10 13:48:32.521 EDT [1337768] LOG:  received fast shutdown request
+2024-06-10 13:48:32.523 EDT [1337768] LOG:  aborting any active transactions
+2024-06-10 13:48:32.525 EDT [1337768] LOG:  background worker "logical replication launcher" (PID 1337775) exited with exit code 1
+2024-06-10 13:48:32.530 EDT [1337770] LOG:  shutting down
+2024-06-10 13:48:32.720 EDT [1337768] LOG:  database system is shut down
+2024-06-10 13:48:32.739 EDT [1338128] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:48:32.739 EDT [1338128] LOG:  database system is shut down
+2024-06-10 13:48:32.858 EDT [1338132] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:48:32.858 EDT [1338132] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:48:32.862 EDT [1338132] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:48:32.872 EDT [1338133] LOG:  database system was shut down at 2024-06-10 13:48:32 EDT
+2024-06-10 13:48:32.880 EDT [1338132] LOG:  database system is ready to accept connections
+2024-06-10 13:50:12.504 EDT [1338132] LOG:  received fast shutdown request
+2024-06-10 13:50:12.507 EDT [1338132] LOG:  aborting any active transactions
+2024-06-10 13:50:12.511 EDT [1338132] LOG:  background worker "logical replication launcher" (PID 1338139) exited with exit code 1
+2024-06-10 13:50:12.515 EDT [1338134] LOG:  shutting down
+2024-06-10 13:50:12.705 EDT [1338132] LOG:  database system is shut down
+2024-06-10 13:50:12.817 EDT [1338520] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:50:12.817 EDT [1338520] LOG:  database system is shut down
+2024-06-10 13:50:12.944 EDT [1338524] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:50:12.944 EDT [1338524] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:50:12.946 EDT [1338524] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:50:12.953 EDT [1338525] LOG:  database system was shut down at 2024-06-10 13:50:12 EDT
+2024-06-10 13:50:12.961 EDT [1338524] LOG:  database system is ready to accept connections
+2024-06-10 13:51:50.156 EDT [1338524] LOG:  received fast shutdown request
+2024-06-10 13:51:50.157 EDT [1338524] LOG:  aborting any active transactions
+2024-06-10 13:51:50.159 EDT [1338524] LOG:  background worker "logical replication launcher" (PID 1338531) exited with exit code 1
+2024-06-10 13:51:50.164 EDT [1338526] LOG:  shutting down
+2024-06-10 13:51:50.288 EDT [1338524] LOG:  database system is shut down
+2024-06-10 13:51:50.369 EDT [1338912] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:51:50.369 EDT [1338912] LOG:  database system is shut down
+2024-06-10 13:51:50.493 EDT [1338916] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:51:50.493 EDT [1338916] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:51:50.494 EDT [1338916] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:51:50.498 EDT [1338917] LOG:  database system was shut down at 2024-06-10 13:51:50 EDT
+2024-06-10 13:51:50.504 EDT [1338916] LOG:  database system is ready to accept connections
+2024-06-10 13:53:22.576 EDT [1338916] LOG:  received fast shutdown request
+2024-06-10 13:53:22.579 EDT [1338916] LOG:  aborting any active transactions
+2024-06-10 13:53:22.582 EDT [1338916] LOG:  background worker "logical replication launcher" (PID 1338923) exited with exit code 1
+2024-06-10 13:53:22.585 EDT [1338918] LOG:  shutting down
+2024-06-10 13:53:22.774 EDT [1338916] LOG:  database system is shut down
+2024-06-10 13:53:22.794 EDT [1339284] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:53:22.794 EDT [1339284] LOG:  database system is shut down
+2024-06-10 13:53:22.916 EDT [1339288] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:53:22.916 EDT [1339288] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:53:22.920 EDT [1339288] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:53:22.929 EDT [1339289] LOG:  database system was shut down at 2024-06-10 13:53:22 EDT
+2024-06-10 13:53:22.938 EDT [1339288] LOG:  database system is ready to accept connections
+2024-06-10 13:55:02.602 EDT [1339288] LOG:  received fast shutdown request
+2024-06-10 13:55:02.606 EDT [1339288] LOG:  aborting any active transactions
+2024-06-10 13:55:02.608 EDT [1339288] LOG:  background worker "logical replication launcher" (PID 1339295) exited with exit code 1
+2024-06-10 13:55:02.611 EDT [1339290] LOG:  shutting down
+2024-06-10 13:55:02.795 EDT [1339288] LOG:  database system is shut down
+2024-06-10 13:55:02.822 EDT [1339685] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:55:02.822 EDT [1339685] LOG:  database system is shut down
+2024-06-10 13:55:02.934 EDT [1339689] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:55:02.934 EDT [1339689] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:55:02.938 EDT [1339689] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:55:02.948 EDT [1339690] LOG:  database system was shut down at 2024-06-10 13:55:02 EDT
+2024-06-10 13:55:02.956 EDT [1339689] LOG:  database system is ready to accept connections
+2024-06-10 13:56:43.465 EDT [1339689] LOG:  received fast shutdown request
+2024-06-10 13:56:43.465 EDT [1339689] LOG:  aborting any active transactions
+2024-06-10 13:56:43.468 EDT [1339689] LOG:  background worker "logical replication launcher" (PID 1339696) exited with exit code 1
+2024-06-10 13:56:43.470 EDT [1339691] LOG:  shutting down
+2024-06-10 13:56:43.602 EDT [1339689] LOG:  database system is shut down
+2024-06-10 13:56:43.695 EDT [1340904] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:56:43.695 EDT [1340904] LOG:  database system is shut down
+2024-06-10 13:56:43.795 EDT [1340908] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:56:43.795 EDT [1340908] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:56:43.796 EDT [1340908] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:56:43.800 EDT [1340909] LOG:  database system was shut down at 2024-06-10 13:56:43 EDT
+2024-06-10 13:56:43.807 EDT [1340908] LOG:  database system is ready to accept connections
+2024-06-10 13:58:15.982 EDT [1340908] LOG:  received fast shutdown request
+2024-06-10 13:58:15.985 EDT [1340908] LOG:  aborting any active transactions
+2024-06-10 13:58:15.989 EDT [1340908] LOG:  background worker "logical replication launcher" (PID 1340915) exited with exit code 1
+2024-06-10 13:58:15.994 EDT [1340910] LOG:  shutting down
+2024-06-10 13:58:16.198 EDT [1340908] LOG:  database system is shut down
+2024-06-10 13:58:16.312 EDT [1341249] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:58:16.312 EDT [1341249] LOG:  database system is shut down
+2024-06-10 13:58:16.424 EDT [1341254] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:58:16.424 EDT [1341254] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:58:16.428 EDT [1341254] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:58:16.438 EDT [1341255] LOG:  database system was shut down at 2024-06-10 13:58:16 EDT
+2024-06-10 13:58:16.448 EDT [1341254] LOG:  database system is ready to accept connections
+2024-06-10 13:59:56.625 EDT [1341254] LOG:  received fast shutdown request
+2024-06-10 13:59:56.627 EDT [1341254] LOG:  aborting any active transactions
+2024-06-10 13:59:56.629 EDT [1341254] LOG:  background worker "logical replication launcher" (PID 1341261) exited with exit code 1
+2024-06-10 13:59:56.635 EDT [1341256] LOG:  shutting down
+2024-06-10 13:59:56.816 EDT [1341254] LOG:  database system is shut down
+2024-06-10 13:59:56.845 EDT [1341648] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 13:59:56.845 EDT [1341648] LOG:  database system is shut down
+2024-06-10 13:59:56.968 EDT [1341652] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 13:59:56.969 EDT [1341652] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 13:59:56.973 EDT [1341652] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 13:59:56.983 EDT [1341653] LOG:  database system was shut down at 2024-06-10 13:59:56 EDT
+2024-06-10 13:59:56.991 EDT [1341652] LOG:  database system is ready to accept connections
+2024-06-10 14:01:33.877 EDT [1341652] LOG:  received fast shutdown request
+2024-06-10 14:01:33.880 EDT [1341652] LOG:  aborting any active transactions
+2024-06-10 14:01:33.885 EDT [1341652] LOG:  background worker "logical replication launcher" (PID 1341659) exited with exit code 1
+2024-06-10 14:01:33.887 EDT [1341654] LOG:  shutting down
+2024-06-10 14:01:34.097 EDT [1341652] LOG:  database system is shut down
+2024-06-10 14:01:34.211 EDT [1342034] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:01:34.211 EDT [1342034] LOG:  database system is shut down
+2024-06-10 14:01:34.310 EDT [1342038] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:01:34.310 EDT [1342038] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:01:34.312 EDT [1342038] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:01:34.322 EDT [1342039] LOG:  database system was shut down at 2024-06-10 14:01:34 EDT
+2024-06-10 14:01:34.330 EDT [1342038] LOG:  database system is ready to accept connections
+2024-06-10 14:03:14.180 EDT [1342038] LOG:  received fast shutdown request
+2024-06-10 14:03:14.183 EDT [1342038] LOG:  aborting any active transactions
+2024-06-10 14:03:14.187 EDT [1342038] LOG:  background worker "logical replication launcher" (PID 1342045) exited with exit code 1
+2024-06-10 14:03:14.190 EDT [1342040] LOG:  shutting down
+2024-06-10 14:03:14.362 EDT [1342038] LOG:  database system is shut down
+2024-06-10 14:03:14.397 EDT [1342429] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:03:14.398 EDT [1342429] LOG:  database system is shut down
+2024-06-10 14:03:14.520 EDT [1342433] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:03:14.520 EDT [1342433] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:03:14.524 EDT [1342433] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:03:14.533 EDT [1342434] LOG:  database system was shut down at 2024-06-10 14:03:14 EDT
+2024-06-10 14:03:14.542 EDT [1342433] LOG:  database system is ready to accept connections
+2024-06-10 14:04:54.214 EDT [1342433] LOG:  received fast shutdown request
+2024-06-10 14:04:54.214 EDT [1342433] LOG:  aborting any active transactions
+2024-06-10 14:04:54.218 EDT [1342433] LOG:  background worker "logical replication launcher" (PID 1342440) exited with exit code 1
+2024-06-10 14:04:54.222 EDT [1342435] LOG:  shutting down
+2024-06-10 14:04:54.332 EDT [1342433] LOG:  database system is shut down
+2024-06-10 14:04:54.446 EDT [1342821] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:04:54.446 EDT [1342821] LOG:  database system is shut down
+2024-06-10 14:04:54.548 EDT [1342825] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:04:54.549 EDT [1342825] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:04:54.549 EDT [1342825] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:04:54.552 EDT [1342826] LOG:  database system was shut down at 2024-06-10 14:04:54 EDT
+2024-06-10 14:04:54.557 EDT [1342825] LOG:  database system is ready to accept connections
+2024-06-10 14:06:26.766 EDT [1342825] LOG:  received fast shutdown request
+2024-06-10 14:06:26.767 EDT [1342825] LOG:  aborting any active transactions
+2024-06-10 14:06:26.770 EDT [1342825] LOG:  background worker "logical replication launcher" (PID 1342832) exited with exit code 1
+2024-06-10 14:06:26.771 EDT [1342827] LOG:  shutting down
+2024-06-10 14:06:26.899 EDT [1342825] LOG:  database system is shut down
+2024-06-10 14:06:26.990 EDT [1343200] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:06:26.990 EDT [1343200] LOG:  database system is shut down
+2024-06-10 14:06:27.104 EDT [1343204] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:06:27.104 EDT [1343204] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:06:27.105 EDT [1343204] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:06:27.109 EDT [1343205] LOG:  database system was shut down at 2024-06-10 14:06:26 EDT
+2024-06-10 14:06:27.115 EDT [1343204] LOG:  database system is ready to accept connections
+2024-06-10 14:07:59.169 EDT [1343204] LOG:  received fast shutdown request
+2024-06-10 14:07:59.172 EDT [1343204] LOG:  aborting any active transactions
+2024-06-10 14:07:59.176 EDT [1343204] LOG:  background worker "logical replication launcher" (PID 1343211) exited with exit code 1
+2024-06-10 14:07:59.179 EDT [1343206] LOG:  shutting down
+2024-06-10 14:07:59.366 EDT [1343204] LOG:  database system is shut down
+2024-06-10 14:07:59.388 EDT [1343564] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:07:59.388 EDT [1343564] LOG:  database system is shut down
+2024-06-10 14:07:59.508 EDT [1343568] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:07:59.508 EDT [1343568] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:07:59.512 EDT [1343568] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:07:59.521 EDT [1343569] LOG:  database system was shut down at 2024-06-10 14:07:59 EDT
+2024-06-10 14:07:59.529 EDT [1343568] LOG:  database system is ready to accept connections
+2024-06-10 14:09:43.066 EDT [1343568] LOG:  received fast shutdown request
+2024-06-10 14:09:43.068 EDT [1343568] LOG:  aborting any active transactions
+2024-06-10 14:09:43.070 EDT [1343568] LOG:  background worker "logical replication launcher" (PID 1343575) exited with exit code 1
+2024-06-10 14:09:43.073 EDT [1343570] LOG:  shutting down
+2024-06-10 14:09:43.255 EDT [1343568] LOG:  database system is shut down
+2024-06-10 14:09:43.287 EDT [1344053] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:09:43.287 EDT [1344053] LOG:  database system is shut down
+2024-06-10 14:09:43.399 EDT [1344057] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:09:43.399 EDT [1344057] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:09:43.403 EDT [1344057] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:09:43.411 EDT [1344058] LOG:  database system was shut down at 2024-06-10 14:09:43 EDT
+2024-06-10 14:09:43.419 EDT [1344057] LOG:  database system is ready to accept connections
+2024-06-10 14:11:18.966 EDT [1344057] LOG:  received fast shutdown request
+2024-06-10 14:11:18.966 EDT [1344057] LOG:  aborting any active transactions
+2024-06-10 14:11:18.968 EDT [1344057] LOG:  background worker "logical replication launcher" (PID 1344064) exited with exit code 1
+2024-06-10 14:11:18.974 EDT [1344059] LOG:  shutting down
+2024-06-10 14:11:19.101 EDT [1344057] LOG:  database system is shut down
+2024-06-10 14:11:19.180 EDT [1344401] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:11:19.180 EDT [1344401] LOG:  database system is shut down
+2024-06-10 14:11:19.303 EDT [1344405] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:11:19.303 EDT [1344405] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:11:19.304 EDT [1344405] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:11:19.307 EDT [1344406] LOG:  database system was shut down at 2024-06-10 14:11:19 EDT
+2024-06-10 14:11:19.314 EDT [1344405] LOG:  database system is ready to accept connections
+2024-06-10 14:12:51.359 EDT [1344405] LOG:  received fast shutdown request
+2024-06-10 14:12:51.359 EDT [1344405] LOG:  aborting any active transactions
+2024-06-10 14:12:51.363 EDT [1344405] LOG:  background worker "logical replication launcher" (PID 1344412) exited with exit code 1
+2024-06-10 14:12:51.367 EDT [1344407] LOG:  shutting down
+2024-06-10 14:12:51.495 EDT [1344405] LOG:  database system is shut down
+2024-06-10 14:12:51.583 EDT [1344766] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:12:51.583 EDT [1344766] LOG:  database system is shut down
+2024-06-10 14:12:51.688 EDT [1344770] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:12:51.688 EDT [1344770] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:12:51.689 EDT [1344770] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:12:51.692 EDT [1344771] LOG:  database system was shut down at 2024-06-10 14:12:51 EDT
+2024-06-10 14:12:51.697 EDT [1344770] LOG:  database system is ready to accept connections
+2024-06-10 14:14:24.536 EDT [1344770] LOG:  received fast shutdown request
+2024-06-10 14:14:24.540 EDT [1344770] LOG:  aborting any active transactions
+2024-06-10 14:14:24.544 EDT [1344770] LOG:  background worker "logical replication launcher" (PID 1344777) exited with exit code 1
+2024-06-10 14:14:24.547 EDT [1344772] LOG:  shutting down
+2024-06-10 14:14:24.731 EDT [1344770] LOG:  database system is shut down
+2024-06-10 14:14:24.750 EDT [1345140] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:14:24.750 EDT [1345140] LOG:  database system is shut down
+2024-06-10 14:14:24.885 EDT [1345144] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:14:24.885 EDT [1345144] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:14:24.887 EDT [1345144] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:14:24.894 EDT [1345145] LOG:  database system was shut down at 2024-06-10 14:14:24 EDT
+2024-06-10 14:14:24.903 EDT [1345144] LOG:  database system is ready to accept connections
+2024-06-10 14:16:04.546 EDT [1345144] LOG:  received fast shutdown request
+2024-06-10 14:16:04.548 EDT [1345144] LOG:  aborting any active transactions
+2024-06-10 14:16:04.552 EDT [1345144] LOG:  background worker "logical replication launcher" (PID 1345151) exited with exit code 1
+2024-06-10 14:16:04.554 EDT [1345146] LOG:  shutting down
+2024-06-10 14:16:04.732 EDT [1345144] LOG:  database system is shut down
+2024-06-10 14:16:04.761 EDT [1345541] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:16:04.761 EDT [1345541] LOG:  database system is shut down
+2024-06-10 14:16:04.884 EDT [1345545] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:16:04.884 EDT [1345545] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:16:04.888 EDT [1345545] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:16:04.898 EDT [1345546] LOG:  database system was shut down at 2024-06-10 14:16:04 EDT
+2024-06-10 14:16:04.907 EDT [1345545] LOG:  database system is ready to accept connections
+2024-06-10 14:17:44.635 EDT [1345545] LOG:  received fast shutdown request
+2024-06-10 14:17:44.635 EDT [1345545] LOG:  aborting any active transactions
+2024-06-10 14:17:44.639 EDT [1345545] LOG:  background worker "logical replication launcher" (PID 1345552) exited with exit code 1
+2024-06-10 14:17:44.641 EDT [1345547] LOG:  shutting down
+2024-06-10 14:17:44.758 EDT [1345545] LOG:  database system is shut down
+2024-06-10 14:17:44.865 EDT [1345937] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:17:44.865 EDT [1345937] LOG:  database system is shut down
+2024-06-10 14:17:44.975 EDT [1345941] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:17:44.975 EDT [1345941] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:17:44.976 EDT [1345941] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:17:44.979 EDT [1345942] LOG:  database system was shut down at 2024-06-10 14:17:44 EDT
+2024-06-10 14:17:44.984 EDT [1345941] LOG:  database system is ready to accept connections
+2024-06-10 14:19:16.957 EDT [1345941] LOG:  received fast shutdown request
+2024-06-10 14:19:16.957 EDT [1345941] LOG:  aborting any active transactions
+2024-06-10 14:19:16.960 EDT [1345941] LOG:  background worker "logical replication launcher" (PID 1345948) exited with exit code 1
+2024-06-10 14:19:16.963 EDT [1345943] LOG:  shutting down
+2024-06-10 14:19:17.093 EDT [1345941] LOG:  database system is shut down
+2024-06-10 14:19:17.200 EDT [1346306] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:19:17.200 EDT [1346306] LOG:  database system is shut down
+2024-06-10 14:19:17.294 EDT [1346310] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:19:17.294 EDT [1346310] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:19:17.295 EDT [1346310] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:19:17.298 EDT [1346311] LOG:  database system was shut down at 2024-06-10 14:19:17 EDT
+2024-06-10 14:19:17.304 EDT [1346310] LOG:  database system is ready to accept connections
+2024-06-10 14:20:56.143 EDT [1346310] LOG:  received fast shutdown request
+2024-06-10 14:20:56.146 EDT [1346310] LOG:  aborting any active transactions
+2024-06-10 14:20:56.149 EDT [1346310] LOG:  background worker "logical replication launcher" (PID 1346317) exited with exit code 1
+2024-06-10 14:20:56.153 EDT [1346312] LOG:  shutting down
+2024-06-10 14:20:56.346 EDT [1346310] LOG:  database system is shut down
+2024-06-10 14:20:56.483 EDT [1346715] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:20:56.483 EDT [1346715] LOG:  database system is shut down
+2024-06-10 14:20:56.590 EDT [1346719] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:20:56.590 EDT [1346719] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:20:56.593 EDT [1346719] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:20:56.601 EDT [1346720] LOG:  database system was shut down at 2024-06-10 14:20:56 EDT
+2024-06-10 14:20:56.611 EDT [1346719] LOG:  database system is ready to accept connections
+2024-06-10 14:22:40.707 EDT [1346719] LOG:  received fast shutdown request
+2024-06-10 14:22:40.710 EDT [1346719] LOG:  aborting any active transactions
+2024-06-10 14:22:40.712 EDT [1346719] LOG:  background worker "logical replication launcher" (PID 1346726) exited with exit code 1
+2024-06-10 14:22:40.715 EDT [1346721] LOG:  shutting down
+2024-06-10 14:22:40.896 EDT [1346719] LOG:  database system is shut down
+2024-06-10 14:22:40.922 EDT [1347126] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:22:40.922 EDT [1347126] LOG:  database system is shut down
+2024-06-10 14:22:41.042 EDT [1347130] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:22:41.042 EDT [1347130] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:22:41.044 EDT [1347130] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:22:41.051 EDT [1347131] LOG:  database system was shut down at 2024-06-10 14:22:40 EDT
+2024-06-10 14:22:41.060 EDT [1347130] LOG:  database system is ready to accept connections
+2024-06-10 14:24:20.736 EDT [1347130] LOG:  received fast shutdown request
+2024-06-10 14:24:20.739 EDT [1347130] LOG:  aborting any active transactions
+2024-06-10 14:24:20.740 EDT [1347130] LOG:  background worker "logical replication launcher" (PID 1347137) exited with exit code 1
+2024-06-10 14:24:20.746 EDT [1347132] LOG:  shutting down
+2024-06-10 14:24:20.917 EDT [1347130] LOG:  database system is shut down
+2024-06-10 14:24:20.971 EDT [1347493] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:24:20.972 EDT [1347493] LOG:  database system is shut down
+2024-06-10 14:24:21.075 EDT [1347497] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:24:21.075 EDT [1347497] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:24:21.078 EDT [1347497] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:24:21.088 EDT [1347498] LOG:  database system was shut down at 2024-06-10 14:24:20 EDT
+2024-06-10 14:24:21.095 EDT [1347497] LOG:  database system is ready to accept connections
+2024-06-10 14:26:01.197 EDT [1347497] LOG:  received fast shutdown request
+2024-06-10 14:26:01.198 EDT [1347497] LOG:  aborting any active transactions
+2024-06-10 14:26:01.201 EDT [1347497] LOG:  background worker "logical replication launcher" (PID 1347504) exited with exit code 1
+2024-06-10 14:26:01.202 EDT [1347499] LOG:  shutting down
+2024-06-10 14:26:01.316 EDT [1347497] LOG:  database system is shut down
+2024-06-10 14:26:01.416 EDT [1347923] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:26:01.416 EDT [1347923] LOG:  database system is shut down
+2024-06-10 14:26:01.531 EDT [1347927] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:26:01.531 EDT [1347927] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:26:01.532 EDT [1347927] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:26:01.534 EDT [1347928] LOG:  database system was shut down at 2024-06-10 14:26:01 EDT
+2024-06-10 14:26:01.541 EDT [1347927] LOG:  database system is ready to accept connections
+2024-06-10 14:27:33.914 EDT [1347927] LOG:  received fast shutdown request
+2024-06-10 14:27:33.917 EDT [1347927] LOG:  aborting any active transactions
+2024-06-10 14:27:33.921 EDT [1347927] LOG:  background worker "logical replication launcher" (PID 1347934) exited with exit code 1
+2024-06-10 14:27:33.922 EDT [1347929] LOG:  shutting down
+2024-06-10 14:27:34.119 EDT [1347927] LOG:  database system is shut down
+2024-06-10 14:27:34.230 EDT [1348340] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:27:34.230 EDT [1348340] LOG:  database system is shut down
+2024-06-10 14:27:34.347 EDT [1348344] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:27:34.347 EDT [1348344] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:27:34.350 EDT [1348344] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:27:34.359 EDT [1348345] LOG:  database system was shut down at 2024-06-10 14:27:34 EDT
+2024-06-10 14:27:34.366 EDT [1348344] LOG:  database system is ready to accept connections
+2024-06-10 14:29:13.379 EDT [1348344] LOG:  received fast shutdown request
+2024-06-10 14:29:13.382 EDT [1348344] LOG:  aborting any active transactions
+2024-06-10 14:29:13.386 EDT [1348344] LOG:  background worker "logical replication launcher" (PID 1348351) exited with exit code 1
+2024-06-10 14:29:13.389 EDT [1348346] LOG:  shutting down
+2024-06-10 14:29:13.578 EDT [1348344] LOG:  database system is shut down
+2024-06-10 14:29:13.593 EDT [1348732] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:29:13.593 EDT [1348732] LOG:  database system is shut down
+2024-06-10 14:29:13.724 EDT [1348736] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:29:13.725 EDT [1348736] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:29:13.728 EDT [1348736] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:29:13.736 EDT [1348737] LOG:  database system was shut down at 2024-06-10 14:29:13 EDT
+2024-06-10 14:29:13.744 EDT [1348736] LOG:  database system is ready to accept connections
+2024-06-10 14:30:52.584 EDT [1348736] LOG:  received fast shutdown request
+2024-06-10 14:30:52.588 EDT [1348736] LOG:  aborting any active transactions
+2024-06-10 14:30:52.591 EDT [1348736] LOG:  background worker "logical replication launcher" (PID 1348743) exited with exit code 1
+2024-06-10 14:30:52.594 EDT [1348738] LOG:  shutting down
+2024-06-10 14:30:52.769 EDT [1348736] LOG:  database system is shut down
+2024-06-10 14:30:52.800 EDT [1349141] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:30:52.800 EDT [1349141] LOG:  database system is shut down
+2024-06-10 14:30:52.930 EDT [1349145] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:30:52.930 EDT [1349145] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:30:52.933 EDT [1349145] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:30:52.942 EDT [1349146] LOG:  database system was shut down at 2024-06-10 14:30:52 EDT
+2024-06-10 14:30:52.949 EDT [1349145] LOG:  database system is ready to accept connections
+2024-06-10 14:32:30.434 EDT [1349145] LOG:  received fast shutdown request
+2024-06-10 14:32:30.438 EDT [1349145] LOG:  aborting any active transactions
+2024-06-10 14:32:30.442 EDT [1349145] LOG:  background worker "logical replication launcher" (PID 1349152) exited with exit code 1
+2024-06-10 14:32:30.442 EDT [1349147] LOG:  shutting down
+2024-06-10 14:32:30.627 EDT [1349145] LOG:  database system is shut down
+2024-06-10 14:32:30.648 EDT [1349534] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:32:30.648 EDT [1349534] LOG:  database system is shut down
+2024-06-10 14:32:30.768 EDT [1349538] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:32:30.768 EDT [1349538] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:32:30.771 EDT [1349538] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:32:30.780 EDT [1349539] LOG:  database system was shut down at 2024-06-10 14:32:30 EDT
+2024-06-10 14:32:30.789 EDT [1349538] LOG:  database system is ready to accept connections
+2024-06-10 14:34:09.899 EDT [1349538] LOG:  received fast shutdown request
+2024-06-10 14:34:09.900 EDT [1349538] LOG:  aborting any active transactions
+2024-06-10 14:34:09.902 EDT [1349538] LOG:  background worker "logical replication launcher" (PID 1349545) exited with exit code 1
+2024-06-10 14:34:09.905 EDT [1349540] LOG:  shutting down
+2024-06-10 14:34:10.031 EDT [1349538] LOG:  database system is shut down
+2024-06-10 14:34:10.121 EDT [1349916] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:34:10.121 EDT [1349916] LOG:  database system is shut down
+2024-06-10 14:34:10.235 EDT [1349920] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:34:10.236 EDT [1349920] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:34:10.236 EDT [1349920] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:34:10.239 EDT [1349921] LOG:  database system was shut down at 2024-06-10 14:34:09 EDT
+2024-06-10 14:34:10.245 EDT [1349920] LOG:  database system is ready to accept connections
+2024-06-10 14:35:46.417 EDT [1349920] LOG:  received fast shutdown request
+2024-06-10 14:35:46.420 EDT [1349920] LOG:  aborting any active transactions
+2024-06-10 14:35:46.422 EDT [1349920] LOG:  background worker "logical replication launcher" (PID 1349927) exited with exit code 1
+2024-06-10 14:35:46.425 EDT [1349922] LOG:  shutting down
+2024-06-10 14:35:46.616 EDT [1349920] LOG:  database system is shut down
+2024-06-10 14:35:46.633 EDT [1350324] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:35:46.633 EDT [1350324] LOG:  database system is shut down
+2024-06-10 14:35:46.753 EDT [1350328] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:35:46.753 EDT [1350328] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:35:46.757 EDT [1350328] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:35:46.765 EDT [1350329] LOG:  database system was shut down at 2024-06-10 14:35:46 EDT
+2024-06-10 14:35:46.771 EDT [1350328] LOG:  database system is ready to accept connections
+2024-06-10 14:37:25.805 EDT [1350328] LOG:  received fast shutdown request
+2024-06-10 14:37:25.808 EDT [1350328] LOG:  aborting any active transactions
+2024-06-10 14:37:25.812 EDT [1350328] LOG:  background worker "logical replication launcher" (PID 1350335) exited with exit code 1
+2024-06-10 14:37:25.817 EDT [1350330] LOG:  shutting down
+2024-06-10 14:37:25.988 EDT [1350328] LOG:  database system is shut down
+2024-06-10 14:37:26.019 EDT [1350692] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:37:26.019 EDT [1350692] LOG:  database system is shut down
+2024-06-10 14:37:26.136 EDT [1350696] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:37:26.136 EDT [1350696] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:37:26.140 EDT [1350696] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:37:26.148 EDT [1350697] LOG:  database system was shut down at 2024-06-10 14:37:25 EDT
+2024-06-10 14:37:26.156 EDT [1350696] LOG:  database system is ready to accept connections
+2024-06-10 14:39:05.291 EDT [1350696] LOG:  received fast shutdown request
+2024-06-10 14:39:05.291 EDT [1350696] LOG:  aborting any active transactions
+2024-06-10 14:39:05.295 EDT [1350696] LOG:  background worker "logical replication launcher" (PID 1350703) exited with exit code 1
+2024-06-10 14:39:05.297 EDT [1350698] LOG:  shutting down
+2024-06-10 14:39:05.408 EDT [1350696] LOG:  database system is shut down
+2024-06-10 14:39:05.528 EDT [1351143] FATAL:  "min_wal_size" must be at least twice "wal_segment_size"
+2024-06-10 14:39:05.528 EDT [1351143] LOG:  database system is shut down
+2024-06-10 14:39:05.631 EDT [1351147] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-06-10 14:39:05.631 EDT [1351147] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-10 14:39:05.632 EDT [1351147] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-06-10 14:39:05.635 EDT [1351148] LOG:  database system was shut down at 2024-06-10 14:39:05 EDT
+2024-06-10 14:39:05.641 EDT [1351147] LOG:  database system is ready to accept connections

@@ -14,6 +14,7 @@ class BenchBaseWrapper:
 
     def run(self) -> None:
         payload = ["bash", self.script]
+        self.logger.info(payload)
         workload_process = subprocess.Popen(payload, stderr=subprocess.PIPE, 
                                             stdout=subprocess.PIPE, close_fds=True)
 
@@ -32,7 +33,7 @@ class BenchBaseWrapper:
 
 if __name__ == "__main__":
     workload="tpcc"
-    script="/home/tianji/cybernetics/scripts/benchbase_tpcc_postgres.sh"
+    script="/home/phdonn/cybernetics/scripts/benchbase_tpcc_postgres.sh"
 
     benchbase_wrapper = BenchBaseWrapper(workload, script)
     benchbase_wrapper.run()

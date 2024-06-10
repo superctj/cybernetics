@@ -3,7 +3,7 @@ import argparse
 from cybernetics.tuning.engine import TuningEngine
 from cybernetics.knobs.generate_space import KnobSpaceGenerator
 from cybernetics.utils.util import fix_global_random_state, parse_config
-
+from cybernetics.dbms_interface.postgres import PostgresWrapper
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -19,9 +19,20 @@ if __name__ == "__main__":
 
     # Parse configuration
     config = parse_config(args.config_path)
+    
+    # Debugging: Print the sections and keys in the configuration file
+    print("Parsed Configuration:")
+    for section in config.sections():
+        print(f"[{section}]")
+        for key, value in config.items(section):
+            print(f"{key} = {value}")
 
     # Set global random state
-    fix_global_random_state(int(config["knob_space"]["random_seed"]))
+    try:
+        fix_global_random_state(int(config["knob_space"]["random_seed"]))
+    except KeyError as e:
+        print(f"KeyError: {e} not found in the configuration file.")
+        raise
 
     # Create workload wrapper
     if config["workload_info"]["framework"] == "benchbase":
@@ -34,7 +45,6 @@ if __name__ == "__main__":
     
     # Create DBMS executor
     if config["dbms_info"]["dbms_name"] == "postgres":
-        from cybernetics.dbms_interface.postgres import PostgresWrapper
 
         postgres_wrapper = PostgresWrapper(
             config["dbms_info"], 

@@ -12,13 +12,13 @@ from cybernetics.utils.exp_tracker import ExperimentState
 
 
 class TuningEngine:
-    def __init__(self, config, dbms_wrapper, dbms_config_space, workload_wrapper) -> None:
+    def __init__(self, config, dbms_wrapper, dbms_config_space, workload_wrapper, adapter = None) -> None:
         self.config = config
         self.dbms_wrapper = dbms_wrapper
         self.dbms_config_space = dbms_config_space
         self.workload_wrapper = workload_wrapper
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
-
+        self.adapter = adapter
         self.exp_state = ExperimentState(
             config["dbms_info"],
             config["workload_info"],
@@ -32,6 +32,9 @@ class TuningEngine:
     def target_function(self, dbms_config, seed: int):
         """Target function for BO-based optimizer.
         """
+        if self.adapter:
+            dbms_config = self.adapter.unproject_point(dbms_config)
+            print(dbms_config)
         rtn_predicate = self.dbms_wrapper.apply_knobs(dbms_config)
         assert rtn_predicate, "Failed to apply DBMS configuration."
 

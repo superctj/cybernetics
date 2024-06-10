@@ -34,6 +34,11 @@ class PostgresClient(DBClient):
         self.conn, self.cursor = self.connect_db()
 
     def connect_db(self):
+        # conn = psycopg2.connect(host=self.host,
+        #                             port=self.port,
+        #                             user=self.user,
+        #                             password=self.password,
+        #                             database=self.db_name)
         try:
             conn = psycopg2.connect(host=self.host,
                                     port=self.port,
@@ -46,9 +51,10 @@ class PostgresClient(DBClient):
             if self.logger:
                 self.logger.info("Connected to Postgres.")
             return conn, cursor
-        except:
+        except Exception as error:
             if self.logger:
                 self.logger.info("Unable to connect to Postgres.")
+                self.logger.info(error)
 
     def close_connection(self):
         if self.cursor:
@@ -137,12 +143,14 @@ class PostgresWrapper:
             return False
 
     def _restart_postgres(self) -> bool:
+       #payload = ["sudo pg_ctlcluster 14 phdonn start"]
         payload = ["pg_ctl", "-D", self.db_cluster, "-l", self.db_log_filepath, "restart"]
+        self.logger.info(payload)
         p = subprocess.Popen(payload, stderr=subprocess.PIPE, 
                              stdout=subprocess.PIPE, close_fds=True)
         try:
             # communicate() will block the program until the subprocess finishes
-            stdout, stderr = p.communicate(timeout=RESTART_TIMEOUT)
+            stdout, stderr = p.communicate(timeout= RESTART_TIMEOUT )
             if p.returncode == 0:
                 self.logger.info("Restarted Postgres.")
                 self.logger.info(f"Subprocess output: \n{stdout.decode()}")
@@ -245,7 +253,12 @@ class PostgresWrapper:
                                        password=self.password,
                                        db_name=self.db_name,
                                        logger=self.logger)
-            
+            # self.logger.info(host=self.host,
+            #                            port=self.port,
+            #                            user=self.user,
+            #                            password=self.password,
+            #                            db_name=self.db_name,
+            #                            logger=self.logger)
             reset_sql = "ALTER SYSTEM RESET ALL;"
             _ = pg_client.execute(reset_sql)
             pg_client.close_connection()
