@@ -24,7 +24,7 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
         output_directory=config["results"]["save_path"],
         deterministic=True,
         objectives="cost", # minimize the objective
-        n_trials=100,
+        n_trials= 20,# changed to 20 
         seed=int(config["knob_space"]["random_seed"])
     )
 
