@@ -1,0 +1,91 @@
+diff a/plots.py b/plots.py	(rejected hunks)
+@@ -1,36 +1,57 @@
+ import os
+ import pandas as pd
+ import matplotlib.pyplot as plt
++import json
+ 
+-def load_csv_files(directory):
+-    """Load all .samples.csv files from a given directory into a list of DataFrames."""
++def load_csv_files(directory, suffix):
++    """Load all CSV files with a given suffix from a directory into a list of DataFrames."""
+     data_frames = []
+     for filename in os.listdir(directory):
+-        if filename.endswith(".samples.csv"):
++        if filename.endswith(suffix):
+             file_path = os.path.join(directory, filename)
+             df = pd.read_csv(file_path)
+             data_frames.append((filename, df))
+     return data_frames
+ 
+-def extract_throughput_data(data_frames):
+-    """Extract average throughput and best throughput data from the DataFrames."""
++def load_json_files(directory, suffix):
++    """Load all JSON files with a given suffix from a directory into a list of dictionaries."""
++    json_files = []
++    for filename in os.listdir(directory):
++        if filename.endswith(suffix):
++            file_path = os.path.join(directory, filename)
++            with open(file_path, 'r') as file:
++                data = json.load(file)
++                json_files.append((filename, data))
++    return json_files
++
++def extract_throughput_data(sample_frames, summary_files):
++    """Extract average throughput and best throughput data from the DataFrames and JSON files."""
+     throughput_data = []
+     throughput_noise_data = []
+     best_throughput = []
+     current_best_throughput = 0
+     throughput_text_lines = []
+ 
+-    for filename, df in data_frames:
+-        # Assuming the throughput data is in a column named 'Throughput (requests/second)'
++    # Extract data from sample files
++    for filename, df in sample_frames:
+         if 'Throughput (requests/second)' in df.columns and 'Throughput (noise)' in df.columns:
+             avg_throughput = df['Throughput (requests/second)'].mean()
+             avg_throughput_noise = df['Throughput (noise)'].mean()
+             throughput_data.append(avg_throughput)
+             throughput_noise_data.append(avg_throughput_noise)
+-            current_best_throughput = max(current_best_throughput, avg_throughput)
+-            best_throughput.append(current_best_throughput)
+             throughput_text_lines.append(f"{filename}: {avg_throughput:.2f} (Original), {avg_throughput_noise:.2f} (Noise)")
+ 
++    # Extract best throughput from summary files
++    for filename, data in summary_files:
++        if 'Throughput (requests/second)' in data:
++            throughput = data['Throughput (requests/second)']
++            current_best_throughput = max(current_best_throughput, throughput)
++            best_throughput.append(current_best_throughput)
++
++    # If the number of best throughput data points is less than throughput data, fill the rest with the last known best throughput
++    if len(best_throughput) < len(throughput_data):
++        best_throughput.extend([current_best_throughput] * (len(throughput_data) - len(best_throughput)))
++
+     return throughput_data, throughput_noise_data, best_throughput, throughput_text_lines
+ 
+ def plot_throughput(throughput_data, throughput_noise_data, best_throughput):
+@@ -40,7 +61,7 @@ def plot_throughput(throughput_data, throughput_noise_data, best_throughput):
+     plt.figure(figsize=(10, 6))
+     plt.plot(iterations, throughput_data, label='Throughput', color='blue')
+     plt.plot(iterations, throughput_noise_data, label='Throughput (Noise)', color='green')
+-    plt.plot(iterations, best_throughput, label='Best Throughput', color='red')
++    plt.plot(iterations, best_throughput[:len(iterations)], label='Best Throughput', color='red')
+     plt.xlabel('Iteration')
+     plt.ylabel('Throughput (requests/second)')
+     plt.title('Throughput vs. Iteration')
+@@ -73,7 +94,11 @@ def save_throughput_to_file(throughput_text_lines):
+ 
+ if __name__ == "__main__":
+     csv_directory = "/home/phdonn/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
+-    data_frames = load_csv_files(csv_directory)
+-    throughput_data, throughput_noise_data, best_throughput, throughput_text_lines = extract_throughput_data(data_frames)
++
++    sample_frames = load_csv_files(csv_directory, ".samples.csv")
++    summary_files = load_json_files(csv_directory, ".summary.json")
++
++    throughput_data, throughput_noise_data, best_throughput, throughput_text_lines = extract_throughput_data(sample_frames, summary_files)
++
+     plot_throughput(throughput_data, throughput_noise_data, best_throughput)
+     save_throughput_to_file(throughput_text_lines)

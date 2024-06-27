@@ -3,6 +3,7 @@ import argparse
 from cybernetics.tuning.engine import TuningEngine
 from cybernetics.knobs.generate_space import KnobSpaceGenerator
 from cybernetics.utils.util import fix_global_random_state, parse_config
+from cybernetics.dbms_interface.postgres import PostgresWrapper
 
 
 if __name__ == "__main__":
@@ -38,6 +39,11 @@ if __name__ == "__main__":
 
     # Parse configuration
     config = parse_config(args.config_path)
+    print("Parsed Configuration:")
+    for section in config.sections():
+        print(f"[{section}]")
+        for key, value in config.items(section):
+            print(f"{key} = {value}")
     # Set global random state
     fix_global_random_state(int(config["knob_space"]["random_seed"]))
 

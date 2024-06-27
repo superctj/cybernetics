@@ -1,0 +1,25 @@
+diff a/cybernetics/configs/benchbase/tpcc/postgres_rl_ddpg.ini b/cybernetics/configs/benchbase/tpcc/postgres_rl_ddpg.ini	(rejected hunks)
+@@ -1,18 +1,18 @@
+ [dbms_info]
+ dbms_name=postgres
+ host=localhost
+-port=5432
+-user=tianji
++port=5433
++user=phdonn
+ password=12345
+ db_name=benchbase_tpcc
+-db_cluster=/data/pgsql/data
+-db_log_filepath=/data/pgsql/log
++db_cluster=/home/phdonn/data/pgsql/data
++db_log_filepath=/home/phdonn/data/pgsql/log
+ n_numeric_stats=25
+ 
+ [workload_info]
+ framework=benchbase
+ workload=tpcc
+-script=/home/tianji/cybernetics/scripts/benchbase/tpcc/postgres_rl_ddpg.sh
++script=/home/phdonn/cybernetics/scripts/benchbase/tpcc/postgres_rl_ddpg.sh
+ 
+ [config_optimizer]
+ optimizer=rl-ddpg

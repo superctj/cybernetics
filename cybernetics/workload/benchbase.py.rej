@@ -1,0 +1,28 @@
+diff a/cybernetics/workload/benchbase.py b/cybernetics/workload/benchbase.py	(rejected hunks)
+@@ -20,7 +20,6 @@ class BenchBaseWrapper:
+             if 'Throughput (requests/second)' in df.columns:
+                 noise = np.random.normal(0, self.noise_level * df['Throughput (requests/second)'])
+                 df['Throughput (noise)'] = df['Throughput (requests/second)'] + noise
+-                df['Throughput (noise)'] = df['Throughput (noise)'].replace([np.inf, -np.inf], np.nan).dropna()
+                 df.to_csv(file_path, index=False)
+                 self.logger.info(f"Added noise to {file_path}")
+             else:
+@@ -35,8 +34,7 @@ class BenchBaseWrapper:
+ 
+             if 'Throughput (requests/second)' in data:
+                 noise = np.random.normal(0, self.noise_level * data['Throughput (requests/second)'])
+-                throughput_noise = data['Throughput (requests/second)'] + noise
+-                data['Throughput (noise)'] = float(np.nan_to_num(throughput_noise, nan=0.0, posinf=0.0, neginf=0.0))
++                data['Throughput (noise)'] = data['Throughput (requests/second)'] + noise
+ 
+                 with open(file_path, 'w') as file:
+                     json.dump(data, file, indent=4)
+@@ -104,8 +102,4 @@ class BenchBaseWrapper:
+                     if 'Throughput (requests/second)' in data:
+                         performance["Throughput (requests/second)"] = data['Throughput (requests/second)']
+ 
+-        # Ensure no NaN values are returned
+-        performance = {k: float(np.nan_to_num(v, nan=0.0, posinf=0.0, neginf=0.0)) for k, v in performance.items()}
+-
+         return performance
+-

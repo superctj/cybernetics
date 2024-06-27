@@ -1,0 +1,33 @@
+diff a/cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini b/cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini	(rejected hunks)
+@@ -2,24 +2,25 @@
+ dbms_name=postgres
+ host=localhost
+ port=5432
+-user=tianji
++user=phdonn1
+ password=12345
+ db_name=benchbase_tpcc
+-db_cluster=/data/pgsql/data
+-db_log_filepath=/data/pgsql/log
++db_cluster=/home/phdonn/data/pgsql/data
++db_log_filepath=/home/phdonn/cybernetics/logfile
+ 
+ [workload_info]
+ framework=benchbase
+ workload=tpcc
+-script=/home/tianji/cybernetics/scripts/benchbase/tpcc/postgres_bo_gp.sh
++script=/home/phdonn/cybernetics/scripts/benchbase/tpcc/postgres_bo_gp.sh
+ 
+ [config_optimizer]
+ optimizer=bo-gp
+ target_metric=throughput
+ 
+ [knob_space]
+-knob_spec=./cybernetics/knobs/postgres_12.17_pgtune_knobs.json
++knob_spec=/home/phdonn/cybernetics/cybernetics/knobs/postgres_12.17_pgtune_knobs.json
+ random_seed=12345
+ 
+ [results]
+-save_path=/home/tianji/cybernetics/exps/benchbase_tpcc/postgres/bo_gp
++save_path=/home/phdonn/cybernetics/exps/benchbase_tpcc/postgres/bo_gp
++
