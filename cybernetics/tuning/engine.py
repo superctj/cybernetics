@@ -1,13 +1,5 @@
-""" Core logic for configuration tuning.
-
-This module is adapted from DBTune's tuner.py and Llamatune's run-smac.py.
-
-https://github.com/PKU-DAIR/DBTune/blob/main/autotune/tuner.py
-https://github.com/uw-mad-dash/llamatune/blob/main/run-smac.py
-"""
-
-import time
 import numpy as np
+import time
 from cybernetics.tuning.dbms_config_optimizer import (
     get_bo_optimizer,
     get_ddpg_optimizer,
@@ -85,6 +77,53 @@ class TuningEngine:
                 self.exp_state.worst_config = dbms_config
 
             return latency
+
+    def rl_target_function(self, dbms_config, seed: int):
+        """Target function for RL-based optimizer."""
+
+        # Apply DBMS configuration
+        rtn_predicate = self.dbms_wrapper.apply_knobs(dbms_config)
+        assert rtn_predicate, "Failed to apply DBMS configuration."
+
+        # Reset DBMS statistics which are needed for DDPG-based tuning
+        # reset_predicate = self.dbms_wrapper.reset_cumulative_stats()
+        # assert reset_predicate, "Failed to reset DBMS cumulative statistics."
+
+        # Run the workload
+        self.workload_wrapper.run()
+        performance = self.dbms_wrapper.get_benchbase_metrics()
+        numeric_stats, _ = self.dbms_wrapper.get_dbms_stats()
+
+        if self.target_metric == "throughput":
+            throughput_noise = performance.get("Throughput (noise)", 0)
+            self.logger.info(f"Throughput with Noise (requests/second): {throughput_noise}")
+
+            if throughput_noise == 0 or np.isnan(throughput_noise):
+                self.logger.warning("Invalid throughput noise value encountered.")
+                return float('inf')
+
+            if self.exp_state.best_perf is None or throughput_noise > self.exp_state.best_perf:
+                self.exp_state.best_perf = throughput_noise
+                self.exp_state.best_config = dbms_config
+
+            if self.exp_state.worst_perf is None or throughput_noise < self.exp_state.worst_perf:
+                self.exp_state.worst_perf = throughput_noise
+                self.exp_state.worst_config = dbms_config
+
+            return throughput_noise, numeric_stats
+
+        elif self.target_metric == "latency":
+            latency = performance["Latency Distribution"]["95th Percentile Latency (microseconds)"]
+            self.logger.info(f"95th Percentile Latency (microseconds): {latency}")
+
+            if self.exp_state.best_perf is None or latency < self.exp_state.best_perf:
+                self.exp_state.best_perf = latency
+                self.exp_state.best_config = dbms_config
+            if self.exp_state.worst_perf is None or latency > self.exp_state.worst_perf:
+                self.exp_state.worst_perf = latency
+                self.exp_state.worst_config = dbms_config
+
+            return latency, numeric_stats
 
     def init_optimizer(self):
         if self.config["config_optimizer"]["optimizer"].startswith("bo"):

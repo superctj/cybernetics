@@ -41,16 +41,24 @@ def extract_throughput_data(sample_frames, summary_files):
             throughput_noise_data.append(avg_throughput_noise)
             throughput_text_lines.append(f"{filename}: {avg_throughput:.2f} (Original), {avg_throughput_noise:.2f} (Noise)")
 
-    # Extract best throughput from summary files
-    for filename, data in summary_files:
-        if 'Throughput with Noise (requests/second)' in data:
-            throughput = data['Throughput with Noise (requests/second)']
-            current_best_throughput = max(current_best_throughput, throughput)
+            # Update the best throughput value dynamically
+            if avg_throughput > current_best_throughput:
+                current_best_throughput = avg_throughput
             best_throughput.append(current_best_throughput)
+
+    # Extract best throughput from summary files if it exists (not used currently)
+    for filename, data in summary_files:
+        if 'Throughput (requests/second)' in data:
+            throughput = data['Throughput (requests/second)']
+            current_best_throughput = max(current_best_throughput, throughput)
 
     # If the number of best throughput data points is less than throughput data, fill the rest with the last known best throughput
     if len(best_throughput) < len(throughput_data):
         best_throughput.extend([current_best_throughput] * (len(throughput_data) - len(best_throughput)))
+
+    print("Throughput Data: ", throughput_data)
+    print("Throughput Noise Data: ", throughput_noise_data)
+    print("Best Throughput: ", best_throughput)
 
     return throughput_data, throughput_noise_data, best_throughput, throughput_text_lines
 
@@ -59,9 +67,9 @@ def plot_throughput(throughput_data, throughput_noise_data, best_throughput):
     iterations = range(len(throughput_data))
 
     plt.figure(figsize=(10, 6))
-    plt.plot(iterations, throughput_data, label='Throughput', color='blue')
-    plt.plot(iterations, throughput_noise_data, label='Throughput (Noise)', color='green')
-    plt.plot(iterations, best_throughput[:len(iterations)], label='Best Throughput', color='red')
+    plt.plot(iterations, throughput_data, label='Throughput', color='blue', marker='o')  # Added marker for visibility
+    plt.plot(iterations, throughput_noise_data, label='Throughput (Noise)', color='green', marker='x')  # Added marker for visibility
+    plt.plot(iterations, best_throughput[:len(iterations)], label='Best Throughput', color='red', marker='^')  # Added marker for visibility
     plt.xlabel('Iteration')
     plt.ylabel('Throughput (requests/second)')
     plt.title('Throughput vs. Iteration')

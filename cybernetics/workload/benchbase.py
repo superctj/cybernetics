@@ -8,12 +8,12 @@ from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 TIMEOUT = 36000  # 1 hour
 
 class BenchBaseWrapper:
-    def __init__(self, target_dir: str, dbms_name: str, workload: str, results_save_dir: str = None, noise_level: float = 5.0):
+    def __init__(self, target_dir: str, dbms_name: str, workload: str, results_save_dir: str = None, noise_level: float = 50.0):
         self.target_dir = target_dir
         self.dbms_name = dbms_name
         self.workload = workload
         self.results_save_dir = results_save_dir
-        self.noise_level = noise_level  # Increased noise level
+        self.noise_level = noise_level  # Configurable noise level
         self.first_run = True
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
 
@@ -57,49 +57,38 @@ class BenchBaseWrapper:
             for file_name in os.listdir(self.results_save_dir):
                 if file_name.endswith(".csv"):
                     self._add_noise_to_csv(os.path.join(self.results_save_dir, file_name))
-            summary_json_path = os.path.join(self.results_save_dir, "summary.json")
-            if os.path.exists(summary_json_path):
-                self._add_noise_to_json(summary_json_path)
+                elif file_name.endswith(".summary.json"):
+                    self._add_noise_to_json(os.path.join(self.results_save_dir, file_name))
 
     def _add_noise_to_csv(self, file_path):
         df = pd.read_csv(file_path)
         if 'Throughput (requests/second)' in df.columns:
             noise = np.random.normal(0, self.noise_level, size=len(df))
             df['Throughput with Noise (requests/second)'] = df['Throughput (requests/second)'] + noise
+            df['Throughput with Noise (requests/second)'] = df['Throughput with Noise (requests/second)'].clip(lower=0)
+            self.logger.info(f"Adding noise to CSV: {noise}")
             df.to_csv(file_path, index=False)
             self.logger.info(f"Added Gaussian noise to {file_path}")
 
+
     def _add_noise_to_json(self, file_path):
-        with open(file_path, 'r') as f:
-            data = json.load(f)
-        if "Throughput (requests/second)" in data:
-            data["Throughput with Noise (requests/second)"] = data["Throughput (requests/second)"] + np.random.normal(0, self.noise_level)
-        with open(file_path, 'w') as f:
-            json.dump(data, f, indent=4)
-        self.logger.info(f"Added Gaussian noise to {file_path}")
-
-# Ensure that this method is correctly called within your engine.py to get the noise values for the model
-def get_benchbase_metrics(self) -> dict:
-    output_dir = "/home/phdonn/cybernetics_n/exps/benchbase_tpcc/postgres/bo_gp"
-    performance = {"Throughput (requests/second)": 0, "Throughput (noise)": 0}
-
-    for file_name in os.listdir(output_dir):
-        file_path = os.path.join(output_dir, file_name)
-        if file_name.endswith('.samples.csv'):
-            df = pd.read_csv(file_path)
-            if 'Throughput with Noise (requests/second)' in df.columns:
-                throughput_noise = df["Throughput with Noise (requests/second)"].mean()
-                performance["Throughput (requests/second)"] = df["Throughput (requests/second)"].mean()
-                performance["Throughput (noise)"] = throughput_noise
-        elif file_name.endswith('.summary.json'):
+        try:
             with open(file_path, 'r') as file:
                 data = json.load(file)
-                if 'Throughput with Noise (requests/second)' in data:
-                    performance["Throughput (noise)"] = data['Throughput with Noise (requests/second)']
-                if 'Throughput (requests/second)' in data:
-                    performance["Throughput (requests/second)"] = data['Throughput (requests/second)']
 
-    # Ensure no NaN values are returned
-    performance = {k: float(np.nan_to_num(v, nan=0.0, posinf=0.0, neginf=0.0)) for k, v in performance.items()}
+            if 'Throughput (requests/second)' in data:
+                current_throughput = data['Throughput (requests/second)']
+                noise = np.random.normal(0, self.noise_level)
+                throughput_noise = current_throughput + noise
+                self.logger.info(f"Adding noise to JSON: {noise}")
+                data['Throughput (noise)'] = float(np.nan_to_num(throughput_noise, nan=0.0, posinf=0.0, neginf=0.0))
 
-    return performance
+                with open(file_path, 'w') as file:
+                    json.dump(data, file, indent=4)
+
+                self.logger.info(f"Added noise to {file_path}")
+            else:
+                self.logger.warning(f"'Throughput (requests/second)' key not found in {file_path}")
+
+        except Exception as e:
+            self.logger.error(f"Error when adding noise to {file_path}: {e}")
