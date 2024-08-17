@@ -64,6 +64,9 @@ Follow the steps below to run vanilla Bayesian optimization (i.e., BO-Gaussian P
 
     ```results.save_path```: where you want to save the experiment results
 
+    [comment]: <CREATE DATABASE benchbase_tpcc OWNER postgres;>
+    [comment]: <db_name=benchbase> 
+
 3. Start DBMS config tuning:
 
    ```
