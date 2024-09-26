@@ -15,7 +15,7 @@ print("Running with no search space transformation:")
 start_time = time.time()
 payload = [
     "python",
-    "/home/jhsueh/Desktop/cybernetics/examples/run_dbms_config_tuning.py",
+    "/home/samika/cybernetics/examples/run_dbms_config_tuning.py",
     "--config_path",
     "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini",
 ]
@@ -28,7 +28,7 @@ print(
 
 # Read the summary file for no transformation
 
-summary_files = glob.glob("/home/jhsueh/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
+summary_files = glob.glob("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
 best_summary_file = summary_files[0]
 for summary_file in summary_files:
     with open(summary_file) as f:
@@ -43,7 +43,7 @@ throughput_no_transform = summary_no_transform["Throughput (requests/second)"]
 latencies_no_transform = summary_no_transform["Latency Distribution"]["95th Percentile Latency (microseconds)"]
 
 #Clear the summary files directory
-save_dir = "/home/jhsueh/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
+save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
 for file_name in os.listdir(save_dir):
     file_path = os.path.join(save_dir, file_name)
     try:
@@ -62,7 +62,7 @@ print(
 start_time = time.time()
 payload = [
     "python",
-    "/home/jhsueh/Desktop/cybernetics/examples/run_dim_reduction.py",
+    "/home/samika/cybernetics/examples/run_dim_reduction.py",
     "--config_path",
     "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini",
     "--projection_dim",
@@ -78,7 +78,7 @@ print(
 #assert duration_no_transform > duration_transform
 
 # Read the summary file for quantization
-summary_files = glob.glob("/home/jhsueh/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
+summary_files = glob.glob("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
 best_summary_file = summary_files[0]
 for summary_file in summary_files:
     with open(summary_file) as f:
