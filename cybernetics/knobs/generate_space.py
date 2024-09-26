@@ -58,7 +58,7 @@ class KnobSpaceGenerator:
 
             if knob_name in ignored_knobs:
                 continue
-
+            add = True
             # Categorical
             if knob_type == "enum":
                 knob = CSH.CategoricalHyperparameter(
@@ -88,9 +88,10 @@ class KnobSpaceGenerator:
                     default_value=knob_spec["reset_val"],
                 )
             else:
-                raise ValueError(f"Unknown knob type: {knob_type}")
-
-            input_knobs.append(knob)
+                #raise ValueError(f"Unknown knob type: {knob_type}")
+                add = False
+            if add:
+                input_knobs.append(knob)
 
         knob_space = ConfigurationSpace(seed=self.random_seed)
         knob_space.add_hyperparameters(input_knobs)
