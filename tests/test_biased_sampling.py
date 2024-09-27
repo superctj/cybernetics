@@ -17,7 +17,7 @@ payload = [
     "python",
     "/home/samika/cybernetics/examples/run_dbms_config_tuning.py",
     "--config_path",
-    "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini",
+    "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini",
 ]
 workload_process = subprocess.run(payload)
 end_time = time.time()
@@ -65,7 +65,7 @@ payload = [
     "python",
     "/home/samika/cybernetics/examples/run_dim_reduction.py",
     "--config_path",
-    "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini",
+    "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini",
     "--bias_prob",
     "0.2",
 ]
