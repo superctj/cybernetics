@@ -63,7 +63,7 @@ print(
 start_time = time.time()
 payload = [
     "python",
-    "/home/samika/Desktop/cybernetics/examples/run_dim_reduction.py",
+    "/home/samika/cybernetics/examples/run_dim_reduction.py",
     "--config_path",
     "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini",
     "--bias_prob",
