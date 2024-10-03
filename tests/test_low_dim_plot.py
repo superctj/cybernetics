@@ -46,6 +46,7 @@ print(
 # Read the summary file for quantization
 summary_files = glob.glob("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
 throughput_values = []
+best_summary_file = summary_files[0]
 for summary_file in summary_files:
     with open(summary_file) as f:
         summary = json.load(f)
