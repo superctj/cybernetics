@@ -104,3 +104,14 @@ print(f"95th Percentile Latencies with quantization: {latencies_transform}")
 
 print(f"Duration without transformation: {duration_no_transform}")
 print(f"Duration with quantization: {duration_transform}")
+
+save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
+for file_name in os.listdir(save_dir):
+    file_path = os.path.join(save_dir, file_name)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    except Exception as e:
+        print(f"Failed to delete {file_path}. Reason: {e}")
