@@ -55,12 +55,13 @@ for summary_file in summary_files:
         throughput_values.append(summary["Throughput (requests/second)"])
 
 #plot throughput values on y-axis and iteration number on x-axis
+#save plot to file
 import matplotlib.pyplot as plt
 plt.plot(throughput_values)
 plt.xlabel("Iteration Number")
 plt.ylabel("Throughput (requests/second)")
 plt.title("Throughput vs Iteration Number")
-plt.show()
+plt.savefig("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/throughput_vs_iteration.png")
 
 
 #Document what hyperparameters and configs
