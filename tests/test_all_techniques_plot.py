@@ -50,16 +50,16 @@ print(
 #assert duration_no_transform > duration_transform
 
 # Read the summary file for quantization
-summary_files = glob.glob("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
-best_summary_file = summary_files[0]
-for summary_file in summary_files:
-    with open(summary_file) as f:
-        summary = json.load(f)
-        if summary["Throughput (requests/second)"] > json.load(open(best_summary_file))["Throughput (requests/second)"]:
-            best_summary_file = summary_file
+# summary_files = glob.glob("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
+# best_summary_file = summary_files[0]
+# for summary_file in summary_files:
+#     with open(summary_file) as f:
+#         summary = json.load(f)
+#         if summary["Throughput (requests/second)"] > json.load(open(best_summary_file))["Throughput (requests/second)"]:
+#             best_summary_file = summary_file
 
-with open(best_summary_file) as f:
-    summary_transform = json.load(f)
+# with open(best_summary_file) as f:
+#     summary_transform = json.load(f)
 
 save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
 
@@ -72,7 +72,10 @@ for summary_file in summary_files:
         summary = json.load(f)
         if summary["Throughput (requests/second)"] > json.load(open(best_summary_file))["Throughput (requests/second)"]:
             best_summary_file = summary_file
-        throughput_values.append(best_summary_file["Throughput (requests/second)"])
+        best_summary = json.load(open(best_summary_file))
+        throughput_values.append(best_summary["Throughput (requests/second)"])
+        
+        #throughput_values.append(best_summary_file["Throughput (requests/second)"])
 
 #plot throughput values on y-axis and iteration number on x-axis
 #save plot to file
