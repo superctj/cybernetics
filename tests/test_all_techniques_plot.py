@@ -61,19 +61,6 @@ for summary_file in summary_files:
 with open(best_summary_file) as f:
     summary_transform = json.load(f)
 
-# Compare throughput
-throughput_transform = summary_transform["Throughput (requests/second)"]
-print(f"Throughput without transformation: {throughput_no_transform}")
-print(f"Throughput with all transforms: {throughput_transform}")
-
-# Compare latencies
-latencies_transform = summary_transform["Latency Distribution"]["95th Percentile Latency (microseconds)"]
-print(f"95th Percentile Latencies without transformation: {latencies_no_transform}")
-print(f"95th Percentile Latencies with all transforms: {latencies_transform}")
-
-print(f"Duration without transformation: {duration_no_transform}")
-print(f"Duration with all transforms: {duration_transform}")
-
 save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
 
 # Read the summary file for quantization
