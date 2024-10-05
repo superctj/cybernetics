@@ -10,36 +10,36 @@ import os
 # The transofrmations should provide a speedup to the runtime,
 # but this may not always be the case due to fluctations in time it takes to query workloads on your machine's Postgres server
 
-save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
-for file_name in os.listdir(save_dir):
-    print("deleting file: ", file_name)
-    file_path = os.path.join(save_dir, file_name)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.unlink(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"Failed to delete {file_path}. Reason: {e}")
+# save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
+# for file_name in os.listdir(save_dir):
+#     print("deleting file: ", file_name)
+#     file_path = os.path.join(save_dir, file_name)
+#     try:
+#         if os.path.isfile(file_path) or os.path.islink(file_path):
+#             os.unlink(file_path)
+#         elif os.path.isdir(file_path):
+#             shutil.rmtree(file_path)
+#     except Exception as e:
+#         print(f"Failed to delete {file_path}. Reason: {e}")
 
-print(
-    "Running with only linear projection transformation:"
-)
-start_time = time.time()
-payload = [
-    "python",
-    "/home/samika/cybernetics/examples/run_dim_reduction.py",
-    "--config_path",
-    "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini",
-    "--projection_dim",
-    "16",
-]
-workload_process = subprocess.run(payload)
-end_time = time.time()
-duration_transform = end_time - start_time
-print(
-    f"Runtime for just linear projection transformation: {end_time - start_time} seconds"
-)
+# print(
+#     "Running with only linear projection transformation:"
+# )
+# start_time = time.time()
+# payload = [
+#     "python",
+#     "/home/samika/cybernetics/examples/run_dim_reduction.py",
+#     "--config_path",
+#     "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini",
+#     "--projection_dim",
+#     "16",
+# ]
+# workload_process = subprocess.run(payload)
+# end_time = time.time()
+# duration_transform = end_time - start_time
+# print(
+#     f"Runtime for just linear projection transformation: {end_time - start_time} seconds"
+# )
 
 #assert duration_no_transform > duration_transform
 
