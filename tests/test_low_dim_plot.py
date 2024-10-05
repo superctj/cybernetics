@@ -43,6 +43,9 @@ print(
 
 #assert duration_no_transform > duration_transform
 
+
+save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
+
 # Read the summary file for quantization
 summary_files = glob.glob("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/tpcc_*.summary.json")
 throughput_values = []
@@ -52,7 +55,10 @@ for summary_file in summary_files:
         summary = json.load(f)
         if summary["Throughput (requests/second)"] > json.load(open(best_summary_file))["Throughput (requests/second)"]:
             best_summary_file = summary_file
-        throughput_values.append(best_summary_file["Throughput (requests/second)"])
+        best_summary = json.load(open(best_summary_file))
+        throughput_values.append(best_summary["Throughput (requests/second)"])
+        
+        #throughput_values.append(best_summary_file["Throughput (requests/second)"])
 
 #plot throughput values on y-axis and iteration number on x-axis
 #save plot to file
@@ -61,7 +67,7 @@ plt.plot(throughput_values)
 plt.xlabel("Iteration Number")
 plt.ylabel("Throughput (requests/second)")
 plt.title("Throughput vs Iteration Number")
-plt.savefig("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/throughput_vs_iteration.png")
+plt.savefig("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/throughput_vs_iteratio_low_dim_techniques_1.png")
 
 
 #Document what hyperparameters and configs
