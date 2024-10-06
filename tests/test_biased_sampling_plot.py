@@ -67,7 +67,7 @@ plt.plot(throughput_values)
 plt.xlabel("Iteration Number")
 plt.ylabel("Throughput (requests/second)")
 plt.title("Throughput vs Iteration Number")
-plt.savefig("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/throughput_vs_iteration_biased_sampling_techniques_1.png")
+plt.savefig("/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp/throughput_vs_iteration_biased_sampling_techniques_10.png")
 
 
 #Document what hyperparameters and configs
