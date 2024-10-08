@@ -1,24 +1,12 @@
 from cybernetics.workload.benchbase import BenchBaseWrapper
-import argparse
-import time
-from cybernetics.tuning.engine import TuningEngine
-from cybernetics.knobs.generate_space import KnobSpaceGenerator
 from cybernetics.utils.util import fix_global_random_state, parse_config, get_benchbase_postgres_target_dir, get_postgres_user_and_password
 
 if __name__ == "__main__":
     # Parsing command line arguments
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--config_path",
-        type=str,
-        required=True,
-        help="Path to the configuration file",
-    )
 
-    args = parser.parse_args()
-
+    #parse_config on cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini
     # Parse configuration
-    config = parse_config(args.config_path)
+    config = parse_config("cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini")
     # Set global random state
     fix_global_random_state(int(config["knob_space"]["random_seed"]))
 
