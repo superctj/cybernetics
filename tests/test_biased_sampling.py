@@ -103,7 +103,7 @@ latencies_transform = summary_transform["Latency Distribution"]["95th Percentile
 print(f"95th Percentile Latencies with quantization: {latencies_transform}")
 
 # print(f"Duration without transformation: {duration_no_transform}")
-print(f"Duration with quantization: {duration_transform}")
+# print(f"Duration with quantization: {duration_transform}")
 
 # save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
 # for file_name in os.listdir(save_dir):
