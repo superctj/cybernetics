@@ -7,6 +7,7 @@ https://github.com/uw-mad-dash/llamatune/blob/main/run-smac.py
 """
 
 import time
+import numpy as np
 
 from cybernetics.tuning.dbms_config_optimizer import (
     get_bo_optimizer,
@@ -72,6 +73,9 @@ class TuningEngine:
 
         if self.target_metric == "throughput":
             throughput = performance["Throughput (requests/second)"]
+            if np.isnan(throughput):
+                self.logger.error("Throughput is NaN. Replacing with a large value.")
+                throughput = -1e6  # Replace NaN with a large negative value for minimization
             self.logger.info(f"Throughput (requests/second): {throughput}")
 
             if (
