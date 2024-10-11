@@ -5,6 +5,7 @@ import glob
 import shutil
 import os
 import matplotlib.pyplot as plt
+from cybernetics.utils.util import fix_global_random_state, parse_config, get_benchbase_postgres_target_dir, get_postgres_user_and_password
 
 # This test runs Cybernetics without any of the LlamaTune search space transformations and then runs with only the linear projection transformation
 
@@ -228,6 +229,73 @@ for summary_file in summary_files:
         
 none_best_throughtput = json.load(open(best_summary_file))["Throughput (requests/second)"]
 
+config = parse_config("cybernetics/configs/benchbase/tpcc/postgres_bo_gp.local.ini")
+# Set global random state
+fix_global_random_state(int(config["knob_space"]["random_seed"]))
+
+# Create workload wrapper
+postgres_user, postgres_password = get_postgres_user_and_password()
+benchbase_postgres_target_dir = get_benchbase_postgres_target_dir()
+
+config["dbms_info"]["user"] = postgres_user
+config["dbms_info"]["password"] = postgres_password
+
+if config["workload_info"]["framework"] == "benchbase":
+    from cybernetics.workload.benchbase import BenchBaseWrapper
+
+    workload_wrapper = BenchBaseWrapper(
+            target_dir=benchbase_postgres_target_dir,
+            dbms_name=config["dbms_info"]["dbms_name"],
+            workload=config["workload_info"]["workload"],
+            results_save_dir=config["results"]["save_path"],
+        )
+
+# Create DBMS executor
+if config["dbms_info"]["dbms_name"] == "postgres":
+    from cybernetics.dbms_interface.postgres import PostgresWrapper
+
+    postgres_wrapper = PostgresWrapper(
+        config["dbms_info"],
+        workload_wrapper,
+        config["results"]["save_path"],
+    )
+
+# Get default performance
+postgres_wrapper.reset_knobs_by_restarting_db()
+print("    Reset the runtime configuration.")
+
+workload_wrapper.run()
+default_performance = postgres_wrapper.get_benchbase_metrics()
+default_throughput = default_performance["Throughput (requests/second)"]
+print("    Default throughput: ", default_throughput)
+default_throughputs = [default_throughput for i in range(100)]
+
+db_config = {
+    "max_connections": 300,
+    "shared_buffers": "16GB",
+    "effective_cache_size": "48GB",
+    "maintenance_work_mem": "2GB",
+    "checkpoint_completion_target": 0.9,
+    "wal_buffers": "16MB",
+    "default_statistics_target": 100,
+    "random_page_cost": 1.1,
+    "effective_io_concurrency": 300,
+    "work_mem": "13981kB",
+    "huge_pages": "try",
+    "min_wal_size": "2GB",
+    "max_wal_size": "8GB",
+    "max_worker_processes": 32,
+    "max_parallel_workers_per_gather": 4,
+    "max_parallel_workers": 32,
+    "max_parallel_maintenance_workers": 4
+}
+postgres_wrapper.apply_knobs(db_config)
+workload_wrapper.run()
+performance = postgres_wrapper.get_benchbase_metrics()
+throughput = performance["Throughput (requests/second)"]
+print("    Throughput after applying configurations: ", throughput)
+pg_tune_throughputs = [throughput for i in range(100)]
+
 print("Best throughput with all transformations: ", all_best_throughtput)
 print("Time taken with all transformations: ", all_duration_transform)
 print("Best throughput with linear projection transformation: ", linear_best_throughtput)
@@ -236,6 +304,8 @@ print("Best throughput with quantization transformation: ", quantization_best_th
 print("Time taken with quantization transformation: ", quantization_duration_transform)
 print("Best throughput with bias transformation: ", bias_best_throughtput)
 print("Time taken with bias transformation: ", bias_duration_transform)
+print("Best throughput with no transformation: ", none_best_throughtput)
+print("Time taken with no transformation: ", none_duration_transform)
 
 #plot throughput values on y-axis and iteration number on x-axis. Fill line by which transformation was used
 plt.figure(figsize=(10, 5))
@@ -244,6 +314,8 @@ plt.plot(linear_throughput_values, label="Linear Projection")
 plt.plot(quantization_throughput_values, label="Quantization")
 plt.plot(bias_throughput_values, label="Bias")
 plt.plot(none_throughput_values, label="None")
+plt.plot(default_throughputs, label="Default Configuration")
+plt.plot(pg_tune_throughputs, label="PG Tune Configuration")
 plt.xlabel("Iteration")
 plt.ylabel("Throughput (requests/second)")
 
