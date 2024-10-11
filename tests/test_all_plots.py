@@ -306,6 +306,8 @@ print("Best throughput with bias transformation: ", bias_best_throughtput)
 print("Time taken with bias transformation: ", bias_duration_transform)
 print("Best throughput with no transformation: ", none_best_throughtput)
 print("Time taken with no transformation: ", none_duration_transform)
+print("Best throughput with default configuration: ", default_throughput)
+print("Best throughput with PG Tune configuration: ", throughput)
 
 #plot throughput values on y-axis and iteration number on x-axis. Fill line by which transformation was used
 plt.figure(figsize=(10, 5))
@@ -321,4 +323,4 @@ plt.ylabel("Throughput (requests/second)")
 
 plt.legend()
 plt.title("Throughput vs Iteration by Transformation")
-plt.savefig("throughput_iteration_plot_10.png")
+plt.savefig("throughput_iteration_plot_1.png")
