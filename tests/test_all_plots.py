@@ -309,6 +309,14 @@ print("Time taken with no transformation: ", none_duration_transform)
 print("Best throughput with default configuration: ", default_throughput)
 print("Best throughput with PG Tune configuration: ", throughput)
 
+print("Throughput values with all transformations: ", all_throughput_values)
+print("Throughput values with linear projection transformation: ", linear_throughput_values)
+print("Throughput values with quantization transformation: ", quantization_throughput_values)
+print("Throughput values with bias transformation: ", bias_throughput_values)
+print("Throughput values with no transformation: ", none_throughput_values)
+print("Throughput values with default configuration: ", default_throughputs)
+print("Throughput values with PG Tune configuration: ", pg_tune_throughputs)
+
 #plot throughput values on y-axis and iteration number on x-axis. Fill line by which transformation was used
 plt.figure(figsize=(10, 5))
 plt.plot(all_throughput_values, label="All Transformations")
@@ -324,3 +332,4 @@ plt.ylabel("Throughput (requests/second)")
 plt.legend()
 plt.title("Throughput vs Iteration by Transformation")
 plt.savefig("throughput_iteration_plot_1.png")
+
