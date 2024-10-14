@@ -331,5 +331,5 @@ plt.ylabel("Throughput (requests/second)")
 
 plt.legend()
 plt.title("Throughput vs Iteration by Transformation")
-plt.savefig("throughput_iteration_plot_1.png")
-
+plt.savefig("throughput_vs_iteration_plot_1.png")
+plt.show()
