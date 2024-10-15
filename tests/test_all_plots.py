@@ -299,7 +299,7 @@ linear_best_throughtput = json.load(open(best_summary_file))["Throughput (reques
 # print("Best throughput with all transformations: ", all_best_throughtput)
 # print("Time taken with all transformations: ", all_duration_transform)
 # print("Best throughput with linear projection transformation: ", linear_best_throughtput)
-# print("Time taken with linear projection transformation: ", linear_duration_transform)
+print("Time taken with linear projection transformation: ", linear_duration_transform)
 # print("Best throughput with quantization transformation: ", quantization_best_throughtput)
 # print("Time taken with quantization transformation: ", quantization_duration_transform)
 # print("Best throughput with bias transformation: ", bias_best_throughtput)
