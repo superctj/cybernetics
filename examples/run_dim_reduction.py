@@ -1,4 +1,5 @@
 import argparse
+import json
 
 from cybernetics.tuning.engine import TuningEngine
 from cybernetics.knobs.generate_space import KnobSpaceGenerator
@@ -95,3 +96,12 @@ if __name__ == "__main__":
         adapter=adapter,
     )
     tuning_engine.run()
+
+    #get best configuration
+    best_config = tuning_engine.exp_state.best_config
+    #save config to /home/samika/cybernetics/exps/configs/best_config.json
+    best_config_path = "/home/samika/cybernetics/exps/configs/best_config.json"
+    with open(best_config_path, "w") as f:
+        json.dump(best_config, f)
+    print(f"Best configuration saved to {best_config_path}")
+    print("Done.")
