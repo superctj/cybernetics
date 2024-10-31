@@ -6,6 +6,8 @@ from smac import HyperparameterOptimizationFacade as HPOFacade
 from smac import Scenario
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
+print("Using dbms_config_optimizer.py from:", __file__)
+
 def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace, target_function):
     # Ensure n_trials is read as an integer
     n_trials = int(config["config_optimizer"].get("n_trials", 10))
