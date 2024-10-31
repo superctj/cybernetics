@@ -11,7 +11,7 @@ print("Running with no search space transformation:")
 start_time = time.time()
 payload = [
     "python",
-    "/home/tianji/cybernetics/run_dbms_optimization.py",
+    "/home/aditk/workspace/cybernetics/run_dbms_optimization.py",
     "--config_path",
     "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini",
 ]
@@ -30,7 +30,7 @@ print(
 start_time = time.time()
 payload = [
     "python",
-    "/home/tianji/cybernetics/run_dbms_optimization.py",
+    "/home/aditk/workspace/cybernetics/run_dbms_optimization.py",
     "--config_path",
     "cybernetics/configs/benchbase/tpcc/postgres_bo_gp.ini",
     "--projection_dim",

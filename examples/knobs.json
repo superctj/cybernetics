@@ -1,0 +1,19 @@
+{
+    "checkpoint_completion_target": 0.11183177959173918,
+    "default_statistics_target": 104,
+    "effective_cache_size": 8207566,
+    "effective_io_concurrency": 4,
+    "huge_pages": "try",
+    "maintenance_work_mem": 2018584,
+    "max_connections": 454,
+    "max_parallel_maintenance_workers": 2,
+    "max_parallel_workers": 46,
+    "max_parallel_workers_per_gather": 5,
+    "max_wal_size": 7661,
+    "max_worker_processes": 13,
+    "min_wal_size": 2666,
+    "random_page_cost": 5.847389217466116,
+    "shared_buffers": 2062043,
+    "wal_buffers": 1941,
+    "work_mem": 12585
+  }

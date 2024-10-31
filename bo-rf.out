@@ -1,0 +1,2765 @@
+[INFO][abstract_initial_design.py:95] Reducing the number of initial configurations from 170 to 25 (max_ratio == 0.25).
+[INFO][abstract_initial_design.py:147] Using 25 initial design configurations and 0 additional configurations.
+[INFO][engine.py:45] DBMS config optimizer is ready.
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down.... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:328] Reset knobs with Postgres restarted.
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:07:47,715 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:07:47,716 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:07:47,732 [main]  com.oltpbenchmark.DBWorkload main - Creating new TPCC database...
+[INFO ] 2024-10-03 11:07:48,457 [main]  com.oltpbenchmark.DBWorkload main - Finished creating new TPCC database...
+[INFO ] 2024-10-03 11:07:48,546 [main]  com.oltpbenchmark.DBWorkload main - Loading data into TPCC database...
+[INFO ] 2024-10-03 11:07:48,548 [main]  com.oltpbenchmark.util.ThreadUtil runLoaderThreads - Creating a Thread Pool with a size of 11 to run 11 Loader Threads.  0 threads will be queued.
+[INFO ] 2024-10-03 11:18:07,244 [main]  com.oltpbenchmark.util.ThreadUtil runLoaderThreads - Finished executing 11 Loader Threads [time=618.69s]
+[INFO ] 2024-10-03 11:18:07,244 [main]  com.oltpbenchmark.DBWorkload main - Finished loading data into TPCC database...
+[INFO ] 2024-10-03 11:18:07,244 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:18:07,314 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:18:07,317 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:18:07,318 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[INFO ] 2024-10-03 11:23:07,318 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 11:23:07,379 [Thread-31]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 11:23:07,405 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 11:23:07,405 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000086092, measuredRequests=45645) = 152.1499563370199 requests/sec (throughput), 112.7233009847519 requests/sec (goodput)
+[INFO ] 2024-10-03 11:23:07,586 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_11-23-07.raw.csv
+[INFO ] 2024-10-03 11:23:07,698 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_11-23-07.samples.csv
+[INFO ] 2024-10-03 11:23:07,721 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_11-23-07.summary.json
+[INFO ] 2024-10-03 11:23:07,730 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_11-23-07.params.json
+[INFO ] 2024-10-03 11:23:07,734 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_11-23-07.metrics.json
+[INFO ] 2024-10-03 11:23:07,736 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_11-23-07.config.xml
+[INFO ] 2024-10-03 11:23:07,756 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_11-23-07.results.csv with window size 5
+[INFO ] 2024-10-03 11:23:07,788 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 11:23:07,788 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [14566] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [13970] ****************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [ 1815] *********
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 1657] *********
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 1809] *********
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [ 187] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [19006] *************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [20732] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [  651] **
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [    6] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+<EMPTY>
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 11:23:07,788 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:219] TOTAL USED EVALUATION TIME: 921.8519973754883
+[INFO][engine.py:222] TOTAL USED OPTIMIZATION TIME: 1.430511474609375e-06
+[INFO][engine.py:232] Default Throughput (requests/second): 152.1499563370199
+[INFO][abstract_intensifier.py:305] Using only one seed for deterministic scenario.
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.9
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.26874313224107027.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 100
+[INFO][postgres.py:271] Set knob default_statistics_target to 162.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 4GB
+[INFO][postgres.py:271] Set knob effective_cache_size to 16754414.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 1
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 1.
+[INFO][postgres.py:258] Current value of knob huge_pages: try
+[INFO][postgres.py:261] Knob huge_pages has already been set to try.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 64MB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 68654.
+[INFO][postgres.py:258] Current value of knob max_connections: 100
+[INFO][postgres.py:271] Set knob max_connections to 64.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 2
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 4.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 8
+[INFO][postgres.py:271] Set knob max_parallel_workers to 59.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 2
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 7.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 1GB
+[INFO][postgres.py:271] Set knob max_wal_size to 3868.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 8
+[INFO][postgres.py:271] Set knob max_worker_processes to 21.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 80MB
+[INFO][postgres.py:271] Set knob min_wal_size to 1578.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 4
+[INFO][postgres.py:271] Set knob random_page_cost to 1.338380086235702.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 128MB
+[INFO][postgres.py:271] Set knob shared_buffers to 97442.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 4MB
+[INFO][postgres.py:271] Set knob wal_buffers to 4334.
+[INFO][postgres.py:258] Current value of knob work_mem: 4MB
+[INFO][postgres.py:271] Set knob work_mem to 24973.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down..................... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:306] Restarted Postgres to make the DBMS config take effect.
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:23:34,488 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:23:34,488 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:23:34,631 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:23:34,704 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:23:34,710 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:23:34,711 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[INFO ] 2024-10-03 11:28:34,712 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 11:28:34,776 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 11:28:34,852 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 11:28:34,852 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000029589, measuredRequests=169743) = 565.8099441941652 requests/sec (throughput), 525.3999481798031 requests/sec (goodput)
+[INFO ] 2024-10-03 11:28:34,886 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_11-28-34.raw.csv
+[INFO ] 2024-10-03 11:28:35,184 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_11-28-34.samples.csv
+[INFO ] 2024-10-03 11:28:35,215 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_11-28-34.summary.json
+[INFO ] 2024-10-03 11:28:35,220 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_11-28-34.params.json
+[INFO ] 2024-10-03 11:28:35,223 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_11-28-34.metrics.json
+[INFO ] 2024-10-03 11:28:35,226 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_11-28-34.config.xml
+[INFO ] 2024-10-03 11:28:35,246 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_11-28-34.results.csv with window size 5
+[INFO ] 2024-10-03 11:28:35,293 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 11:28:35,293 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [71695] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [65543] *************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [ 6796] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 6747] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 6839] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [ 853] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [15245] *******************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [38726] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [  845] *
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [   22] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+<EMPTY>
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 11:28:35,293 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 1249.3566176891327
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.0013566017150878906
+[INFO][engine.py:75] Throughput (requests/second): 565.8099441941652
+[INFO][abstract_intensifier.py:515] Added config 001bec as new incumbent because there are no incumbents yet.
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.268743
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.6708086747676134.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 162
+[INFO][postgres.py:271] Set knob default_statistics_target to 128.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 134035312kB
+[INFO][postgres.py:271] Set knob effective_cache_size to 2016422.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 1
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 3.
+[INFO][postgres.py:258] Current value of knob huge_pages: try
+[INFO][postgres.py:271] Set knob huge_pages to on.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 68654kB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 3216417.
+[INFO][postgres.py:258] Current value of knob max_connections: 64
+[INFO][postgres.py:271] Set knob max_connections to 591.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 4
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 6.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 59
+[INFO][postgres.py:271] Set knob max_parallel_workers to 23.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 7
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 1.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 3868MB
+[INFO][postgres.py:271] Set knob max_wal_size to 12129.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 21
+[INFO][postgres.py:271] Set knob max_worker_processes to 47.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 1578MB
+[INFO][postgres.py:271] Set knob min_wal_size to 4058.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 1.33838
+[INFO][postgres.py:271] Set knob random_page_cost to 6.914469571784139.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 779536kB
+[INFO][postgres.py:271] Set knob shared_buffers to 7684087.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 34672kB
+[INFO][postgres.py:271] Set knob wal_buffers to 1445.
+[INFO][postgres.py:258] Current value of knob work_mem: 24973kB
+[INFO][postgres.py:271] Set knob work_mem to 47610.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:215] Failed to restart Postgres.
+[INFO][postgres.py:216] Subprocess output: 
+pg_ctl: could not start server
+Examine the log output.
+
+[INFO][postgres.py:175] Overwritten invalid configuration and started Postgres with default configuration.
+[INFO][postgres.py:179] Subprocess output: 
+waiting for server to start.... done
+server started
+
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:28:52,528 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:28:52,528 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:28:52,670 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:28:52,741 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:28:52,747 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:28:52,747 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[INFO ] 2024-10-03 11:33:52,748 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 11:33:52,844 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 11:33:52,875 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 11:33:52,875 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000004485, measuredRequests=43957) = 146.52333114280952 requests/sec (throughput), 139.44999791522253 requests/sec (goodput)
+[INFO ] 2024-10-03 11:33:53,038 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_11-33-53.raw.csv
+[INFO ] 2024-10-03 11:33:53,148 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_11-33-53.samples.csv
+[INFO ] 2024-10-03 11:33:53,169 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_11-33-53.summary.json
+[INFO ] 2024-10-03 11:33:53,174 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_11-33-53.params.json
+[INFO ] 2024-10-03 11:33:53,177 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_11-33-53.metrics.json
+[INFO ] 2024-10-03 11:33:53,180 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_11-33-53.config.xml
+[INFO ] 2024-10-03 11:33:53,200 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_11-33-53.results.csv with window size 5
+[INFO ] 2024-10-03 11:33:53,232 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 11:33:53,232 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [19256] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [17377] ************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [ 1766] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 1722] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 1714] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [ 214] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [2266] ********************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [9003] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 272] **
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+<EMPTY>
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 11:33:53,232 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 1567.296569108963
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.0037446022033691406
+[INFO][engine.py:75] Throughput (requests/second): 146.52333114280952
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.9
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.9525035880506039.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 100
+[INFO][postgres.py:271] Set knob default_statistics_target to 183.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 4GB
+[INFO][postgres.py:271] Set knob effective_cache_size to 23316951.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 1
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 2.
+[INFO][postgres.py:258] Current value of knob huge_pages: try
+[INFO][postgres.py:271] Set knob huge_pages to off.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 64MB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 3072699.
+[INFO][postgres.py:258] Current value of knob max_connections: 100
+[INFO][postgres.py:271] Set knob max_connections to 191.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 2
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 8.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 8
+[INFO][postgres.py:271] Set knob max_parallel_workers to 9.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 2
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 3.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 1GB
+[INFO][postgres.py:271] Set knob max_wal_size to 15958.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 8
+[INFO][postgres.py:271] Set knob max_worker_processes to 56.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 80MB
+[INFO][postgres.py:271] Set knob min_wal_size to 928.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 4
+[INFO][postgres.py:271] Set knob random_page_cost to 3.7730751866474748.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 128MB
+[INFO][postgres.py:271] Set knob shared_buffers to 5727642.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 4MB
+[INFO][postgres.py:271] Set knob wal_buffers to 3552.
+[INFO][postgres.py:258] Current value of knob work_mem: 4MB
+[INFO][postgres.py:271] Set knob work_mem to 35332.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down....................... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:306] Restarted Postgres to make the DBMS config take effect.
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:34:22,796 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:34:22,797 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:34:22,937 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:34:23,012 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:34:23,017 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:34:23,018 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[WARN ] 2024-10-03 11:36:05,892 [TPCCWorker<003>]  com.oltpbenchmark.api.Worker doWork - SQLException occurred during [com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01] and will not be retried... sql state [40P01], error code [0].
+org.postgresql.util.PSQLException: ERROR: deadlock detected
+  Detail: Process 1410503 waits for ShareLock on transaction 21364893; blocked by process 1410502.
+Process 1410502 waits for ShareLock on transaction 21364892; blocked by process 1410503.
+  Hint: See server log for query details.
+  Where: while locking tuple (44045,29) in relation "stock"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.getStock(NewOrder.java:281)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.newOrderTransaction(NewOrder.java:221)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.run(NewOrder.java:171)
+	at com.oltpbenchmark.benchmarks.tpcc.TPCCWorker.executeWork(TPCCWorker.java:67)
+	at com.oltpbenchmark.api.Worker.doWork(Worker.java:434)
+	at com.oltpbenchmark.api.Worker.run(Worker.java:282)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[WARN ] 2024-10-03 11:37:18,611 [TPCCWorker<010>]  com.oltpbenchmark.api.Worker doWork - SQLException occurred during [com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01] and will not be retried... sql state [40P01], error code [0].
+org.postgresql.util.PSQLException: ERROR: deadlock detected
+  Detail: Process 1410510 waits for ShareLock on transaction 21443708; blocked by process 1410511.
+Process 1410511 waits for ShareLock on transaction 21443710; blocked by process 1410510.
+  Hint: See server log for query details.
+  Where: while locking tuple (47939,24) in relation "stock"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.getStock(NewOrder.java:281)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.newOrderTransaction(NewOrder.java:221)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.run(NewOrder.java:171)
+	at com.oltpbenchmark.benchmarks.tpcc.TPCCWorker.executeWork(TPCCWorker.java:67)
+	at com.oltpbenchmark.api.Worker.doWork(Worker.java:434)
+	at com.oltpbenchmark.api.Worker.run(Worker.java:282)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[WARN ] 2024-10-03 11:37:32,943 [TPCCWorker<018>]  com.oltpbenchmark.api.Worker doWork - SQLException occurred during [com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01] and will not be retried... sql state [40P01], error code [0].
+org.postgresql.util.PSQLException: ERROR: deadlock detected
+  Detail: Process 1410518 waits for ShareLock on transaction 21460306; blocked by process 1410519.
+Process 1410519 waits for ShareLock on transaction 21460305; blocked by process 1410518.
+  Hint: See server log for query details.
+  Where: while locking tuple (43595,31) in relation "stock"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.getStock(NewOrder.java:281)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.newOrderTransaction(NewOrder.java:221)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.run(NewOrder.java:171)
+	at com.oltpbenchmark.benchmarks.tpcc.TPCCWorker.executeWork(TPCCWorker.java:67)
+	at com.oltpbenchmark.api.Worker.doWork(Worker.java:434)
+	at com.oltpbenchmark.api.Worker.run(Worker.java:282)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[INFO ] 2024-10-03 11:39:23,018 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 11:39:23,032 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 11:39:23,110 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 11:39:23,110 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000067387, measuredRequests=240190) = 800.6331534924456 requests/sec (throughput), 763.4731618394468 requests/sec (goodput)
+[INFO ] 2024-10-03 11:39:23,141 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_11-39-23.raw.csv
+[INFO ] 2024-10-03 11:39:23,514 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_11-39-23.samples.csv
+[INFO ] 2024-10-03 11:39:23,549 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_11-39-23.summary.json
+[INFO ] 2024-10-03 11:39:23,553 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_11-39-23.params.json
+[INFO ] 2024-10-03 11:39:23,556 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_11-39-23.metrics.json
+[INFO ] 2024-10-03 11:39:23,559 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_11-39-23.config.xml
+[INFO ] 2024-10-03 11:39:23,580 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_11-39-23.results.csv with window size 5
+[INFO ] 2024-10-03 11:39:23,638 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 11:39:23,638 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [104966] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [ 95743] ************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [  9607] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [  9311] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [  9415] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [1139] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [11601] *******************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [47810] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 1011] *
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [   11] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [   3] ********************************************************************************
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 11:39:23,638 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 1897.6949784755707
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.007303476333618164
+[INFO][engine.py:75] Throughput (requests/second): 800.6331534924456
+[INFO][abstract_intensifier.py:590] Added config 61ad92 and rejected config 001bec as incumbent because it is not better than the incumbents on 1 instances:
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.952504
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.11183177959173918.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 183
+[INFO][postgres.py:271] Set knob default_statistics_target to 104.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 186535608kB
+[INFO][postgres.py:271] Set knob effective_cache_size to 8207566.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 2
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 4.
+[INFO][postgres.py:258] Current value of knob huge_pages: off
+[INFO][postgres.py:271] Set knob huge_pages to try.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 3072699kB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 2018584.
+[INFO][postgres.py:258] Current value of knob max_connections: 191
+[INFO][postgres.py:271] Set knob max_connections to 454.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 8
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 2.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 9
+[INFO][postgres.py:271] Set knob max_parallel_workers to 46.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 3
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 5.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 15958MB
+[INFO][postgres.py:271] Set knob max_wal_size to 7661.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 56
+[INFO][postgres.py:271] Set knob max_worker_processes to 13.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 928MB
+[INFO][postgres.py:271] Set knob min_wal_size to 2666.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 3.77308
+[INFO][postgres.py:271] Set knob random_page_cost to 5.847389217466116.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 45821136kB
+[INFO][postgres.py:271] Set knob shared_buffers to 2062043.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 28416kB
+[INFO][postgres.py:271] Set knob wal_buffers to 1941.
+[INFO][postgres.py:258] Current value of knob work_mem: 35332kB
+[INFO][postgres.py:271] Set knob work_mem to 12585.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down.................. done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:306] Restarted Postgres to make the DBMS config take effect.
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:39:40,367 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:39:40,367 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:39:40,516 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:39:40,581 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:39:40,587 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:39:40,587 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[WARN ] 2024-10-03 11:40:23,366 [TPCCWorker<000>]  com.oltpbenchmark.api.Worker doWork - SQLException occurred during [com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01] and will not be retried... sql state [40P01], error code [0].
+org.postgresql.util.PSQLException: ERROR: deadlock detected
+  Detail: Process 1410726 waits for ShareLock on transaction 21599534; blocked by process 1410727.
+Process 1410727 waits for ShareLock on transaction 21599536; blocked by process 1410726.
+  Hint: See server log for query details.
+  Where: while locking tuple (16060,37) in relation "stock"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.getStock(NewOrder.java:281)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.newOrderTransaction(NewOrder.java:221)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.run(NewOrder.java:171)
+	at com.oltpbenchmark.benchmarks.tpcc.TPCCWorker.executeWork(TPCCWorker.java:67)
+	at com.oltpbenchmark.api.Worker.doWork(Worker.java:434)
+	at com.oltpbenchmark.api.Worker.run(Worker.java:282)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[WARN ] 2024-10-03 11:43:48,640 [TPCCWorker<018>]  com.oltpbenchmark.api.Worker doWork - SQLException occurred during [com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01] and will not be retried... sql state [40P01], error code [0].
+org.postgresql.util.PSQLException: ERROR: deadlock detected
+  Detail: Process 1410744 waits for ShareLock on transaction 21774838; blocked by process 1410745.
+Process 1410745 waits for ShareLock on transaction 21774834; blocked by process 1410744.
+  Hint: See server log for query details.
+  Where: while locking tuple (4541,30) in relation "stock"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.getStock(NewOrder.java:281)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.newOrderTransaction(NewOrder.java:221)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.run(NewOrder.java:171)
+	at com.oltpbenchmark.benchmarks.tpcc.TPCCWorker.executeWork(TPCCWorker.java:67)
+	at com.oltpbenchmark.api.Worker.doWork(Worker.java:434)
+	at com.oltpbenchmark.api.Worker.run(Worker.java:282)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[INFO ] 2024-10-03 11:44:40,588 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 11:44:40,621 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 11:44:40,686 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 11:44:40,687 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000096866, measuredRequests=252056) = 840.186395381682 requests/sec (throughput), 802.7230741447557 requests/sec (goodput)
+[INFO ] 2024-10-03 11:44:40,716 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_11-44-40.raw.csv
+[INFO ] 2024-10-03 11:44:41,113 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_11-44-40.samples.csv
+[INFO ] 2024-10-03 11:44:41,145 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_11-44-40.summary.json
+[INFO ] 2024-10-03 11:44:41,150 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_11-44-40.params.json
+[INFO ] 2024-10-03 11:44:41,153 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_11-44-40.metrics.json
+[INFO ] 2024-10-03 11:44:41,156 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_11-44-40.config.xml
+[INFO ] 2024-10-03 11:44:41,176 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_11-44-40.results.csv with window size 5
+[INFO ] 2024-10-03 11:44:41,243 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 11:44:41,243 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [110186] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [100727] *************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [ 10004] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [  9765] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 10135] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [1292] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [11561] *******************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [48546] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 1076] *
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [   17] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [   2] ********************************************************************************
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 11:44:41,243 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 2215.298975944519
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.014064788818359375
+[INFO][engine.py:75] Throughput (requests/second): 840.186395381682
+[INFO][abstract_intensifier.py:590] Added config 8ba5ad and rejected config 61ad92 as incumbent because it is not better than the incumbents on 1 instances:
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.111832
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.21617628261446953.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 104
+[INFO][postgres.py:271] Set knob default_statistics_target to 198.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 65660528kB
+[INFO][postgres.py:271] Set knob effective_cache_size to 5872997.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 4
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 4.
+[INFO][postgres.py:258] Current value of knob huge_pages: try
+[INFO][postgres.py:271] Set knob huge_pages to on.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 2018584kB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 592259.
+[INFO][postgres.py:258] Current value of knob max_connections: 454
+[INFO][postgres.py:271] Set knob max_connections to 261.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 2
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 7.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 46
+[INFO][postgres.py:271] Set knob max_parallel_workers to 14.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 5
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 2.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 7661MB
+[INFO][postgres.py:271] Set knob max_wal_size to 12632.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 13
+[INFO][postgres.py:271] Set knob max_worker_processes to 6.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 2666MB
+[INFO][postgres.py:271] Set knob min_wal_size to 415.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 5.84739
+[INFO][postgres.py:271] Set knob random_page_cost to 7.773762710392475.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 16496344kB
+[INFO][postgres.py:271] Set knob shared_buffers to 3948512.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 15528kB
+[INFO][postgres.py:271] Set knob wal_buffers to 2733.
+[INFO][postgres.py:258] Current value of knob work_mem: 12585kB
+[INFO][postgres.py:271] Set knob work_mem to 7801.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:215] Failed to restart Postgres.
+[INFO][postgres.py:216] Subprocess output: 
+pg_ctl: could not start server
+Examine the log output.
+
+[INFO][postgres.py:175] Overwritten invalid configuration and started Postgres with default configuration.
+[INFO][postgres.py:179] Subprocess output: 
+waiting for server to start.... done
+server started
+
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:45:02,030 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:45:02,031 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:45:02,178 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:45:02,245 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:45:02,250 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:45:02,251 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[INFO ] 2024-10-03 11:50:02,252 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 11:50:02,316 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 11:50:02,350 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 11:50:02,350 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000028952, measuredRequests=37039) = 123.46332141829973 requests/sec (throughput), 117.51332199251434 requests/sec (goodput)
+[INFO ] 2024-10-03 11:50:02,383 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_11-50-02.raw.csv
+[INFO ] 2024-10-03 11:50:02,495 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_11-50-02.samples.csv
+[INFO ] 2024-10-03 11:50:02,518 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_11-50-02.summary.json
+[INFO ] 2024-10-03 11:50:02,523 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_11-50-02.params.json
+[INFO ] 2024-10-03 11:50:02,527 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_11-50-02.metrics.json
+[INFO ] 2024-10-03 11:50:02,530 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_11-50-02.config.xml
+[INFO ] 2024-10-03 11:50:02,550 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_11-50-02.results.csv with window size 5
+[INFO ] 2024-10-03 11:50:02,581 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 11:50:02,581 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [16346] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [14461] **********************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [ 1508] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 1398] ******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 1541] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [ 170] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [1724] ******************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [7554] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 322] ***
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [   1] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+<EMPTY>
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 11:50:02,581 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 2536.6367678642273
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.01716017723083496
+[INFO][engine.py:75] Throughput (requests/second): 123.46332141829973
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.9
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.8442547125741839.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 100
+[INFO][postgres.py:271] Set knob default_statistics_target to 113.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 4GB
+[INFO][postgres.py:271] Set knob effective_cache_size to 15151497.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 1
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 2.
+[INFO][postgres.py:258] Current value of knob huge_pages: try
+[INFO][postgres.py:271] Set knob huge_pages to off.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 64MB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 3738992.
+[INFO][postgres.py:258] Current value of knob max_connections: 100
+[INFO][postgres.py:271] Set knob max_connections to 393.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 2
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 1.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 8
+[INFO][postgres.py:271] Set knob max_parallel_workers to 50.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 2
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 8.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 1GB
+[INFO][postgres.py:271] Set knob max_wal_size to 6247.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 8
+[INFO][postgres.py:271] Set knob max_worker_processes to 67.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 80MB
+[INFO][postgres.py:271] Set knob min_wal_size to 2161.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 4
+[INFO][postgres.py:271] Set knob random_page_cost to 1.9729528622701764.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 128MB
+[INFO][postgres.py:271] Set knob shared_buffers to 4406318.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 4MB
+[INFO][postgres.py:271] Set knob wal_buffers to 3336.
+[INFO][postgres.py:258] Current value of knob work_mem: 4MB
+[INFO][postgres.py:271] Set knob work_mem to 37155.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down................... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:306] Restarted Postgres to make the DBMS config take effect.
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:50:25,027 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:50:25,028 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:50:25,167 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:50:25,244 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:50:25,250 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:50:25,250 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[WARN ] 2024-10-03 11:54:05,500 [TPCCWorker<016>]  com.oltpbenchmark.api.Worker doWork - SQLException occurred during [com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01] and will not be retried... sql state [40P01], error code [0].
+org.postgresql.util.PSQLException: ERROR: deadlock detected
+  Detail: Process 1411199 waits for ShareLock on transaction 22032945; blocked by process 1411200.
+Process 1411200 waits for ShareLock on transaction 22032946; blocked by process 1411199.
+  Hint: See server log for query details.
+  Where: while locking tuple (45968,40) in relation "stock"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.getStock(NewOrder.java:281)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.newOrderTransaction(NewOrder.java:221)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.run(NewOrder.java:171)
+	at com.oltpbenchmark.benchmarks.tpcc.TPCCWorker.executeWork(TPCCWorker.java:67)
+	at com.oltpbenchmark.api.Worker.doWork(Worker.java:434)
+	at com.oltpbenchmark.api.Worker.run(Worker.java:282)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[INFO ] 2024-10-03 11:55:25,251 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 11:55:25,291 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 11:55:25,373 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 11:55:25,373 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000003291, measuredRequests=221394) = 737.9799919043595 requests/sec (throughput), 702.6699922917102 requests/sec (goodput)
+[INFO ] 2024-10-03 11:55:25,403 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_11-55-25.raw.csv
+[INFO ] 2024-10-03 11:55:25,764 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_11-55-25.samples.csv
+[INFO ] 2024-10-03 11:55:25,793 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_11-55-25.summary.json
+[INFO ] 2024-10-03 11:55:25,798 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_11-55-25.params.json
+[INFO ] 2024-10-03 11:55:25,801 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_11-55-25.metrics.json
+[INFO ] 2024-10-03 11:55:25,804 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_11-55-25.config.xml
+[INFO ] 2024-10-03 11:55:25,822 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_11-55-25.results.csv with window size 5
+[INFO ] 2024-10-03 11:55:25,881 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 11:55:25,881 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [96386] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [87987] *************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [ 9023] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 8546] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 8859] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [1058] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [11634] *********************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [43988] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 1002] *
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [   20] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [   1] ********************************************************************************
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 11:55:25,881 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 2859.931633710861
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.020390748977661133
+[INFO][engine.py:75] Throughput (requests/second): 737.9799919043595
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.844255
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.5011641876772046.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 113
+[INFO][postgres.py:271] Set knob default_statistics_target to 170.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 121211976kB
+[INFO][postgres.py:271] Set knob effective_cache_size to 10181064.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 2
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 3.
+[INFO][postgres.py:258] Current value of knob huge_pages: off
+[INFO][postgres.py:261] Knob huge_pages has already been set to off.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 3738992kB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 2564215.
+[INFO][postgres.py:258] Current value of knob max_connections: 393
+[INFO][postgres.py:271] Set knob max_connections to 130.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 1
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 3.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 50
+[INFO][postgres.py:271] Set knob max_parallel_workers to 72.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 8
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 6.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 6247MB
+[INFO][postgres.py:271] Set knob max_wal_size to 2402.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 67
+[INFO][postgres.py:271] Set knob max_worker_processes to 41.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 2161MB
+[INFO][postgres.py:271] Set knob min_wal_size to 1073.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 1.97295
+[INFO][postgres.py:271] Set knob random_page_cost to 5.339507816359401.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 35250544kB
+[INFO][postgres.py:271] Set knob shared_buffers to 6509905.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 26688kB
+[INFO][postgres.py:271] Set knob wal_buffers to 653.
+[INFO][postgres.py:258] Current value of knob work_mem: 37155kB
+[INFO][postgres.py:271] Set knob work_mem to 49335.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down.................... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:306] Restarted Postgres to make the DBMS config take effect.
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 11:55:44,714 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 11:55:44,715 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 11:55:44,867 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 11:55:44,942 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 11:55:44,950 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 11:55:44,950 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[INFO ] 2024-10-03 12:00:44,950 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 12:00:45,072 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 12:00:45,140 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 12:00:45,140 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000002273, measuredRequests=251489) = 838.2966603151723 requests/sec (throughput), 798.5833272827336 requests/sec (goodput)
+[INFO ] 2024-10-03 12:00:45,170 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_12-00-45.raw.csv
+[INFO ] 2024-10-03 12:00:45,563 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_12-00-45.samples.csv
+[INFO ] 2024-10-03 12:00:45,595 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_12-00-45.summary.json
+[INFO ] 2024-10-03 12:00:45,600 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_12-00-45.params.json
+[INFO ] 2024-10-03 12:00:45,604 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_12-00-45.metrics.json
+[INFO ] 2024-10-03 12:00:45,607 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_12-00-45.config.xml
+[INFO ] 2024-10-03 12:00:45,626 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_12-00-45.results.csv with window size 5
+[INFO ] 2024-10-03 12:00:45,685 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 12:00:45,685 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [110164] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [ 99531] ************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [  9912] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [  9968] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 10000] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [1213] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [11317] ******************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [49864] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 1073] *
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [   13] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+<EMPTY>
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 12:00:45,685 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 3179.73250412941
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.02359914779663086
+[INFO][engine.py:75] Throughput (requests/second): 838.2966603151723
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.501164
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.43447949178516865.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 170
+[INFO][postgres.py:271] Set knob default_statistics_target to 141.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 81448512kB
+[INFO][postgres.py:271] Set knob effective_cache_size to 19088149.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 3
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 1.
+[INFO][postgres.py:258] Current value of knob huge_pages: off
+[INFO][postgres.py:271] Set knob huge_pages to try.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 2564215kB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 1509113.
+[INFO][postgres.py:258] Current value of knob max_connections: 130
+[INFO][postgres.py:271] Set knob max_connections to 516.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 3
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 5.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 72
+[INFO][postgres.py:271] Set knob max_parallel_workers to 35.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 6
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 4.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 2402MB
+[INFO][postgres.py:271] Set knob max_wal_size to 8734.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 41
+[INFO][postgres.py:271] Set knob max_worker_processes to 32.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 1073MB
+[INFO][postgres.py:271] Set knob min_wal_size to 3545.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 5.33951
+[INFO][postgres.py:271] Set knob random_page_cost to 3.040447502397001.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 52079240kB
+[INFO][postgres.py:271] Set knob shared_buffers to 1853331.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 5224kB
+[INFO][postgres.py:271] Set knob wal_buffers to 4550.
+[INFO][postgres.py:258] Current value of knob work_mem: 49335kB
+[INFO][postgres.py:271] Set knob work_mem to 19894.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down....................... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:306] Restarted Postgres to make the DBMS config take effect.
+[INFO][benchbase.py:111] Finish running workload.
+[INFO][benchbase.py:112] Subprocess output: 
+[INFO ] 2024-10-03 12:01:07,123 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:                       TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:                   ./config/postgres/sample_tpcc_config.xml
+Type:                            POSTGRES
+Driver:                          org.postgresql.Driver
+URL:                             jdbc:postgresql://localhost:5431/benchbase?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:                       TRANSACTION_SERIALIZABLE
+Batch Size:                      128
+Scale Factor:                    10.0
+Terminals:                       20
+New Connection Per Txn:          false
+Reconnect on Connection Failure: true
+
+[INFO ] 2024-10-03 12:01:07,123 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2024-10-03 12:01:07,267 [main]  com.oltpbenchmark.DBWorkload runWorkload - Creating 20 virtual terminals...
+[INFO ] 2024-10-03 12:01:07,340 [main]  com.oltpbenchmark.DBWorkload runWorkload - Launching the TPCC Benchmark with 1 Phase...
+[INFO ] 2024-10-03 12:01:07,345 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=300] [WarmupTime=0] [Rate=10000.0] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=20]
+[INFO ] 2024-10-03 12:01:07,346 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+[WARN ] 2024-10-03 12:04:23,439 [TPCCWorker<018>]  com.oltpbenchmark.api.Worker doWork - SQLException occurred during [com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01] and will not be retried... sql state [40P01], error code [0].
+org.postgresql.util.PSQLException: ERROR: deadlock detected
+  Detail: Process 1412315 waits for ShareLock on transaction 22524374; blocked by process 1412316.
+Process 1412316 waits for ShareLock on transaction 22524373; blocked by process 1412315.
+  Hint: See server log for query details.
+  Where: while locking tuple (47474,24) in relation "stock"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.getStock(NewOrder.java:281)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.newOrderTransaction(NewOrder.java:221)
+	at com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder.run(NewOrder.java:171)
+	at com.oltpbenchmark.benchmarks.tpcc.TPCCWorker.executeWork(TPCCWorker.java:67)
+	at com.oltpbenchmark.api.Worker.doWork(Worker.java:434)
+	at com.oltpbenchmark.api.Worker.run(Worker.java:282)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[INFO ] 2024-10-03 12:06:07,347 [main]  com.oltpbenchmark.ThreadBench runRateLimitedMultiPhase - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+[INFO ] 2024-10-03 12:06:07,426 [Thread-20]  com.oltpbenchmark.ThreadBench run - Starting WatchDogThread
+[INFO ] 2024-10-03 12:06:07,488 [main]  com.oltpbenchmark.DBWorkload runWorkload - ======================================================================
+[INFO ] 2024-10-03 12:06:07,489 [main]  com.oltpbenchmark.DBWorkload runWorkload - Rate limited reqs/s: Results(state=EXIT, nanoSeconds=300000030318, measuredRequests=132575) = 441.9166220065728 requests/sec (throughput), 423.0199572496031 requests/sec (goodput)
+[INFO ] 2024-10-03 12:06:07,516 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output Raw data into file: tpcc_2024-10-03_12-06-07.raw.csv
+[INFO ] 2024-10-03 12:06:07,766 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output samples into file: tpcc_2024-10-03_12-06-07.samples.csv
+[INFO ] 2024-10-03 12:06:07,789 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output summary data into file: tpcc_2024-10-03_12-06-07.summary.json
+[INFO ] 2024-10-03 12:06:07,794 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS parameters into file: tpcc_2024-10-03_12-06-07.params.json
+[INFO ] 2024-10-03 12:06:07,797 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output DBMS metrics into file: tpcc_2024-10-03_12-06-07.metrics.json
+[INFO ] 2024-10-03 12:06:07,800 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output benchmark config into file: tpcc_2024-10-03_12-06-07.config.xml
+[INFO ] 2024-10-03 12:06:07,827 [main]  com.oltpbenchmark.DBWorkload writeOutputs - Output results into file: tpcc_2024-10-03_12-06-07.results.csv with window size 5
+[INFO ] 2024-10-03 12:06:07,874 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+[INFO ] 2024-10-03 12:06:07,875 [main]  com.oltpbenchmark.DBWorkload writeHistograms - Workload Histograms:
+
+[0;1mCompleted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [57937] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [53156] *************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.OrderStatus/03                      [ 5373] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [ 5161] *******
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [ 5279] *******
+
+[0;1mAborted Transactions:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [ 630] ********************************************************************************
+
+[0;1mRejected Transactions (Server Retry):[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [ 6067] *******************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Payment/02                          [25113] ********************************************************************************
+com.oltpbenchmark.benchmarks.tpcc.procedures.Delivery/04                         [  592] *
+com.oltpbenchmark.benchmarks.tpcc.procedures.StockLevel/05                       [   14] 
+
+[0;1mRejected Transactions (Retry Different):[0;0m
+<EMPTY>
+
+[0;1mUnexpected SQL Errors:[0;0m
+com.oltpbenchmark.benchmarks.tpcc.procedures.NewOrder/01                         [   1] ********************************************************************************
+
+[0;1mUnknown Status Transactions:[0;0m
+<EMPTY>
+
+
+[INFO ] 2024-10-03 12:06:07,875 [main]  com.oltpbenchmark.DBWorkload writeHistograms - ======================================================================
+
+[INFO][engine.py:66] TOTAL USED EVALUATION TIME: 3501.9201090335846
+[INFO][engine.py:69] TOTAL USED OPTIMIZATION TIME: 0.026922225952148438
+[INFO][engine.py:75] Throughput (requests/second): 441.9166220065728
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:258] Current value of knob checkpoint_completion_target: 0.434479
+[INFO][postgres.py:271] Set knob checkpoint_completion_target to 0.4468503436073661.
+[INFO][postgres.py:258] Current value of knob default_statistics_target: 141
+[INFO][postgres.py:271] Set knob default_statistics_target to 176.
+[INFO][postgres.py:258] Current value of knob effective_cache_size: 152705192kB
+[INFO][postgres.py:271] Set knob effective_cache_size to 12507968.
+[INFO][postgres.py:258] Current value of knob effective_io_concurrency: 1
+[INFO][postgres.py:271] Set knob effective_io_concurrency to 2.
+[INFO][postgres.py:258] Current value of knob huge_pages: try
+[INFO][postgres.py:271] Set knob huge_pages to on.
+[INFO][postgres.py:258] Current value of knob maintenance_work_mem: 1509113kB
+[INFO][postgres.py:271] Set knob maintenance_work_mem to 1646238.
+[INFO][postgres.py:258] Current value of knob max_connections: 516
+[INFO][postgres.py:271] Set knob max_connections to 312.
+[INFO][postgres.py:258] Current value of knob max_parallel_maintenance_workers: 5
+[INFO][postgres.py:271] Set knob max_parallel_maintenance_workers to 7.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers: 35
+[INFO][postgres.py:271] Set knob max_parallel_workers to 18.
+[INFO][postgres.py:258] Current value of knob max_parallel_workers_per_gather: 4
+[INFO][postgres.py:271] Set knob max_parallel_workers_per_gather to 5.
+[INFO][postgres.py:258] Current value of knob max_wal_size: 8734MB
+[INFO][postgres.py:271] Set knob max_wal_size to 9860.
+[INFO][postgres.py:258] Current value of knob max_worker_processes: 32
+[INFO][postgres.py:271] Set knob max_worker_processes to 29.
+[INFO][postgres.py:258] Current value of knob min_wal_size: 3545MB
+[INFO][postgres.py:271] Set knob min_wal_size to 2317.
+[INFO][postgres.py:258] Current value of knob random_page_cost: 3.04045
+[INFO][postgres.py:271] Set knob random_page_cost to 4.8142451867461205.
+[INFO][postgres.py:258] Current value of knob shared_buffers: 14826648kB
+[INFO][postgres.py:271] Set knob shared_buffers to 5152602.
+[INFO][postgres.py:258] Current value of knob wal_buffers: 36400kB
+[INFO][postgres.py:271] Set knob wal_buffers to 2310.
+[INFO][postgres.py:258] Current value of knob work_mem: 19894kB
+[INFO][postgres.py:271] Set knob work_mem to 29607.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:219] Timeout when restarting Postgres.
+[INFO][postgres.py:182] Failed to overwrite invalid configuration and start Postgres with default configuration.
+[INFO][postgres.py:186] Subprocess output: 
+pg_ctl: another server might be running; trying to start server anyway
+pg_ctl: could not start server
+Examine the log output.
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][smbo.py:319] Finished 50 trials.
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][postgres.py:54] Unable to connect to Postgres.
+[INFO][postgres.py:55] FATAL:  the database system is shutting down
+
+[INFO][postgres.py:299] Failed to alter knobs.
+[INFO][postgres.py:300] FATAL:  the database system is shutting down
+
+[WARNING][abstract_runner.py:132] Target function returned infinity or nothing at all. Result is treated as CRASHED and cost is set to inf.
+[WARNING][abstract_runner.py:138] Traceback: Traceback (most recent call last):
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 184, in run
+    rval = self(config_copy, target_function, kwargs)
+  File "/home/aditk/miniconda3/envs/cybernetics/lib/python3.10/site-packages/smac/runner/target_function_runner.py", line 257, in __call__
+    return algorithm(config, **algorithm_kwargs)
+  File "/home/aditk/workspace/cybernetics/cybernetics/tuning/engine.py", line 57, in target_function
+    assert rtn_predicate, "Failed to apply DBMS configuration."
+AssertionError: Failed to apply DBMS configuration.
+
+
+[INFO][smbo.py:319] Finished 100 trials.
+[INFO][smbo.py:327] Configuration budget is exhausted:
+[INFO][smbo.py:328] --- Remaining wallclock time: inf
+[INFO][smbo.py:329] --- Remaining cpu time: inf
+[INFO][smbo.py:330] --- Remaining trials: 0
+[INFO][engine.py:255] 
+Completed DBMS configuration tuning.
+[INFO][engine.py:256] 
+Best DBMS Configuration:
+Configuration(values={
+  'checkpoint_completion_target': 0.11183177959173918,
+  'default_statistics_target': 104,
+  'effective_cache_size': 8207566,
+  'effective_io_concurrency': 4,
+  'huge_pages': 'try',
+  'maintenance_work_mem': 2018584,
+  'max_connections': 454,
+  'max_parallel_maintenance_workers': 2,
+  'max_parallel_workers': 46,
+  'max_parallel_workers_per_gather': 5,
+  'max_wal_size': 7661,
+  'max_worker_processes': 13,
+  'min_wal_size': 2666,
+  'random_page_cost': 5.847389217466116,
+  'shared_buffers': 2062043,
+  'wal_buffers': 1941,
+  'work_mem': 12585,
+})
+[INFO][engine.py:257] 
+Worst DBMS Configuration:
+Configuration(values={
+  'checkpoint_completion_target': 0.21617628261446953,
+  'default_statistics_target': 198,
+  'effective_cache_size': 5872997,
+  'effective_io_concurrency': 4,
+  'huge_pages': 'on',
+  'maintenance_work_mem': 592259,
+  'max_connections': 261,
+  'max_parallel_maintenance_workers': 7,
+  'max_parallel_workers': 14,
+  'max_parallel_workers_per_gather': 2,
+  'max_wal_size': 12632,
+  'max_worker_processes': 6,
+  'min_wal_size': 415,
+  'random_page_cost': 7.773762710392475,
+  'shared_buffers': 3948512,
+  'wal_buffers': 2733,
+  'work_mem': 7801,
+})
+[INFO][engine.py:262] Best Throughput: 840.186395381682 ops/sec
+[INFO][engine.py:265] Worst Throughput: 123.46332141829973 ops/sec

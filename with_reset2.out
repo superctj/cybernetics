@@ -1,0 +1,40 @@
+ITERATION  0
+Finished applying knobs
+Throughput (requests/second): 425.06665925350416
+95th Percentile Latency (microseconds): 145273
+ITERATION  1
+Finished applying knobs
+Throughput (requests/second): 569.3031401554941
+95th Percentile Latency (microseconds): 103993
+ITERATION  2
+Finished applying knobs
+Throughput (requests/second): 480.57662074276476
+95th Percentile Latency (microseconds): 115596
+ITERATION  3
+Finished applying knobs
+Throughput (requests/second): 792.6397969336103
+95th Percentile Latency (microseconds): 107417
+ITERATION  4
+Finished applying knobs
+Throughput (requests/second): 493.5699565888771
+95th Percentile Latency (microseconds): 119367
+ITERATION  5
+Finished applying knobs
+Throughput (requests/second): 409.18663774535514
+95th Percentile Latency (microseconds): 133935
+ITERATION  6
+Finished applying knobs
+Throughput (requests/second): 470.64330137665314
+95th Percentile Latency (microseconds): 149198
+ITERATION  7
+Finished applying knobs
+Throughput (requests/second): 539.4632893239182
+95th Percentile Latency (microseconds): 115710
+ITERATION  8
+Finished applying knobs
+Throughput (requests/second): 555.9766349426399
+95th Percentile Latency (microseconds): 106959
+ITERATION  9
+Finished applying knobs
+Throughput (requests/second): 457.0733227414209
+95th Percentile Latency (microseconds): 143590

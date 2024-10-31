@@ -1,0 +1,400 @@
+ITERATION  0
+Finished applying knobs
+Throughput (requests/second): 355.3232250852972
+95th Percentile Latency (microseconds): 197399
+ITERATION  1
+Finished applying knobs
+Throughput (requests/second): 519.4398585911558
+95th Percentile Latency (microseconds): 108988
+ITERATION  2
+Finished applying knobs
+Throughput (requests/second): 487.83652883170765
+95th Percentile Latency (microseconds): 117286
+ITERATION  3
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  4
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  5
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  6
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  7
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  8
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  9
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  10
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  11
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  12
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  13
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  14
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  15
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  16
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  17
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  18
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  19
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  20
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  21
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  22
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  23
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  24
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  25
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  26
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  27
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  28
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  29
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  30
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  31
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  32
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  33
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  34
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  35
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  36
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  37
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  38
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  39
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  40
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  41
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  42
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  43
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  44
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  45
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  46
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  47
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  48
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  49
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  50
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  51
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  52
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  53
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  54
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  55
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  56
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  57
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  58
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  59
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  60
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  61
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  62
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  63
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  64
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  65
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  66
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  67
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  68
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  69
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  70
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  71
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  72
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  73
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  74
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  75
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  76
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  77
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  78
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  79
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  80
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  81
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  82
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  83
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  84
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  85
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  86
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  87
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  88
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  89
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  90
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  91
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  92
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  93
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  94
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  95
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  96
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  97
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  98
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
+ITERATION  99
+Finished applying knobs
+Throughput (requests/second): 389.89990453560773
+95th Percentile Latency (microseconds): 140219
