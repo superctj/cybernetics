@@ -1,0 +1,14 @@
+2024-07-11 15:33:53.687 EDT [2214859] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-07-11 15:33:53.687 EDT [2214859] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-07-11 15:33:53.687 EDT [2214859] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-07-11 15:33:53.691 EDT [2214860] LOG:  database system was shut down at 2024-07-11 15:33:24 EDT
+2024-07-11 15:33:53.696 EDT [2214859] LOG:  database system is ready to accept connections
+2024-07-11 15:34:37.023 EDT [2214909] ERROR:  syntax error at or near "CREATE" at character 101
+2024-07-11 15:34:37.023 EDT [2214909] STATEMENT:  CREATE ROLE phdonn1 WITH LOGIN PASSWORD '12345' SUPERUSER CREATEDB CREATEROLE REPLICATION BYPASSRLS
+	CREATE DATABASE benchbase
+	CREATE ROLE phdonn1 WITH LOGIN PASSWORD '12345' SUPERUSER CREATEDB CREATEROLE REPLICATION BYPASSRLS;
+2024-07-11 15:35:22.682 EDT [2214859] LOG:  received fast shutdown request
+2024-07-11 15:35:22.682 EDT [2214859] LOG:  aborting any active transactions
+2024-07-11 15:35:22.686 EDT [2214859] LOG:  background worker "logical replication launcher" (PID 2214866) exited with exit code 1
+2024-07-11 15:35:22.686 EDT [2214861] LOG:  shutting down
+2024-07-11 15:35:22.698 EDT [2214859] LOG:  database system is shut down

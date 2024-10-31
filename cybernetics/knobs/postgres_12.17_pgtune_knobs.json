@@ -10,14 +10,31 @@
         "vartype": "integer",
         "source": "configuration file",
         "min_val": "50",
-        "max_val": "100",
+        "max_val": "400",
         "enumvals": null,
         "boot_val": "100",
         "reset_val": "100"
     },
     {
+        "name": "max_pred_locks_per_transaction",
+        "setting": "64",
+        "unit": null,
+        "category": "Lock Management",
+        "short_desc": "Sets the maximum number of predicate locks per transaction.",
+        "extra_desc": "The shared predicate lock table is sized on the assumption that at most max_pred_locks_per_transaction * max_connections distinct objects will need to be locked at any one time.",
+        "context": "postmaster",
+        "vartype": "integer",
+        "source": "default",
+        "min_val": "10",
+        "max_val": "2147483647",
+        "enumvals": null,
+        "boot_val": "64",
+        "reset_val": "64"
+    },
+    
+    {
         "name": "shared_buffers",
-        "setting": "16384",
+        "setting": "524288",
         "unit": "8kB",
         "category": "Resource Usage / Memory",
         "short_desc": "Sets the number of shared memory buffers used by the server.",
@@ -25,15 +42,15 @@
         "context": "postmaster",
         "vartype": "integer",
         "source": "configuration file",
-        "min_val": "8192",
-        "max_val": "32768",
+        "min_val": "1",
+        "max_val": "2000000",
         "enumvals": null,
-        "boot_val": "1024",
-        "reset_val": "16384"
+        "boot_val": "524288",
+        "reset_val": "524288"
     },
     {
         "name": "effective_cache_size",
-        "setting": "524288",
+        "setting": "65536",
         "unit": "8kB",
         "category": "Query Tuning / Planner Cost Constants",
         "short_desc": "Sets the planner's assumption about the total size of the data caches.",
@@ -41,11 +58,11 @@
         "context": "user",
         "vartype": "integer",
         "source": "default",
-        "min_val": "524288",
-        "max_val": "524290",
+        "min_val": "1",
+        "max_val": "2000000",
         "enumvals": null,
-        "boot_val": "524288",
-        "reset_val": "524288"
+        "boot_val": "65536",
+        "reset_val": "65536"
     },
     {
         "name": "maintenance_work_mem",
@@ -58,7 +75,7 @@
         "vartype": "integer",
         "source": "default",
         "min_val": "65536",
-        "max_val": "655360",
+        "max_val": "16000000",
         "enumvals": null,
         "boot_val": "65536",
         "reset_val": "65536"
@@ -106,7 +123,7 @@
         "vartype": "integer",
         "source": "default",
         "min_val": "100",
-        "max_val": "200",
+        "max_val": "400",
         "enumvals": null,
         "boot_val": "100",
         "reset_val": "100"
@@ -122,7 +139,7 @@
         "vartype": "real",
         "source": "default",
         "min_val": "1",
-        "max_val": "8",
+        "max_val": "16",
         "enumvals": null,
         "boot_val": "4",
         "reset_val": "4"
@@ -154,7 +171,7 @@
         "vartype": "integer",
         "source": "default",
         "min_val": "4096",
-        "max_val": "40960",
+        "max_val": "16000000",
         "enumvals": null,
         "boot_val": "4096",
         "reset_val": "4096"
@@ -238,7 +255,7 @@
         "vartype": "integer",
         "source": "default",
         "min_val": "1",
-        "max_val": "4",
+        "max_val": "8",
         "enumvals": null,
         "boot_val": "2",
         "reset_val": "2"
@@ -254,7 +271,7 @@
         "vartype": "integer",
         "source": "default",
         "min_val": "4",
-        "max_val": "16",
+        "max_val": "32",
         "enumvals": null,
         "boot_val": "8",
         "reset_val": "8"
@@ -270,7 +287,7 @@
         "vartype": "integer",
         "source": "default",
         "min_val": "1",
-        "max_val": "4",
+        "max_val": "8",
         "enumvals": null,
         "boot_val": "2",
         "reset_val": "2"

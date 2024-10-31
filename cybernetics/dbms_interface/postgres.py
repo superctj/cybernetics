@@ -106,43 +106,43 @@ class PostgresWrapper:
         self.db_log_filepath = dbms_info["db_log_filepath"]
         self.db_name = dbms_info["db_name"]
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
-
         self.workload_wrapper = workload_wrapper
         self.results_dir = results_dir
-        # TODO: Add support for remote mode
 
-        # DB-wide internal metrics
-        self.DB_STATS_VIEWS = ["pg_stat_database"]
-        self.CLUSTER_STATS_VIEWS = ["pg_stat_bgwriter"]
-        self.NUMERIC_STATS = [
-            # shared (db cluster)
-            "checkpoints_timed",
-            "checkpoints_req",
-            "checkpoint_write_time",
-            "checkpoint_sync_time",
-            "buffers_checkpoint",
-            "buffers_clean",
-            "maxwritten_clean",
-            "buffers_backend",
-            "buffers_backend_fsync",
-            "buffers_alloc",
-            # per-database
-            "xact_commit",
-            "xact_rollback",
-            "blks_read",
-            "blks_hit",
-            "tup_returned",
-            "tup_fetched",
-            "tup_inserted",
-            "tup_updated",
-            "tup_deleted",
-            "conflicts",
-            "temp_files",
-            "temp_bytes",
-            "deadlocks",
-            "blk_read_time",
-            "blk_write_time",
-        ]
+    def get_benchbase_metrics(self):
+        # Ensure the results directory exists
+        if not os.path.exists(self.results_dir):
+            self.logger.error(f"Results directory does not exist: {self.results_dir}")
+            raise ValueError("Results directory does not exist.")
+
+        # Locate the summary JSON files
+        metrics_files = glob.glob(os.path.join(self.results_dir, "*.summary.json"))
+        if not metrics_files:
+            self.logger.error(f"No .summary.json files found in {self.results_dir}.")
+            raise ValueError("No metrics files found. Ensure that BenchBase is generating output correctly.")
+
+        # Find the latest summary JSON file
+        latest_metrics_file = max(metrics_files, key=os.path.getctime)
+        self.logger.info(f"Using latest metrics file: {latest_metrics_file}")
+
+        # Load the metrics from the latest summary JSON file
+        with open(latest_metrics_file, "r") as f:
+            try:
+                metrics = json.load(f)
+                self.logger.info(f"Metrics content: {metrics}")
+            except json.JSONDecodeError as e:
+                self.logger.error(f"Error decoding JSON from {latest_metrics_file}: {e}")
+                raise ValueError("Error decoding JSON metrics file.")
+            except Exception as e:
+                self.logger.error(f"Unexpected error reading {latest_metrics_file}: {e}")
+                raise
+
+        # Additional check for expected keys in the metrics
+        if "Throughput (requests/second)" not in metrics or "Latency Distribution" not in metrics:
+            self.logger.error(f"Metrics file {latest_metrics_file} does not contain expected keys.")
+            raise ValueError("Metrics file does not contain expected keys.")
+
+        return metrics
 
     def _start_postgres(self) -> bool:
         # This function is only used when failing to restart Postgres due to
@@ -277,6 +277,7 @@ class PostgresWrapper:
 
                 return False
 
+    # Comment out or remove the apply_knobs method
     def apply_knobs(self, knobs: Union[dict, Configuration]) -> bool:
         if isinstance(knobs, Configuration):
             knobs = dict(knobs)

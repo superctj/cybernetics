@@ -5482,3 +5482,43 @@
 2024-06-26 16:01:19.076 EDT [1103174] LOG:  background worker "logical replication launcher" (PID 1103181) exited with exit code 1
 2024-06-26 16:01:19.077 EDT [1103176] LOG:  shutting down
 2024-06-26 16:01:19.091 EDT [1103174] LOG:  database system is shut down
+2024-07-18 16:59:04.481 EDT [4021918] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-07-18 16:59:04.481 EDT [4021918] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-07-18 16:59:04.482 EDT [4021918] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-07-18 16:59:04.485 EDT [4021919] LOG:  database system was shut down at 2024-07-18 16:58:37 EDT
+2024-07-18 16:59:04.490 EDT [4021918] LOG:  database system is ready to accept connections
+2024-07-18 16:59:30.285 EDT [4021918] LOG:  received fast shutdown request
+2024-07-18 16:59:30.286 EDT [4021918] LOG:  aborting any active transactions
+2024-07-18 16:59:30.289 EDT [4021918] LOG:  background worker "logical replication launcher" (PID 4021925) exited with exit code 1
+2024-07-18 16:59:30.290 EDT [4021920] LOG:  shutting down
+2024-07-18 16:59:30.303 EDT [4021918] LOG:  database system is shut down
+2024-07-18 23:39:22.943 EDT [4135377] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-07-18 23:39:22.945 EDT [4135377] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-07-18 23:39:22.949 EDT [4135377] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-07-18 23:39:22.957 EDT [4135378] LOG:  database system was shut down at 2024-07-18 23:39:03 EDT
+2024-07-18 23:39:22.965 EDT [4135377] LOG:  database system is ready to accept connections
+2024-07-18 23:40:00.745 EDT [4135377] LOG:  received fast shutdown request
+2024-07-18 23:40:00.748 EDT [4135377] LOG:  aborting any active transactions
+2024-07-18 23:40:00.752 EDT [4135377] LOG:  background worker "logical replication launcher" (PID 4135384) exited with exit code 1
+2024-07-18 23:40:00.754 EDT [4135379] LOG:  shutting down
+2024-07-18 23:40:00.787 EDT [4135377] LOG:  database system is shut down
+2024-07-19 14:12:46.498 EDT [165728] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-07-19 14:12:46.498 EDT [165728] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-07-19 14:12:46.501 EDT [165728] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-07-19 14:12:46.505 EDT [165729] LOG:  database system was shut down at 2024-07-19 14:12:28 EDT
+2024-07-19 14:12:46.511 EDT [165728] LOG:  database system is ready to accept connections
+2024-07-19 14:13:13.095 EDT [165728] LOG:  received fast shutdown request
+2024-07-19 14:13:13.097 EDT [165728] LOG:  aborting any active transactions
+2024-07-19 14:13:13.101 EDT [165728] LOG:  background worker "logical replication launcher" (PID 165735) exited with exit code 1
+2024-07-19 14:13:13.101 EDT [165730] LOG:  shutting down
+2024-07-19 14:13:13.116 EDT [165728] LOG:  database system is shut down
+2024-07-29 15:09:17.607 EDT [1750465] LOG:  starting PostgreSQL 14.12 (Ubuntu 14.12-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2024-07-29 15:09:17.607 EDT [1750465] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-07-29 15:09:17.611 EDT [1750465] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-07-29 15:09:17.620 EDT [1750466] LOG:  database system was shut down at 2024-07-29 15:09:01 EDT
+2024-07-29 15:09:17.629 EDT [1750465] LOG:  database system is ready to accept connections
+2024-07-29 15:09:45.119 EDT [1750465] LOG:  received fast shutdown request
+2024-07-29 15:09:45.123 EDT [1750465] LOG:  aborting any active transactions
+2024-07-29 15:09:45.125 EDT [1750465] LOG:  background worker "logical replication launcher" (PID 1750472) exited with exit code 1
+2024-07-29 15:09:45.127 EDT [1750467] LOG:  shutting down
+2024-07-29 15:09:45.162 EDT [1750465] LOG:  database system is shut down

@@ -2961,22 +2961,7 @@
         "boot_val": "-2",
         "reset_val": "-2"
     },
-    {
-        "name": "max_pred_locks_per_transaction",
-        "setting": "64",
-        "unit": null,
-        "category": "Lock Management",
-        "short_desc": "Sets the maximum number of predicate locks per transaction.",
-        "extra_desc": "The shared predicate lock table is sized on the assumption that at most max_pred_locks_per_transaction * max_connections distinct objects will need to be locked at any one time.",
-        "context": "postmaster",
-        "vartype": "integer",
-        "source": "default",
-        "min_val": "10",
-        "max_val": "2147483647",
-        "enumvals": null,
-        "boot_val": "64",
-        "reset_val": "64"
-    },
+
     {
         "name": "max_prepared_transactions",
         "setting": "0",

@@ -3,27 +3,27 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def load_throughput_from_txt(file_path):
-    """Load throughput data from a text file into a list, selecting every 3rd value."""
+    """Load throughput data from a text file into a list."""
     throughput_data = []
     throughput_text_lines = []
 
     with open(file_path, 'r') as file:
         lines = file.readlines()
-        for i, line in enumerate(lines):
-            if i % 3 == 0:  # Select every 3rd value
-                filename, avg_throughput = line.strip().split(': ')
-                avg_throughput = float(avg_throughput)
-                throughput_data.append(avg_throughput)
-                throughput_text_lines.append(f"{filename}: {avg_throughput:.2f}")
+        for line in lines:
+            filename, avg_throughput = line.strip().split(': ')
+            avg_throughput = float(avg_throughput)
+            throughput_data.append(avg_throughput)
+            throughput_text_lines.append(f"{filename}: {avg_throughput:.2f}")
 
     return throughput_data, throughput_text_lines
 
 def plot_throughput(throughput_data):
     """Plot the throughput data."""
-    iterations = range(len(throughput_data))
+    sampled_throughput_data = throughput_data[::3]  # Sample every third iteration
+    iterations = range(0, len(throughput_data), 3)
 
     plt.figure(figsize=(10, 6))
-    plt.plot(iterations, throughput_data, label='Throughput (transactions/second)', color='blue', marker='o')  # Added marker for visibility
+    plt.plot(iterations, sampled_throughput_data, label='Throughput (transactions/second)', color='blue', marker='o')  # Added marker for visibility
     plt.xlabel('Iteration')
     plt.ylabel('Throughput (transactions/second)')
     plt.ylim(500, 800)  # Setting the y-axis range

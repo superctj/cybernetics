@@ -25,59 +25,55 @@ def load_json_files(directory, suffix):
     return json_files
 
 def extract_throughput_data(sample_frames, summary_files):
-    """Extract average throughput and best throughput data from the DataFrames and JSON files."""
+    """Extract average throughput, best throughput, and predicted throughput data from the DataFrames and JSON files."""
     throughput_data = []
-    throughput_noise_data = []
     best_throughput = []
+    predicted_throughput = []
     current_best_throughput = 0
     throughput_text_lines = []
 
     # Extract data from sample files
     for filename, df in sample_frames:
-        if 'Throughput (requests/second)' in df.columns and 'Throughput with Noise (requests/second)' in df.columns:
+        if 'Throughput (requests/second)' in df.columns:
             avg_throughput = df['Throughput (requests/second)'].mean()
-            avg_throughput_noise = df['Throughput with Noise (requests/second)'].mean()
             throughput_data.append(avg_throughput)
-            throughput_noise_data.append(avg_throughput_noise)
-            throughput_text_lines.append(f"{filename}: {avg_throughput:.2f} (Original), {avg_throughput_noise:.2f} (Noise)")
+            throughput_text_lines.append(f"{filename}: {avg_throughput:.2f}")
 
             # Update the best throughput value dynamically
             if avg_throughput > current_best_throughput:
                 current_best_throughput = avg_throughput
             best_throughput.append(current_best_throughput)
 
-    # Extract best throughput from summary files if it exists (not used currently)
-    for filename, data in summary_files:
-        if 'Throughput (requests/second)' in data:
-            throughput = data['Throughput (requests/second)']
-            current_best_throughput = max(current_best_throughput, throughput)
-
-    # If the number of best throughput data points is less than throughput data, fill the rest with the last known best throughput
-    if len(best_throughput) < len(throughput_data):
-        best_throughput.extend([current_best_throughput] * (len(throughput_data) - len(best_throughput)))
+            # Check for predicted throughput in the CSV file
+            if 'predicted_throughput' in df.columns:
+                avg_predicted_throughput = df['predicted_throughput'].mean()
+                predicted_throughput.append(avg_predicted_throughput)
+            else:
+                predicted_throughput.append(None)
 
     print("Throughput Data: ", throughput_data)
-    print("Throughput Noise Data: ", throughput_noise_data)
     print("Best Throughput: ", best_throughput)
+    print("Predicted Throughput: ", predicted_throughput)
 
-    return throughput_data, throughput_noise_data, best_throughput, throughput_text_lines
+    return throughput_data, best_throughput, predicted_throughput, throughput_text_lines
 
-def plot_throughput(throughput_data, throughput_noise_data, best_throughput):
-    """Plot the throughput data and the best throughput line."""
+def plot_throughput(throughput_data, best_throughput, predicted_throughput):
+    """Plot the throughput data, the best throughput line, and the predicted throughput."""
     iterations = range(len(throughput_data))
 
     plt.figure(figsize=(10, 6))
-    plt.plot(iterations, throughput_data, label='Throughput', color='blue', marker='o')  # Added marker for visibility
-    plt.plot(iterations, throughput_noise_data, label='Throughput (Noise)', color='green', marker='x')  # Added marker for visibility
-    plt.plot(iterations, best_throughput[:len(iterations)], label='Best Throughput', color='red', marker='^')  # Added marker for visibility
+    plt.plot(iterations, throughput_data, label='Throughput (transactions/second)', color='blue', marker='o')  # Added marker for visibility
+    plt.plot(iterations, best_throughput[:len(iterations)], label='Best Throughput (transactions/second)', color='red', marker='^')  # Added marker for visibility
+    plt.plot(iterations, predicted_throughput[:len(iterations)], label='Predicted Throughput (transactions/second)', color='green', marker='x')  # Added marker for visibility
     plt.xlabel('Iteration')
-    plt.ylabel('Throughput (requests/second)')
+    plt.ylabel('Throughput (transactions/second)')
     plt.title('Throughput vs. Iteration')
     plt.legend()
     plt.grid(True)
+    plt.ylim(300, 800)  # Set the y-axis range
 
     # Save the plot with a timestamp
-    output_dir = '/home/phdonn/cybernetics_n/exps'
+    output_dir = '/home/phdonn/cybernetics/exps'
     os.makedirs(output_dir, exist_ok=True)
     current_time = pd.Timestamp.now().strftime('%Y%m%d_%H%M%S')
     plot_filename = os.path.join(output_dir, f'throughput_vs_iteration_{current_time}.png')
@@ -89,7 +85,7 @@ def plot_throughput(throughput_data, throughput_noise_data, best_throughput):
 
 def save_throughput_to_file(throughput_text_lines):
     """Save the average throughput of each sample file to a text file."""
-    output_dir = '/home/phdonn/cybernetics_n/exps'
+    output_dir = '/home/phdonn/cybernetics/exps'
     os.makedirs(output_dir, exist_ok=True)
     current_time = pd.Timestamp.now().strftime('%Y%m%d_%H%M%S')
     text_filename = os.path.join(output_dir, f'average_throughput_{current_time}.txt')
@@ -101,12 +97,12 @@ def save_throughput_to_file(throughput_text_lines):
     print(f'Average throughput saved as {text_filename}')
 
 if __name__ == "__main__":
-    csv_directory = "/home/phdonn/cybernetics_n/exps/benchbase_tpcc/postgres/bo_gp"
+    csv_directory = "/home/phdonn/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
 
     sample_frames = load_csv_files(csv_directory, ".samples.csv")
     summary_files = load_json_files(csv_directory, ".summary.json")
 
-    throughput_data, throughput_noise_data, best_throughput, throughput_text_lines = extract_throughput_data(sample_frames, summary_files)
+    throughput_data, best_throughput, predicted_throughput, throughput_text_lines = extract_throughput_data(sample_frames, summary_files)
 
-    plot_throughput(throughput_data, throughput_noise_data, best_throughput)
+    plot_throughput(throughput_data, best_throughput, predicted_throughput)
     save_throughput_to_file(throughput_text_lines)

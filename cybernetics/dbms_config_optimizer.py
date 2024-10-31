@@ -1,35 +1,25 @@
-"""DBMS configuration optimizers.
-
-Adapted from https://github.com/uw-mad-dash/llamatune/blob/main/optimizer.py
-"""
-
 from functools import partial
-
 import ConfigSpace.hyperparameters as CSH
-import numpy as np
-import smac.initial_design as smac_init_design
-
 from ConfigSpace import ConfigurationSpace
 from smac import BlackBoxFacade as BBFacade
 from smac import HyperparameterOptimizationFacade as HPOFacade
 from smac import Scenario
-
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
+def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace, target_function):
+    # Ensure n_trials is read as an integer
+    n_trials = int(config["config_optimizer"].get("n_trials", 10))
 
-def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
-                     target_function):
     scenario = Scenario(
         configspace=dbms_config_space,
         output_directory=config["results"]["save_path"],
         deterministic=True,
-        objectives="cost", # minimize the objective
-        n_trials= 20,# changed to 20
+        objectives=["cost"],  # minimize the objective
+        n_trials=10,
         seed=int(config["knob_space"]["random_seed"])
     )
 
-    target_function = partial(target_function,
-                              seed=int(config["knob_space"]["random_seed"]))
+    target_function = partial(target_function, seed=int(config["knob_space"]["random_seed"]))
 
     if config["config_optimizer"]["optimizer"] == "bo-gp":
         optimizer = BBFacade(
@@ -42,19 +32,25 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
             target_function=target_function
         )
     else:
-        raise ValueError(f"Optimizer {optimizer} not supported.")
+        raise ValueError(f"Optimizer {config['config_optimizer']['optimizer']} not supported.")
 
+    print(f"Optimizer initialized with {scenario.n_trials} trials.")
+    print(f"Number of trials: {scenario.n_trials}")
+    print(f"Using optimizer: {config['config_optimizer']['optimizer']}")
+    print(f"Random seed: {config['knob_space']['random_seed']}")
+    print(f"Output directory: {config['results']['save_path']}")
+    print(f"Objective: {scenario.objectives}")
     return optimizer
 
+def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace, target_function, exp_state):
+    n_trials = int(config["config_optimizer"].get("n_trials", 0))
 
-def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
-                       target_function, exp_state):
     scenario = Scenario(
         configspace=dbms_config_space,
         output_directory=config["results"]["save_path"],
         deterministic=True,
-        objectives="cost", # minimize the objective
-        n_trials=100, # 100 is the default value
+        objectives=["cost"],  # minimize the objective
+        n_trials=n_trials,
         seed=int(config["knob_space"]["random_seed"])
     )
 
@@ -72,8 +68,7 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
     n_actions = len(dbms_config_space)
     model = DDPG(n_states, n_actions, model_name="ddpg_model")
 
-    target_function = partial(target_function,
-                              seed=int(config["knob_space"]["random_seed"]))
+    target_function = partial(target_function, seed=int(config["knob_space"]["random_seed"]))
     optimizer = DDPGOptimizer(
         model,
         target_function,
@@ -81,19 +76,25 @@ def get_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
         int(config["config_optimizer"]["n_total_configs"]),
         int(config["config_optimizer"]["n_epochs"]),
         exp_state,
-        is_liquid= False
+        is_liquid=False
     )
 
+    print(f"Using DDPG optimizer with {initial_design.__class__.__name__} initial design.")
+    print(f"Total configurations: {config['config_optimizer']['n_total_configs']}")
+    print(f"Epochs: {config['config_optimizer']['n_epochs']}")
+    print(f"Random seed: {config['knob_space']['random_seed']}")
+    print(f"Number of trials: {scenario.n_trials}")
     return optimizer
 
-def get_liquid_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
-                       target_function, exp_state):
+def get_liquid_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace, target_function, exp_state):
+    n_trials = int(config["config_optimizer"].get("n_trials", 0))
+
     scenario = Scenario(
         configspace=dbms_config_space,
         output_directory=config["results"]["save_path"],
         deterministic=True,
-        objectives="cost", # minimize the objective
-        n_trials=20, # 100 is the default value
+        objectives=["cost"],  # minimize the objective
+        n_trials=n_trials,
         seed=int(config["knob_space"]["random_seed"])
     )
 
@@ -111,8 +112,7 @@ def get_liquid_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
     n_actions = len(dbms_config_space)
     model = DDPG(n_states, n_actions, model_name="ddpg_model")
 
-    target_function = partial(target_function,
-                              seed=int(config["knob_space"]["random_seed"]))
+    target_function = partial(target_function, seed=int(config["knob_space"]["random_seed"]))
     optimizer = DDPGOptimizer(
         model,
         target_function,
@@ -120,16 +120,18 @@ def get_liquid_ddpg_optimizer(config, dbms_config_space: ConfigurationSpace,
         int(config["config_optimizer"]["n_total_configs"]),
         int(config["config_optimizer"]["n_epochs"]),
         exp_state,
-        True
+        is_liquid=True
     )
 
+    print(f"Using Liquid DDPG optimizer with {initial_design.__class__.__name__} initial design.")
+    print(f"Total configurations: {config['config_optimizer']['n_total_configs']}")
+    print(f"Epochs: {config['config_optimizer']['n_epochs']}")
+    print(f"Random seed: {config['knob_space']['random_seed']}")
+    print(f"Number of trials: {scenario.n_trials}")
     return optimizer
 
-
-
 class DDPGOptimizer:
-    def __init__(self, model, target_function, initial_design, n_iters: int,
-                 n_epochs: int, exp_state, is_liquid):
+    def __init__(self, model, target_function, initial_design, n_iters: int, n_epochs: int, exp_state, is_liquid):
         # assert exp_state.target_metric == "throughput" # TODO: Check why this is necessary
 
         self.exp_state = exp_state
@@ -138,7 +140,7 @@ class DDPGOptimizer:
         self.initial_design = initial_design
         self.input_space = initial_design._configspace
         self.n_iters = n_iters
-        self.n_epochs = n_epochs # CDBTune uses 2
+        self.n_epochs = n_epochs  # CDBTune uses 2
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
         self.is_liquid = is_liquid
 
@@ -148,7 +150,7 @@ class DDPGOptimizer:
             hidden = None
 
         prev_perf = self.exp_state.default_perf
-        assert prev_perf >= 0 # TODO: Check why this is necessary
+        assert prev_perf >= 0  # TODO: Check why this is necessary
 
         # Bootstrap with random samples
         init_configurations = self.initial_design.select_configurations()
@@ -167,17 +169,15 @@ class DDPGOptimizer:
             self.logger.info(f"Reward: {reward}")
 
             if i > 0:
-                self.model.add_sample(prev_numeric_stats, prev_dbms_config,
-                                      prev_reward, numeric_stats)
+                self.model.add_sample(prev_numeric_stats, prev_dbms_config, prev_reward, numeric_stats)
 
             prev_numeric_stats = numeric_stats
-            prev_dbms_config = dbms_config.get_array() # scale to [0, 1]
+            prev_dbms_config = dbms_config.get_array()  # scale to [0, 1]
             prev_reward = reward
             prev_perf = perf
 
         # Add last random sample
-        self.model.add_sample(prev_numeric_stats, prev_dbms_config,
-                              prev_reward, numeric_stats)
+        self.model.add_sample(prev_numeric_stats, prev_dbms_config, prev_reward, numeric_stats)
 
         # Start guided search
         for i in range(len(init_configurations), self.n_iters):
@@ -202,8 +202,7 @@ class DDPGOptimizer:
             self.logger.info(f"Reward: {reward}")
 
             # register point to the optimizer
-            self.model.add_sample(prev_numeric_stats, prev_dbms_config,
-                                  prev_reward, numeric_stats)
+            self.model.add_sample(prev_numeric_stats, prev_dbms_config, prev_reward, numeric_stats)
 
             prev_numeric_stats = numeric_stats
             prev_dbms_config = ddpg_action
@@ -222,7 +221,7 @@ class DDPGOptimizer:
         """
         def calculate_reward(delta_default, delta_prev):
             if delta_default > 0:
-                reward =   ((1 + delta_default) ** 2 - 1) * np.abs(1 + delta_prev)
+                reward = ((1 + delta_default) ** 2 - 1) * np.abs(1 + delta_prev)
             else:
                 reward = - ((1 - delta_default) ** 2 - 1) * np.abs(1 - delta_prev)
 
