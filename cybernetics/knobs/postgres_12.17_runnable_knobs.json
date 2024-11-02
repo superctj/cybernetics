@@ -273,7 +273,7 @@
     },
     {
         "name": "checkpoint_completion_target",
-        "setting": "0.5",
+        "setting": "0.9",
         "unit": null,
         "category": "Write-Ahead Log / Checkpoints",
         "short_desc": "Time spent flushing dirty buffers during checkpoint, as fraction of checkpoint interval.",
@@ -284,8 +284,8 @@
         "min_val": "0",
         "max_val": "1",
         "enumvals": null,
-        "boot_val": "0.5",
-        "reset_val": "0.5"
+        "boot_val": "0.9",
+        "reset_val": "0.9"
     },
     {
         "name": "checkpoint_flush_after",
@@ -505,7 +505,7 @@
     },
     {
         "name": "effective_cache_size",
-        "setting": "524288",
+        "setting": "6000000",
         "unit": "8kB",
         "category": "Query Tuning / Planner Cost Constants",
         "short_desc": "Sets the planner's assumption about the total size of the data caches.",
@@ -516,12 +516,12 @@
         "min_val": "1",
         "max_val": "2147483647",
         "enumvals": null,
-        "boot_val": "524288",
-        "reset_val": "524288"
+        "boot_val": "6000000",
+        "reset_val": "6000000"
     },
     {
         "name": "effective_io_concurrency",
-        "setting": "1",
+        "setting": "300",
         "unit": null,
         "category": "Resource Usage / Asynchronous Behavior",
         "short_desc": "Number of simultaneous requests that can be handled efficiently by the disk subsystem.",
@@ -532,8 +532,8 @@
         "min_val": "0",
         "max_val": "1000",
         "enumvals": null,
-        "boot_val": "1",
-        "reset_val": "1"
+        "boot_val": "300",
+        "reset_val": "300"
     },
     {
         "name": "enable_bitmapscan",
@@ -1089,7 +1089,7 @@
     },
     {
         "name": "maintenance_work_mem",
-        "setting": "65536",
+        "setting": "2000000",
         "unit": "kB",
         "category": "Resource Usage / Memory",
         "short_desc": "Sets the maximum memory to be used for maintenance operations.",
@@ -1100,8 +1100,8 @@
         "min_val": "1024",
         "max_val": "2147483647",
         "enumvals": null,
-        "boot_val": "65536",
-        "reset_val": "65536"
+        "boot_val": "2000000",
+        "reset_val": "2000000"
     },
     {
         "name": "max_files_per_process",
@@ -1137,7 +1137,7 @@
     },
     {
         "name": "max_parallel_maintenance_workers",
-        "setting": "2",
+        "setting": "4",
         "unit": null,
         "category": "Resource Usage / Asynchronous Behavior",
         "short_desc": "Sets the maximum number of parallel processes per maintenance operation.",
@@ -1148,12 +1148,12 @@
         "min_val": "0",
         "max_val": "1024",
         "enumvals": null,
-        "boot_val": "2",
-        "reset_val": "2"
+        "boot_val": "4",
+        "reset_val": "4"
     },
     {
         "name": "max_parallel_workers",
-        "setting": "8",
+        "setting": "32",
         "unit": null,
         "category": "Resource Usage / Asynchronous Behavior",
         "short_desc": "Sets the maximum number of parallel workers that can be active at one time.",
@@ -1164,12 +1164,12 @@
         "min_val": "0",
         "max_val": "1024",
         "enumvals": null,
-        "boot_val": "8",
-        "reset_val": "8"
+        "boot_val": "32",
+        "reset_val": "32"
     },
     {
         "name": "max_parallel_workers_per_gather",
-        "setting": "2",
+        "setting": "4",
         "unit": null,
         "category": "Resource Usage / Asynchronous Behavior",
         "short_desc": "Sets the maximum number of parallel processes per executor node.",
@@ -1180,8 +1180,8 @@
         "min_val": "0",
         "max_val": "1024",
         "enumvals": null,
-        "boot_val": "2",
-        "reset_val": "2"
+        "boot_val": "4",
+        "reset_val": "4"
     },
     {
         "name": "max_pred_locks_per_page",
@@ -1265,7 +1265,7 @@
     },
     {
         "name": "max_wal_size",
-        "setting": "1024",
+        "setting": "8000",
         "unit": "MB",
         "category": "Write-Ahead Log / Checkpoints",
         "short_desc": "Sets the WAL size that triggers a checkpoint.",
@@ -1276,12 +1276,12 @@
         "min_val": "2",
         "max_val": "2147483647",
         "enumvals": null,
-        "boot_val": "1024",
-        "reset_val": "1024"
+        "boot_val": "8000",
+        "reset_val": "8000"
     },
     {
         "name": "max_worker_processes",
-        "setting": "8",
+        "setting": "12",
         "unit": null,
         "category": "Resource Usage / Asynchronous Behavior",
         "short_desc": "Maximum number of concurrent worker processes.",
@@ -1292,8 +1292,8 @@
         "min_val": "0",
         "max_val": "262143",
         "enumvals": null,
-        "boot_val": "8",
-        "reset_val": "8"
+        "boot_val": "12",
+        "reset_val": "12"
     },
     {
         "name": "min_parallel_index_scan_size",
@@ -1329,7 +1329,7 @@
     },
     {
         "name": "min_wal_size",
-        "setting": "80",
+        "setting": "2000",
         "unit": "MB",
         "category": "Write-Ahead Log / Checkpoints",
         "short_desc": "Sets the minimum size to shrink the WAL to.",
@@ -1340,8 +1340,8 @@
         "min_val": "2",
         "max_val": "2147483647",
         "enumvals": null,
-        "boot_val": "80",
-        "reset_val": "80"
+        "boot_val": "2000",
+        "reset_val": "2000"
     },
     {
         "name": "old_snapshot_threshold",
@@ -1429,7 +1429,7 @@
     },
     {
         "name": "random_page_cost",
-        "setting": "4",
+        "setting": "1.1",
         "unit": null,
         "category": "Query Tuning / Planner Cost Constants",
         "short_desc": "Sets the planner's estimate of the cost of a nonsequentially fetched disk page.",
@@ -1440,8 +1440,8 @@
         "min_val": "0",
         "max_val": "1.79769e+308",
         "enumvals": null,
-        "boot_val": "4",
-        "reset_val": "4"
+        "boot_val": "1.1",
+        "reset_val": "1.1"
     },
     {
         "name": "seq_page_cost",
@@ -1461,7 +1461,7 @@
     },
     {
         "name": "shared_buffers",
-        "setting": "16384",
+        "setting": "2000000",
         "unit": "8kB",
         "category": "Resource Usage / Memory",
         "short_desc": "Sets the number of shared memory buffers used by the server.",
@@ -1472,8 +1472,8 @@
         "min_val": "16",
         "max_val": "1073741823",
         "enumvals": null,
-        "boot_val": "1024",
-        "reset_val": "16384"
+        "boot_val": "2000000",
+        "reset_val": "2000000"
     },
     {
         "name": "shared_memory_type",
@@ -1646,7 +1646,7 @@
     },
     {
         "name": "wal_buffers",
-        "setting": "512",
+        "setting": "2000",
         "unit": "8kB",
         "category": "Write-Ahead Log / Settings",
         "short_desc": "Sets the number of disk-page buffers in shared memory for WAL.",
@@ -1657,8 +1657,8 @@
         "min_val": "-1",
         "max_val": "262143",
         "enumvals": null,
-        "boot_val": "-1",
-        "reset_val": "512"
+        "boot_val": "2000",
+        "reset_val": "2000"
     },
     {
         "name": "wal_compression",
@@ -1799,7 +1799,7 @@
     },
     {
         "name": "work_mem",
-        "setting": "4096",
+        "setting": "13981",
         "unit": "kB",
         "category": "Resource Usage / Memory",
         "short_desc": "Sets the maximum memory to be used for query workspaces.",
@@ -1810,7 +1810,7 @@
         "min_val": "64",
         "max_val": "2147483647",
         "enumvals": null,
-        "boot_val": "4096",
-        "reset_val": "4096"
+        "boot_val": "13981",
+        "reset_val": "13981"
     }
 ]
