@@ -13,16 +13,18 @@ from cybernetics.utils.util import fix_global_random_state, parse_config, get_be
 # but this may not always be the case due to fluctations in time it takes to query workloads on your machine's Postgres server
 
 #Clear the summary files directory
+#remove only files that end with .summary.json
 save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
 for file_name in os.listdir(save_dir):
     file_path = os.path.join(save_dir, file_name)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.unlink(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"Failed to delete {file_path}. Reason: {e}")
+    if file_name.endswith(".summary.json"):
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print(f"Failed to delete {file_path}. Reason: {e}")
 
 print()
 
@@ -192,13 +194,14 @@ all_best_throughtput = json.load(open(best_summary_file))["Throughput (requests/
 save_dir = "/home/samika/cybernetics/exps/benchbase_tpcc/postgres/bo_gp"
 for file_name in os.listdir(save_dir):
     file_path = os.path.join(save_dir, file_name)
-    try:
-        if os.path.isfile(file_path) or os.path.islink(file_path):
-            os.unlink(file_path)
-        elif os.path.isdir(file_path):
-            shutil.rmtree(file_path)
-    except Exception as e:
-        print(f"Failed to delete {file_path}. Reason: {e}")
+    if file_name.endswith(".summary.json"):
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print(f"Failed to delete {file_path}. Reason: {e}")
 
 print()
 
@@ -331,5 +334,5 @@ plt.ylabel("Throughput (requests/second)")
 
 plt.legend()
 plt.title("Throughput vs Iteration by Transformation")
-plt.savefig("/home/samika/cybernetics/throughput_vs_iteration_plot_1.png")
+plt.savefig("/home/samika/cybernetics/throughput_vs_iteration_plot.png")
 plt.show()
