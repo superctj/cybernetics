@@ -1200,6 +1200,22 @@
         "reset_val": "2"
     },
     {
+        "name": "max_connections",
+        "setting": "300",
+        "unit": null,
+        "category": "Connections and Authentication / Connection Settings",
+        "short_desc": "Sets the maximum number of concurrent connections.",
+        "extra_desc": null,
+        "context": "postmaster",
+        "vartype": "integer",
+        "source": "configuration file",
+        "min_val": "1",
+        "max_val": "262143",
+        "enumvals": null,
+        "boot_val": "300",
+        "reset_val": "300"
+    },
+    {
         "name": "max_pred_locks_per_relation",
         "setting": "-2",
         "unit": null,
