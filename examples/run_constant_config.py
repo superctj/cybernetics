@@ -96,7 +96,7 @@ if __name__ == "__main__":
             knob_values = json.load(f)
 
 
-        for i in range(20):
+        for i in range(50):
             print("ITERATION ", i)
             postgres_wrapper.apply_knobs(knob_values)
             print("Finished applying knobs")
@@ -106,4 +106,4 @@ if __name__ == "__main__":
             throughput = performance["Throughput (requests/second)"]
             print(f"Throughput (requests/second): {throughput}")
             latency = performance["Latency Distribution"]["95th Percentile Latency (microseconds)"]
-            print(f"95th Percentile Latency (microseconds): {latency}")
+            print(f"95th Percentile Latency (microseconds): {latency}")                                                                           

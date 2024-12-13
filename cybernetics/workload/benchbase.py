@@ -1,5 +1,6 @@
 import os
 import subprocess
+import psutil
 
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
@@ -64,7 +65,7 @@ class BenchBaseWrapper:
                     "--execute=true",
                 ]
 
-            self.first_run = False
+            # self.first_run = False # Comment out if you want to reset knobs on every iteration
         # Skip loading data in the subsequent runs
         else:
             if self.results_save_dir:
@@ -102,7 +103,8 @@ class BenchBaseWrapper:
             stdout=subprocess.PIPE,
             close_fds=True,
         )
-
+        p = psutil.Process(workload_process.pid)
+        p.cpu_affinity([1, 3, 5, 7, 9])
         try:
             # communicate() will block the program until the subprocess finishes
             stdout, stderr = workload_process.communicate(timeout=TIMEOUT)

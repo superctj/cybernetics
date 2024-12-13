@@ -42,7 +42,8 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
             target_function=target_function
         )
     else:
-        raise ValueError(f"Optimizer {optimizer} not supported.")
+        opt_name = config["config_optimizer"]["optimizer"]
+        raise ValueError(f"Optimizer {opt_name} not supported.")
 
     return optimizer
 

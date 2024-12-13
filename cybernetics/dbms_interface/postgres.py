@@ -9,6 +9,7 @@ import glob
 import os
 import subprocess
 from typing import Union
+import psutil
 
 import numpy as np
 import psycopg2
@@ -168,6 +169,8 @@ class PostgresWrapper:
             stdout=subprocess.PIPE,
             close_fds=True,
         )
+        process = psutil.Process(p.pid)
+        process.cpu_affinity([0, 2, 4, 6])
         try:
             # communicate() will block the program until the subprocess finishes
             stdout, stderr = p.communicate(timeout=RESTART_TIMEOUT)
@@ -204,6 +207,8 @@ class PostgresWrapper:
             stdout=subprocess.PIPE,
             close_fds=True,
         )
+        process = psutil.Process(p.pid)
+        process.cpu_affinity([0, 2, 4, 6])
         try:
             # communicate() will block the program until the subprocess finishes
             stdout, stderr = p.communicate(timeout=RESTART_TIMEOUT)
