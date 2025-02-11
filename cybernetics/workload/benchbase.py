@@ -20,7 +20,7 @@ class BenchBaseWrapper:
         self.workload = workload
         self.results_save_dir = results_save_dir
 
-        self.first_run = True
+        self.first_run = 0
         self.logger = CUSTOM_LOGGING_INSTANCE.get_logger()
 
     def run(self) -> None:
@@ -29,73 +29,71 @@ class BenchBaseWrapper:
         )
 
         # Load data in the first run
-        if self.first_run:
+        print(self.first_run)
             # Changing the current working directory may have a side effect
-            os.chdir(self.target_dir)
+        os.chdir(self.target_dir)
 
-            # Save the results to a specified directory
-            if self.results_save_dir:
-                payload = [
-                    "java",
-                    "-jar",
-                    "benchbase.jar",
-                    "-b",
-                    self.workload,
-                    "-c",
-                    workload_config_path,
-                    "-d",
-                    self.results_save_dir,
-                    "--create=true",
-                    "--load=true",
-                    "--execute=true",
-                ]
-            # Save the results to the BenchBase default directory
-            else:
-                payload = [
-                    "java",
-                    "-jar",
-                    "benchbase.jar",
-                    "-b",
-                    self.workload,
-                    "-c",
-                    workload_config_path,
-                    "--create=true",
-                    "--load=true",
-                    "--execute=true",
-                ]
-
-            self.first_run = False
-        # Skip loading data in the subsequent runs
+        # Save the results to a specified directory
+        if self.results_save_dir:
+            payload = [
+                "java",
+                "-jar",
+                "benchbase.jar",
+                "-b",
+                self.workload,
+                "-c",
+                workload_config_path,
+                "-d",
+                self.results_save_dir,
+                "--create=true",
+                "--load=true",
+                "--execute=true",
+            ]
+        # Save the results to the BenchBase default directory
         else:
-            if self.results_save_dir:
-                payload = [
-                    "java",
-                    "-jar",
-                    "benchbase.jar",
-                    "-b",
-                    self.workload,
-                    "-c",
-                    workload_config_path,
-                    "-d",
-                    self.results_save_dir,
-                    "--create=false",
-                    "--load=false",
-                    "--execute=true",
-                ]
-            else:
-                payload = [
-                    "java",
-                    "-jar",
-                    "benchbase.jar",
-                    "-b",
-                    self.workload,
-                    "-c",
-                    workload_config_path,
-                    "--create=false",
-                    "--load=false",
-                    "--execute=true",
-                ]
-
+            payload = [
+                "java",
+                "-jar",
+                "benchbase.jar",
+                "-b",
+                self.workload,
+                "-c",
+                workload_config_path,
+                "--create=true",
+                "--load=true",
+                "--execute=true",
+            ]
+        # Skip loading data in the subsequent runs
+        # else:
+        #     if self.results_save_dir:
+        #         payload = [
+        #             "java",
+        #             "-jar",
+        #             "benchbase.jar",
+        #             "-b",
+        #             self.workload,
+        #             "-c",
+        #             workload_config_path,
+        #             "-d",
+        #             self.results_save_dir,
+        #             "--create=false",
+        #             "--load=false",
+        #             "--execute=true",
+        #         ]
+        #     else:
+        #         payload = [
+        #             "java",
+        #             "-jar",
+        #             "benchbase.jar",
+        #             "-b",
+        #             self.workload,
+        #             "-c",
+        #             workload_config_path,
+        #             "--create=false",
+        #             "--load=false",
+        #             "--execute=true",
+        #         ]
+        self.first_run+=1       
         workload_process = subprocess.Popen(
             payload,
             stderr=subprocess.PIPE,
@@ -115,3 +113,5 @@ class BenchBaseWrapper:
                 self.logger.info(f"Subprocess output: \n{stderr.decode()}")
         except subprocess.TimeoutExpired:
             self.logger.info("Timeout when running workload.")
+            
+        

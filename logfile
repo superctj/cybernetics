@@ -1,110 +1,26 @@
-2025-01-14 19:43:52.914 UTC [160837] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-14 19:43:52.914 UTC [160837] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-14 19:43:52.914 UTC [160837] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-14 19:43:52.917 UTC [160837] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-14 19:43:52.925 UTC [160840] LOG:  database system was shut down at 2025-01-14 19:43:52 UTC
-2025-01-14 19:43:52.934 UTC [160837] LOG:  database system is ready to accept connections
-2025-01-14 19:44:02.470 UTC [160837] LOG:  received fast shutdown request
-2025-01-14 19:44:02.473 UTC [160837] LOG:  aborting any active transactions
-2025-01-14 19:44:02.475 UTC [160837] LOG:  background worker "logical replication launcher" (PID 160843) exited with exit code 1
-2025-01-14 19:44:02.475 UTC [160838] LOG:  shutting down
-2025-01-14 19:44:02.478 UTC [160838] LOG:  checkpoint starting: shutdown immediate
-2025-01-14 19:44:02.493 UTC [160838] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.002 s, total=0.018 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
-2025-01-14 19:44:02.499 UTC [160837] LOG:  database system is shut down
-2025-01-16 22:08:13.852 UTC [197645] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-16 22:08:13.852 UTC [197645] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-16 22:08:13.852 UTC [197645] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-16 22:08:13.855 UTC [197645] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-16 22:08:13.863 UTC [197648] LOG:  database system was shut down at 2025-01-16 22:08:13 UTC
-2025-01-16 22:08:13.869 UTC [197645] LOG:  database system is ready to accept connections
-2025-01-16 22:13:13.962 UTC [197646] LOG:  checkpoint starting: time
-2025-01-16 22:13:13.976 UTC [197646] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.002 s, total=0.014 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
-2025-01-17 01:48:45.986 UTC [197645] LOG:  received smart shutdown request
-2025-01-17 01:48:45.989 UTC [197645] LOG:  received SIGHUP, reloading configuration files
-2025-01-17 01:48:45.989 UTC [197645] LOG:  background worker "logical replication launcher" (PID 197651) exited with exit code 1
-2025-01-17 01:48:45.990 UTC [197646] LOG:  shutting down
-2025-01-17 01:48:45.992 UTC [197646] LOG:  checkpoint starting: shutdown immediate
-2025-01-17 01:48:45.999 UTC [197646] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.010 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB
-2025-01-17 01:48:46.006 UTC [197645] LOG:  database system is shut down
-2025-01-17 22:07:21.288 UTC [37210] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-17 22:07:21.289 UTC [37210] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-17 22:07:21.290 UTC [37210] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-17 22:07:21.292 UTC [37210] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-17 22:07:21.300 UTC [37213] LOG:  database system was shut down at 2025-01-17 22:07:21 UTC
-2025-01-17 22:07:21.311 UTC [37210] LOG:  database system is ready to accept connections
-2025-01-17 22:07:24.634 UTC [37210] LOG:  received fast shutdown request
-2025-01-17 22:07:24.637 UTC [37210] LOG:  aborting any active transactions
-2025-01-17 22:07:24.640 UTC [37210] LOG:  background worker "logical replication launcher" (PID 37216) exited with exit code 1
-2025-01-17 22:07:24.641 UTC [37211] LOG:  shutting down
-2025-01-17 22:07:24.644 UTC [37211] LOG:  checkpoint starting: shutdown immediate
-2025-01-17 22:07:24.657 UTC [37211] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.016 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
-2025-01-17 22:07:24.663 UTC [37210] LOG:  database system is shut down
-2025-01-17 22:08:39.840 UTC [37437] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-17 22:08:39.841 UTC [37437] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-17 22:08:39.841 UTC [37437] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-17 22:08:39.844 UTC [37437] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-17 22:08:39.852 UTC [37440] LOG:  database system was shut down at 2025-01-17 22:08:35 UTC
-2025-01-17 22:08:39.864 UTC [37437] LOG:  database system is ready to accept connections
-2025-01-17 22:08:52.973 UTC [37437] LOG:  received fast shutdown request
-2025-01-17 22:08:52.978 UTC [37437] LOG:  aborting any active transactions
-2025-01-17 22:08:52.980 UTC [37437] LOG:  background worker "logical replication launcher" (PID 37443) exited with exit code 1
-2025-01-17 22:08:52.980 UTC [37438] LOG:  shutting down
-2025-01-17 22:08:52.983 UTC [37438] LOG:  checkpoint starting: shutdown immediate
-2025-01-17 22:08:52.997 UTC [37438] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.017 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
-2025-01-17 22:08:53.003 UTC [37437] LOG:  database system is shut down
-2025-01-17 22:11:03.284 UTC [38082] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-17 22:11:03.285 UTC [38082] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-17 22:11:03.285 UTC [38082] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-17 22:11:03.288 UTC [38082] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-17 22:11:03.296 UTC [38085] LOG:  database system was shut down at 2025-01-17 22:11:03 UTC
-2025-01-17 22:11:03.303 UTC [38082] LOG:  database system is ready to accept connections
-2025-01-17 22:11:05.853 UTC [38082] LOG:  received fast shutdown request
-2025-01-17 22:11:05.856 UTC [38082] LOG:  aborting any active transactions
-2025-01-17 22:11:05.858 UTC [38082] LOG:  background worker "logical replication launcher" (PID 38088) exited with exit code 1
-2025-01-17 22:11:05.859 UTC [38083] LOG:  shutting down
-2025-01-17 22:11:05.862 UTC [38083] LOG:  checkpoint starting: shutdown immediate
-2025-01-17 22:11:05.877 UTC [38083] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.002 s, total=0.019 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
-2025-01-17 22:11:05.883 UTC [38082] LOG:  database system is shut down
-2025-01-17 22:12:09.417 UTC [38377] FATAL:  lock file "postmaster.pid" already exists
-2025-01-17 22:12:09.417 UTC [38377] HINT:  Is another postmaster (PID 38271) running in data directory "/home/boyuann/data/pgsql/data"?
-2025-01-17 22:13:18.916 UTC [38592] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-17 22:13:18.916 UTC [38592] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-17 22:13:18.916 UTC [38592] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-17 22:13:18.919 UTC [38592] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-17 22:13:18.927 UTC [38595] LOG:  database system was shut down at 2025-01-17 22:12:55 UTC
-2025-01-17 22:13:18.934 UTC [38592] LOG:  database system is ready to accept connections
-2025-01-17 22:13:24.938 UTC [38592] LOG:  received fast shutdown request
-2025-01-17 22:13:24.941 UTC [38592] LOG:  aborting any active transactions
-2025-01-17 22:13:24.943 UTC [38592] LOG:  background worker "logical replication launcher" (PID 38598) exited with exit code 1
-2025-01-17 22:13:24.943 UTC [38593] LOG:  shutting down
-2025-01-17 22:13:24.945 UTC [38593] LOG:  checkpoint starting: shutdown immediate
-2025-01-17 22:13:24.958 UTC [38593] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.002 s, total=0.015 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
-2025-01-17 22:13:24.964 UTC [38592] LOG:  database system is shut down
-2025-01-17 22:14:48.636 UTC [38753] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-17 22:14:48.636 UTC [38753] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-17 22:14:48.636 UTC [38753] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-17 22:14:48.639 UTC [38753] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-17 22:14:48.647 UTC [38756] LOG:  database system was shut down at 2025-01-17 22:14:48 UTC
-2025-01-17 22:14:48.655 UTC [38753] LOG:  database system is ready to accept connections
-2025-01-17 22:14:52.654 UTC [38753] LOG:  received fast shutdown request
-2025-01-17 22:14:52.657 UTC [38753] LOG:  aborting any active transactions
-2025-01-17 22:14:52.659 UTC [38753] LOG:  background worker "logical replication launcher" (PID 38759) exited with exit code 1
-2025-01-17 22:14:52.660 UTC [38754] LOG:  shutting down
-2025-01-17 22:14:52.662 UTC [38754] LOG:  checkpoint starting: shutdown immediate
-2025-01-17 22:14:52.674 UTC [38754] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.002 s, total=0.014 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
-2025-01-17 22:14:52.680 UTC [38753] LOG:  database system is shut down
-2025-01-17 22:17:44.465 UTC [39424] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-2025-01-17 22:17:44.465 UTC [39424] LOG:  listening on IPv6 address "::1", port 5432
-2025-01-17 22:17:44.466 UTC [39424] LOG:  listening on IPv4 address "127.0.0.1", port 5432
-2025-01-17 22:17:44.470 UTC [39424] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-2025-01-17 22:17:44.477 UTC [39427] LOG:  database system was shut down at 2025-01-17 22:17:25 UTC
-2025-01-17 22:17:44.485 UTC [39424] LOG:  database system is ready to accept connections
-2025-01-17 22:21:22.367 UTC [39707] FATAL:  lock file "postmaster.pid" already exists
-2025-01-17 22:21:22.367 UTC [39707] HINT:  Is another postmaster (PID 39424) running in data directory "/home/boyuann/data/pgsql/data"?
-2025-01-17 22:21:32.167 UTC [39424] LOG:  received fast shutdown request
-2025-01-17 22:21:32.170 UTC [39424] LOG:  aborting any active transactions
-2025-01-17 22:21:32.172 UTC [39424] LOG:  background worker "logical replication launcher" (PID 39430) exited with exit code 1
-2025-01-17 22:21:32.173 UTC [39425] LOG:  shutting down
-2025-01-17 22:21:32.175 UTC [39425] LOG:  checkpoint starting: shutdown immediate
-2025-01-17 22:21:32.318 UTC [39425] LOG:  checkpoint complete: wrote 1897 buffers (11.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.097 s, sync=0.037 s, total=0.145 s; sync files=613, longest=0.003 s, average=0.001 s; distance=8717 kB, estimate=8717 kB
-2025-01-17 22:21:32.331 UTC [39424] LOG:  database system is shut down
+2025-02-11 19:05:23.968 UTC [2606] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+2025-02-11 19:05:23.968 UTC [2606] LOG:  listening on IPv6 address "::1", port 5432
+2025-02-11 19:05:23.968 UTC [2606] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-02-11 19:05:23.971 UTC [2606] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-02-11 19:05:23.981 UTC [2609] LOG:  database system was shut down at 2025-02-07 04:00:31 UTC
+2025-02-11 19:05:24.000 UTC [2606] LOG:  database system is ready to accept connections
+2025-02-11 19:05:28.877 UTC [2606] LOG:  received fast shutdown request
+2025-02-11 19:05:28.878 UTC [2606] LOG:  aborting any active transactions
+2025-02-11 19:05:28.881 UTC [2606] LOG:  background worker "logical replication launcher" (PID 2612) exited with exit code 1
+2025-02-11 19:05:28.881 UTC [2607] LOG:  shutting down
+2025-02-11 19:05:28.883 UTC [2607] LOG:  checkpoint starting: shutdown immediate
+2025-02-11 19:05:28.905 UTC [2607] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.002 s, total=0.025 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2025-02-11 19:05:29.317 UTC [2606] LOG:  database system is shut down
+2025-02-11 19:05:42.538 UTC [2737] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+2025-02-11 19:05:42.538 UTC [2737] LOG:  listening on IPv6 address "::1", port 5432
+2025-02-11 19:05:42.538 UTC [2737] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-02-11 19:05:42.542 UTC [2737] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-02-11 19:05:42.549 UTC [2740] LOG:  database system was shut down at 2025-02-11 19:05:28 UTC
+2025-02-11 19:05:42.561 UTC [2737] LOG:  database system is ready to accept connections
+2025-02-11 19:05:46.792 UTC [2737] LOG:  received fast shutdown request
+2025-02-11 19:05:46.794 UTC [2737] LOG:  aborting any active transactions
+2025-02-11 19:05:46.796 UTC [2737] LOG:  background worker "logical replication launcher" (PID 2743) exited with exit code 1
+2025-02-11 19:05:46.797 UTC [2738] LOG:  shutting down
+2025-02-11 19:05:46.799 UTC [2738] LOG:  checkpoint starting: shutdown immediate
+2025-02-11 19:05:46.811 UTC [2738] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.015 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2025-02-11 19:05:46.817 UTC [2737] LOG:  database system is shut down

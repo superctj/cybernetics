@@ -41,7 +41,8 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
     if config["config_optimizer"]["optimizer"] == "bo-gp":
         optimizer = BBFacade(
             scenario=scenario,
-            target_function=target_function
+            target_function=target_function,
+            initial_design = initial_design
         )
     elif config["config_optimizer"]["optimizer"] == "bo-rf":
         optimizer = HPOFacade(
