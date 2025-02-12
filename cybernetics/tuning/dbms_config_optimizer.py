@@ -13,7 +13,7 @@ from ConfigSpace import ConfigurationSpace
 from smac import BlackBoxFacade as BBFacade
 from smac import HyperparameterOptimizationFacade as HPOFacade
 from smac import Scenario
-
+from adapters import LHDesignWithBiasedSampling
 from cybernetics.utils.custom_logging import CUSTOM_LOGGING_INSTANCE
 
 
@@ -24,8 +24,15 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
         output_directory=config["results"]["save_path"],
         deterministic=True,
         objectives="cost", # minimize the objective
-        n_trials=100,
+        n_trials=70,
         seed=int(config["knob_space"]["random_seed"])
+    )
+    # Latin Hypercube design, with 10 iters
+    initial_design = BBFacade.get_initial_design(
+        scenario=scenario,
+        n_configs=10,  # Number of initial configurations
+        n_configs_per_hyperparamter=10,  # Number of configurations per hyperparameter
+        max_ratio=0.10,  # Use 25% of the available budget
     )
 
     target_function = partial(target_function,
@@ -34,7 +41,8 @@ def get_bo_optimizer(config, dbms_config_space: ConfigurationSpace,
     if config["config_optimizer"]["optimizer"] == "bo-gp":
         optimizer = BBFacade(
             scenario=scenario,
-            target_function=target_function
+            target_function=target_function,
+            initial_design = initial_design
         )
     elif config["config_optimizer"]["optimizer"] == "bo-rf":
         optimizer = HPOFacade(

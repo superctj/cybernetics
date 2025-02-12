@@ -1,0 +1,12 @@
+[INFO][abstract_initial_design.py:147] Using 7 initial design configurations and 0 additional configurations.
+[INFO][engine.py:45] DBMS config optimizer is ready.
+[INFO][postgres.py:49] Connected to Postgres.
+[INFO][postgres.py:67] Closed connection to Postgres.
+[INFO][postgres.py:211] Restarted Postgres.
+[INFO][postgres.py:212] Subprocess output: 
+waiting for server to shut down...... done
+server stopped
+waiting for server to start.... done
+server started
+
+[INFO][postgres.py:328] Reset knobs with Postgres restarted.

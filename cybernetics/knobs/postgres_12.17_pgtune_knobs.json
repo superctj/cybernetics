@@ -41,7 +41,7 @@
         "context": "user",
         "vartype": "integer",
         "source": "default",
-        "min_val": "524288",
+        "min_val": "1",
         "max_val": "524290",
         "enumvals": null,
         "boot_val": "524288",

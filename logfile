@@ -1,0 +1,26 @@
+2025-02-11 19:05:23.968 UTC [2606] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+2025-02-11 19:05:23.968 UTC [2606] LOG:  listening on IPv6 address "::1", port 5432
+2025-02-11 19:05:23.968 UTC [2606] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-02-11 19:05:23.971 UTC [2606] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-02-11 19:05:23.981 UTC [2609] LOG:  database system was shut down at 2025-02-07 04:00:31 UTC
+2025-02-11 19:05:24.000 UTC [2606] LOG:  database system is ready to accept connections
+2025-02-11 19:05:28.877 UTC [2606] LOG:  received fast shutdown request
+2025-02-11 19:05:28.878 UTC [2606] LOG:  aborting any active transactions
+2025-02-11 19:05:28.881 UTC [2606] LOG:  background worker "logical replication launcher" (PID 2612) exited with exit code 1
+2025-02-11 19:05:28.881 UTC [2607] LOG:  shutting down
+2025-02-11 19:05:28.883 UTC [2607] LOG:  checkpoint starting: shutdown immediate
+2025-02-11 19:05:28.905 UTC [2607] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.002 s, total=0.025 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2025-02-11 19:05:29.317 UTC [2606] LOG:  database system is shut down
+2025-02-11 19:05:42.538 UTC [2737] LOG:  starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+2025-02-11 19:05:42.538 UTC [2737] LOG:  listening on IPv6 address "::1", port 5432
+2025-02-11 19:05:42.538 UTC [2737] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-02-11 19:05:42.542 UTC [2737] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-02-11 19:05:42.549 UTC [2740] LOG:  database system was shut down at 2025-02-11 19:05:28 UTC
+2025-02-11 19:05:42.561 UTC [2737] LOG:  database system is ready to accept connections
+2025-02-11 19:05:46.792 UTC [2737] LOG:  received fast shutdown request
+2025-02-11 19:05:46.794 UTC [2737] LOG:  aborting any active transactions
+2025-02-11 19:05:46.796 UTC [2737] LOG:  background worker "logical replication launcher" (PID 2743) exited with exit code 1
+2025-02-11 19:05:46.797 UTC [2738] LOG:  shutting down
+2025-02-11 19:05:46.799 UTC [2738] LOG:  checkpoint starting: shutdown immediate
+2025-02-11 19:05:46.811 UTC [2738] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.015 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2025-02-11 19:05:46.817 UTC [2737] LOG:  database system is shut down
